@@ -19,7 +19,7 @@ setup(
     packages=['maintcal'],
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
-    install_requires=['google_api', 'absl-py'],
+    install_requires=['google_api', 'absl-py', 'zmq', 'db-sqlite3'],
     classifiers=[
         'License :: OSI Approved :: MIT License',
         'Development Status :: 3 - Alpha',
