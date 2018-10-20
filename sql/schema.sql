@@ -1,9 +1,23 @@
 BEGIN TRANSACTION;
+CREATE TABLE "users" (
+	`id`	INTEGER NOT NULL,
+	`name`	TEXT NOT NULL,
+	`token`	TEXT NOT NULL,
+	PRIMARY KEY(id)
+);
 CREATE TABLE `snoozes` (
 	`id`	INTEGER NOT NULL,
 	`name`	TEXT NOT NULL,
 	`length`	TEXT NOT NULL,
 	PRIMARY KEY(id)
+);
+CREATE TABLE "shares" (
+	`id`	INTEGER NOT NULL,
+	`group_id`	INTEGER NOT NULL,
+	`user_id`	INTEGER NOT NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY(`group_id`) REFERENCES groups ( id ),
+	FOREIGN KEY(`user_id`) REFERENCES users ( id )
 );
 CREATE TABLE "schedules" (
 	`id`	INTEGER NOT NULL,
@@ -24,19 +38,21 @@ CREATE TABLE "maintenances" (
 	FOREIGN KEY(`snooze`) REFERENCES snoozes ( id ),
 	FOREIGN KEY(`asset`) REFERENCES assets ( id )
 );
-CREATE TABLE "calendars" (
+CREATE TABLE "groups" (
 	`id`	INTEGER NOT NULL,
-	`name`	text NOT NULL,
-	`api_id`	text NOT NULL,
-	`description`	text,
-	PRIMARY KEY(id)
+	`name`	TEXT NOT NULL,
+	`description`	TEXT,
+	`calendar_id`	TEXT NOT NULL,
+	`owner_id`	INTEGER NOT NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY(`owner_id`) REFERENCES users ( id )
 );
 CREATE TABLE "assets" (
 	`id`	INTEGER NOT NULL,
 	`name`	text NOT NULL,
 	`description`	text,
-	`calendar_id`	integer NOT NULL,
+	`group_id`	integer NOT NULL,
 	PRIMARY KEY(id),
-	FOREIGN KEY(`calendar_id`) REFERENCES calendars ( id )
+	FOREIGN KEY(`group_id`) REFERENCES groups ( id )
 );
 COMMIT;
