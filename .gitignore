@@ -1,2 +1,4 @@
 *.db
 *.json
+.eggs
+__pycache__
