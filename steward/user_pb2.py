@@ -18,15 +18,15 @@ _sym_db = _symbol_database.Default()
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='steward/user.proto',
-  package='maintcal',
+  package='steward',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x12steward/user.proto\x12\x08maintcal\"\x19\n\x0bUserRequest\x12\n\n\x02id\x18\x01 \x01(\x03\"\x1c\n\x0cUsersRequest\x12\x0c\n\x04name\x18\x01 \x03(\t\"H\n\x0cUserResponse\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x1e\n\x05level\x18\x03 \x01(\x0e\x32\x0f.maintcal.Level*+\n\x05Level\x12\r\n\tANONYMOUS\x10\x00\x12\x08\n\x04USER\x10\x01\x12\t\n\x05OWNER\x10\x02\x32\x82\x01\n\x04User\x12:\n\x07GetUser\x12\x15.maintcal.UserRequest\x1a\x16.maintcal.UserResponse\"\x00\x12>\n\x08GetUsers\x12\x16.maintcal.UsersRequest\x1a\x16.maintcal.UserResponse\"\x00\x30\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x12steward/user.proto\x12\x07steward\"\x19\n\x0bUserRequest\x12\n\n\x02id\x18\x01 \x01(\x03\"\x1c\n\x0cUsersRequest\x12\x0c\n\x04name\x18\x01 \x03(\t\"G\n\x0cUserResponse\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x1d\n\x05level\x18\x03 \x01(\x0e\x32\x0e.steward.Level*+\n\x05Level\x12\r\n\tANONYMOUS\x10\x00\x12\x08\n\x04USER\x10\x01\x12\t\n\x05OWNER\x10\x02\x32~\n\x04User\x12\x38\n\x07GetUser\x12\x14.steward.UserRequest\x1a\x15.steward.UserResponse\"\x00\x12<\n\x08GetUsers\x12\x15.steward.UsersRequest\x1a\x15.steward.UserResponse\"\x00\x30\x01\x62\x06proto3')
 )
 
 _LEVEL = _descriptor.EnumDescriptor(
   name='Level',
-  full_name='maintcal.Level',
+  full_name='steward.Level',
   filename=None,
   file=DESCRIPTOR,
   values=[
@@ -45,8 +45,8 @@ _LEVEL = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=163,
-  serialized_end=206,
+  serialized_start=161,
+  serialized_end=204,
 )
 _sym_db.RegisterEnumDescriptor(_LEVEL)
 
@@ -59,13 +59,13 @@ OWNER = 2
 
 _USERREQUEST = _descriptor.Descriptor(
   name='UserRequest',
-  full_name='maintcal.UserRequest',
+  full_name='steward.UserRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='id', full_name='maintcal.UserRequest.id', index=0,
+      name='id', full_name='steward.UserRequest.id', index=0,
       number=1, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -83,20 +83,20 @@ _USERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=32,
-  serialized_end=57,
+  serialized_start=31,
+  serialized_end=56,
 )
 
 
 _USERSREQUEST = _descriptor.Descriptor(
   name='UsersRequest',
-  full_name='maintcal.UsersRequest',
+  full_name='steward.UsersRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='name', full_name='maintcal.UsersRequest.name', index=0,
+      name='name', full_name='steward.UsersRequest.name', index=0,
       number=1, type=9, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -114,34 +114,34 @@ _USERSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=59,
-  serialized_end=87,
+  serialized_start=58,
+  serialized_end=86,
 )
 
 
 _USERRESPONSE = _descriptor.Descriptor(
   name='UserResponse',
-  full_name='maintcal.UserResponse',
+  full_name='steward.UserResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='id', full_name='maintcal.UserResponse.id', index=0,
+      name='id', full_name='steward.UserResponse.id', index=0,
       number=1, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='name', full_name='maintcal.UserResponse.name', index=1,
+      name='name', full_name='steward.UserResponse.name', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='level', full_name='maintcal.UserResponse.level', index=2,
+      name='level', full_name='steward.UserResponse.level', index=2,
       number=3, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -159,8 +159,8 @@ _USERRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=89,
-  serialized_end=161,
+  serialized_start=88,
+  serialized_end=159,
 )
 
 _USERRESPONSE.fields_by_name['level'].enum_type = _LEVEL
@@ -173,21 +173,21 @@ _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 UserRequest = _reflection.GeneratedProtocolMessageType('UserRequest', (_message.Message,), {
   'DESCRIPTOR' : _USERREQUEST,
   '__module__' : 'steward.user_pb2'
-  # @@protoc_insertion_point(class_scope:maintcal.UserRequest)
+  # @@protoc_insertion_point(class_scope:steward.UserRequest)
   })
 _sym_db.RegisterMessage(UserRequest)
 
 UsersRequest = _reflection.GeneratedProtocolMessageType('UsersRequest', (_message.Message,), {
   'DESCRIPTOR' : _USERSREQUEST,
   '__module__' : 'steward.user_pb2'
-  # @@protoc_insertion_point(class_scope:maintcal.UsersRequest)
+  # @@protoc_insertion_point(class_scope:steward.UsersRequest)
   })
 _sym_db.RegisterMessage(UsersRequest)
 
 UserResponse = _reflection.GeneratedProtocolMessageType('UserResponse', (_message.Message,), {
   'DESCRIPTOR' : _USERRESPONSE,
   '__module__' : 'steward.user_pb2'
-  # @@protoc_insertion_point(class_scope:maintcal.UserResponse)
+  # @@protoc_insertion_point(class_scope:steward.UserResponse)
   })
 _sym_db.RegisterMessage(UserResponse)
 
@@ -195,16 +195,16 @@ _sym_db.RegisterMessage(UserResponse)
 
 _USER = _descriptor.ServiceDescriptor(
   name='User',
-  full_name='maintcal.User',
+  full_name='steward.User',
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=209,
-  serialized_end=339,
+  serialized_start=206,
+  serialized_end=332,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetUser',
-    full_name='maintcal.User.GetUser',
+    full_name='steward.User.GetUser',
     index=0,
     containing_service=None,
     input_type=_USERREQUEST,
@@ -213,7 +213,7 @@ _USER = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='GetUsers',
-    full_name='maintcal.User.GetUsers',
+    full_name='steward.User.GetUsers',
     index=1,
     containing_service=None,
     input_type=_USERSREQUEST,
