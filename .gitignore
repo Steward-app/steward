@@ -2,3 +2,4 @@
 *.json
 .eggs
 __pycache__
+_schemacrawler

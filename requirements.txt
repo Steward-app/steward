@@ -1,4 +1,4 @@
 google_api
 absl-py
-zmq
-db-sqlite3
+protobuf
+grpcio-tools
