@@ -1,0 +1,13 @@
+syntax = "proto3";
+package steward;
+
+enum OrganizationType {
+  HOUSEHOLD = 0;
+  BUSINESS = 1;
+}
+
+message Organization {
+  int64 id = 1;
+  string name = 2;
+  OrganizationType type = 3;
+}

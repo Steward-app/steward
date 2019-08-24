@@ -1,0 +1,19 @@
+syntax = "proto3";
+package steward;
+
+enum RecurrenceType {
+  DURATION = 0;
+}
+
+message Schedule {
+  int64 id = 1;
+  string name = 2;
+  string description = 3;
+  Recurrence recurrence = 4;
+}
+
+message Recurrence {
+  int64 id = 1;
+  string name = 2;
+  RecurrenceType = 3;
+}

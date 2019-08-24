@@ -1,0 +1,11 @@
+syntax = "proto3";
+package steward;
+
+message Maintenance {
+  int64 id = 1;
+  string name = 2;
+  string description = 3;
+  Schedule schedule = 4;
+  Snooze snooze = 5;
+  Asset asset = 6;
+}
