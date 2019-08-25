@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Users {% endblock %}
+{% set view = "Users" %}
+
+
+{% block content %}
+  {% if users %}
+    <div class="room">
+    <ul id="users" class="room">
+      {% for id, name in users.items() %}
+      <li id="{{id}}">
+        <a href='/user/{{id}}'>
+          {{name}}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    </div>
+  {% else %}
+    <h2>No users could be found. Is the Registry running?</h2>
+  {% endif %}
+{% endblock %}
