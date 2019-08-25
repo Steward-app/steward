@@ -1,9 +1,9 @@
 syntax = "proto3";
 package steward;
 
-import "user.proto"
+import "steward/user.proto";
 
-service User {
-    rpc GetUser(UserRequest) returns (UserResponse) {} ;
-    rpc GetUsers(UsersRequest) returns (stream UserResponse) {};
+service UserService {
+    rpc GetUser(UserRequest) returns (User) {} ;
+    rpc GetUsers(UsersRequest) returns (stream User) {};
 }

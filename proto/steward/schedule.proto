@@ -15,5 +15,5 @@ message Schedule {
 message Recurrence {
   int64 id = 1;
   string name = 2;
-  RecurrenceType = 3;
+  RecurrenceType type = 3;
 }

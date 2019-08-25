@@ -1,6 +1,10 @@
 syntax = "proto3";
 package steward;
 
+import "steward/schedule.proto";
+import "steward/snooze.proto";
+import "steward/asset.proto";
+
 message Maintenance {
   int64 id = 1;
   string name = 2;

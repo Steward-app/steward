@@ -1,7 +1,7 @@
 syntax = "proto3";
 package steward;
 
-import "organization.proto"
+import "steward/organization.proto";
 
 message User {
   int64 id = 1;
