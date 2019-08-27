@@ -38,6 +38,12 @@ class UserServiceServicer(registry_pb2_grpc.UserServiceServicer):
         result = self.users.update_one({'_id': _id}, {"$set": { 'proto': user.SerializeToString()}})
         return self._getUser(_id)
 
+    def ListUsers(self, request, context):
+        for user_bson in self.users.find():
+            user = u.User()
+            user.ParseFromString(user_bson['proto'])
+            yield user
+
     def _getUser(self, id):
         if not isinstance(id, ObjectId):
             id = ObjectId(str(id))

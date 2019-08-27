@@ -13,6 +13,7 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
+from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from steward import user_pb2 as steward_dot_user__pb2
 
 
@@ -21,13 +22,52 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='steward',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x16steward/registry.proto\x12\x07steward\x1a\x12steward/user.proto2\xb6\x01\n\x0bUserService\x12\x33\n\x07GetUser\x12\x17.steward.GetUserRequest\x1a\r.steward.User\"\x00\x12\x37\n\x08GetUsers\x12\x18.steward.GetUsersRequest\x1a\r.steward.User\"\x00\x30\x01\x12\x39\n\nCreateUser\x12\x1a.steward.CreateUserRequest\x1a\r.steward.User\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x16steward/registry.proto\x12\x07steward\x1a\x1bgoogle/protobuf/empty.proto\x1a\x12steward/user.proto\"\x1d\n\x0bListRequest\x12\x0e\n\x06\x66ilter\x18\x01 \x01(\t2\xb3\x01\n\x0bUserService\x12\x33\n\x07GetUser\x12\x17.steward.GetUserRequest\x1a\r.steward.User\"\x00\x12\x39\n\nCreateUser\x12\x1a.steward.CreateUserRequest\x1a\r.steward.User\"\x00\x12\x34\n\tListUsers\x12\x14.steward.ListRequest\x1a\r.steward.User\"\x00\x30\x01\x62\x06proto3')
   ,
-  dependencies=[steward_dot_user__pb2.DESCRIPTOR,])
+  dependencies=[google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,steward_dot_user__pb2.DESCRIPTOR,])
 
 
 
+
+_LISTREQUEST = _descriptor.Descriptor(
+  name='ListRequest',
+  full_name='steward.ListRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='filter', full_name='steward.ListRequest.filter', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=84,
+  serialized_end=113,
+)
+
+DESCRIPTOR.message_types_by_name['ListRequest'] = _LISTREQUEST
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+ListRequest = _reflection.GeneratedProtocolMessageType('ListRequest', (_message.Message,), {
+  'DESCRIPTOR' : _LISTREQUEST,
+  '__module__' : 'steward.registry_pb2'
+  # @@protoc_insertion_point(class_scope:steward.ListRequest)
+  })
+_sym_db.RegisterMessage(ListRequest)
 
 
 
@@ -37,8 +77,8 @@ _USERSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=56,
-  serialized_end=238,
+  serialized_start=116,
+  serialized_end=295,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetUser',
@@ -50,20 +90,20 @@ _USERSERVICE = _descriptor.ServiceDescriptor(
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='GetUsers',
-    full_name='steward.UserService.GetUsers',
+    name='CreateUser',
+    full_name='steward.UserService.CreateUser',
     index=1,
     containing_service=None,
-    input_type=steward_dot_user__pb2._GETUSERSREQUEST,
+    input_type=steward_dot_user__pb2._CREATEUSERREQUEST,
     output_type=steward_dot_user__pb2._USER,
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='CreateUser',
-    full_name='steward.UserService.CreateUser',
+    name='ListUsers',
+    full_name='steward.UserService.ListUsers',
     index=2,
     containing_service=None,
-    input_type=steward_dot_user__pb2._CREATEUSERREQUEST,
+    input_type=_LISTREQUEST,
     output_type=steward_dot_user__pb2._USER,
     serialized_options=None,
   ),
