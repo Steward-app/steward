@@ -7,10 +7,10 @@
   {% if users %}
     <div class="room">
     <ul id="users" class="room">
-      {% for id, name in users.items() %}
-      <li id="{{id}}">
-        <a href='/user/{{id}}'>
-          {{name}}
+      {% for user in users %}
+      <li id="{{user._id}}">
+        <a href='/user/{{user._id}}'>
+          {{user.name}}
         </a>
       </li>
       {% endfor %}
