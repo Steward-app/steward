@@ -22,52 +22,13 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='steward',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x16steward/registry.proto\x12\x07steward\x1a\x1bgoogle/protobuf/empty.proto\x1a\x12steward/user.proto\"\x1d\n\x0bListRequest\x12\x0e\n\x06\x66ilter\x18\x01 \x01(\t2\xb3\x01\n\x0bUserService\x12\x33\n\x07GetUser\x12\x17.steward.GetUserRequest\x1a\r.steward.User\"\x00\x12\x39\n\nCreateUser\x12\x1a.steward.CreateUserRequest\x1a\r.steward.User\"\x00\x12\x34\n\tListUsers\x12\x14.steward.ListRequest\x1a\r.steward.User\"\x00\x30\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x16steward/registry.proto\x12\x07steward\x1a\x1bgoogle/protobuf/empty.proto\x1a\x12steward/user.proto2\xb8\x01\n\x0bUserService\x12\x33\n\x07GetUser\x12\x17.steward.GetUserRequest\x1a\r.steward.User\"\x00\x12\x39\n\nCreateUser\x12\x1a.steward.CreateUserRequest\x1a\r.steward.User\"\x00\x12\x39\n\tListUsers\x12\x19.steward.ListUsersRequest\x1a\r.steward.User\"\x00\x30\x01\x62\x06proto3')
   ,
   dependencies=[google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,steward_dot_user__pb2.DESCRIPTOR,])
 
 
 
-
-_LISTREQUEST = _descriptor.Descriptor(
-  name='ListRequest',
-  full_name='steward.ListRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='filter', full_name='steward.ListRequest.filter', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=84,
-  serialized_end=113,
-)
-
-DESCRIPTOR.message_types_by_name['ListRequest'] = _LISTREQUEST
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
-
-ListRequest = _reflection.GeneratedProtocolMessageType('ListRequest', (_message.Message,), {
-  'DESCRIPTOR' : _LISTREQUEST,
-  '__module__' : 'steward.registry_pb2'
-  # @@protoc_insertion_point(class_scope:steward.ListRequest)
-  })
-_sym_db.RegisterMessage(ListRequest)
 
 
 
@@ -77,8 +38,8 @@ _USERSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=116,
-  serialized_end=295,
+  serialized_start=85,
+  serialized_end=269,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetUser',
@@ -103,7 +64,7 @@ _USERSERVICE = _descriptor.ServiceDescriptor(
     full_name='steward.UserService.ListUsers',
     index=2,
     containing_service=None,
-    input_type=_LISTREQUEST,
+    input_type=steward_dot_user__pb2._LISTUSERSREQUEST,
     output_type=steward_dot_user__pb2._USER,
     serialized_options=None,
   ),

@@ -4,13 +4,8 @@ package steward;
 import "google/protobuf/empty.proto";
 import "steward/user.proto";
 
-message ListRequest {
-  string filter = 1;
-}
-
-
 service UserService {
     rpc GetUser(GetUserRequest) returns (User) {} ;
     rpc CreateUser(CreateUserRequest) returns (User) {} ;
-    rpc ListUsers(ListRequest) returns (stream User) {} ;
+    rpc ListUsers(ListUsersRequest) returns (stream User) {} ;
 }

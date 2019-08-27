@@ -28,9 +28,7 @@ message GetUserRequest {
   string _id = 1;
 }
 
-// sample
-message GetUsersRequest {
-  repeated string name = 1;
+message ListUsersRequest {
 }
 
 message CreateUserRequest {

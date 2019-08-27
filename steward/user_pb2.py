@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='steward',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x12steward/user.proto\x12\x07steward\x1a\x1asteward/organization.proto\"\\\n\x04User\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08password\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x18\n\x10\x61vailable_effort\x18\x05 \x01(\x02\"\x7f\n\x03\x41\x43L\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x1b\n\x04user\x18\x02 \x01(\x0b\x32\r.steward.User\x12+\n\x0corganization\x18\x03 \x01(\x0b\x32\x15.steward.Organization\x12!\n\x05level\x18\x04 \x01(\x0e\x32\x12.steward.UserLevel\"\x1d\n\x0eGetUserRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"\x1f\n\x0fGetUsersRequest\x12\x0c\n\x04name\x18\x01 \x03(\t\"B\n\x11\x43reateUserRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t*/\n\tUserLevel\x12\r\n\tANONYMOUS\x10\x00\x12\x08\n\x04USER\x10\x01\x12\t\n\x05OWNER\x10\x02\x62\x06proto3')
+  serialized_pb=_b('\n\x12steward/user.proto\x12\x07steward\x1a\x1asteward/organization.proto\"\\\n\x04User\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08password\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x18\n\x10\x61vailable_effort\x18\x05 \x01(\x02\"\x7f\n\x03\x41\x43L\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x1b\n\x04user\x18\x02 \x01(\x0b\x32\r.steward.User\x12+\n\x0corganization\x18\x03 \x01(\x0b\x32\x15.steward.Organization\x12!\n\x05level\x18\x04 \x01(\x0e\x32\x12.steward.UserLevel\"\x1d\n\x0eGetUserRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"\x12\n\x10ListUsersRequest\"B\n\x11\x43reateUserRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t*/\n\tUserLevel\x12\r\n\tANONYMOUS\x10\x00\x12\x08\n\x04USER\x10\x01\x12\t\n\x05OWNER\x10\x02\x62\x06proto3')
   ,
   dependencies=[steward_dot_organization__pb2.DESCRIPTOR,])
 
@@ -47,8 +47,8 @@ _USERLEVEL = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=414,
-  serialized_end=461,
+  serialized_start=401,
+  serialized_end=448,
 )
 _sym_db.RegisterEnumDescriptor(_USERLEVEL)
 
@@ -201,20 +201,13 @@ _GETUSERREQUEST = _descriptor.Descriptor(
 )
 
 
-_GETUSERSREQUEST = _descriptor.Descriptor(
-  name='GetUsersRequest',
-  full_name='steward.GetUsersRequest',
+_LISTUSERSREQUEST = _descriptor.Descriptor(
+  name='ListUsersRequest',
+  full_name='steward.ListUsersRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='steward.GetUsersRequest.name', index=0,
-      number=1, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -228,7 +221,7 @@ _GETUSERSREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=313,
-  serialized_end=344,
+  serialized_end=331,
 )
 
 
@@ -272,8 +265,8 @@ _CREATEUSERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=346,
-  serialized_end=412,
+  serialized_start=333,
+  serialized_end=399,
 )
 
 _ACL.fields_by_name['user'].message_type = _USER
@@ -282,7 +275,7 @@ _ACL.fields_by_name['level'].enum_type = _USERLEVEL
 DESCRIPTOR.message_types_by_name['User'] = _USER
 DESCRIPTOR.message_types_by_name['ACL'] = _ACL
 DESCRIPTOR.message_types_by_name['GetUserRequest'] = _GETUSERREQUEST
-DESCRIPTOR.message_types_by_name['GetUsersRequest'] = _GETUSERSREQUEST
+DESCRIPTOR.message_types_by_name['ListUsersRequest'] = _LISTUSERSREQUEST
 DESCRIPTOR.message_types_by_name['CreateUserRequest'] = _CREATEUSERREQUEST
 DESCRIPTOR.enum_types_by_name['UserLevel'] = _USERLEVEL
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -308,12 +301,12 @@ GetUserRequest = _reflection.GeneratedProtocolMessageType('GetUserRequest', (_me
   })
 _sym_db.RegisterMessage(GetUserRequest)
 
-GetUsersRequest = _reflection.GeneratedProtocolMessageType('GetUsersRequest', (_message.Message,), {
-  'DESCRIPTOR' : _GETUSERSREQUEST,
+ListUsersRequest = _reflection.GeneratedProtocolMessageType('ListUsersRequest', (_message.Message,), {
+  'DESCRIPTOR' : _LISTUSERSREQUEST,
   '__module__' : 'steward.user_pb2'
-  # @@protoc_insertion_point(class_scope:steward.GetUsersRequest)
+  # @@protoc_insertion_point(class_scope:steward.ListUsersRequest)
   })
-_sym_db.RegisterMessage(GetUsersRequest)
+_sym_db.RegisterMessage(ListUsersRequest)
 
 CreateUserRequest = _reflection.GeneratedProtocolMessageType('CreateUserRequest', (_message.Message,), {
   'DESCRIPTOR' : _CREATEUSERREQUEST,
