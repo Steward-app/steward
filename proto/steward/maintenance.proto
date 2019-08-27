@@ -1,15 +1,27 @@
 syntax = "proto3";
 package steward;
 
-import "steward/schedule.proto";
-import "steward/snooze.proto";
+import "google/protobuf/duration.proto";
 import "steward/asset.proto";
 
+enum ScheduleType {
+  DURATION = 0;
+  EXTERNAL = 1;
+}
+
 message Maintenance {
-  int64 id = 1;
+  string _id = 1;
   string name = 2;
   string description = 3;
-  Schedule schedule = 4;
-  Snooze snooze = 5;
-  Asset asset = 6;
+  Asset asset = 4;
+
+  message Schedule {
+    string description = 1;
+    ScheduleType type = 2;
+    google.protobuf.Duration interval = 3;
+  }
+  message Snooze {
+    string description = 1;
+    google.protobuf.Duration duration = 2;
+  }
 }
