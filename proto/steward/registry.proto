@@ -4,6 +4,7 @@ package steward;
 import "steward/user.proto";
 
 service UserService {
-    rpc GetUser(UserRequest) returns (User) {} ;
-    rpc GetUsers(UsersRequest) returns (stream User) {};
+    rpc GetUser(GetUserRequest) returns (User) {} ;
+    rpc GetUsers(GetUsersRequest) returns (stream User) {};
+    rpc CreateUser(CreateUserRequest) returns (User) {} ;
 }

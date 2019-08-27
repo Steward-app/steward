@@ -16,12 +16,17 @@ class UserServiceStub(object):
     """
     self.GetUser = channel.unary_unary(
         '/steward.UserService/GetUser',
-        request_serializer=steward_dot_user__pb2.UserRequest.SerializeToString,
+        request_serializer=steward_dot_user__pb2.GetUserRequest.SerializeToString,
         response_deserializer=steward_dot_user__pb2.User.FromString,
         )
     self.GetUsers = channel.unary_stream(
         '/steward.UserService/GetUsers',
-        request_serializer=steward_dot_user__pb2.UsersRequest.SerializeToString,
+        request_serializer=steward_dot_user__pb2.GetUsersRequest.SerializeToString,
+        response_deserializer=steward_dot_user__pb2.User.FromString,
+        )
+    self.CreateUser = channel.unary_unary(
+        '/steward.UserService/CreateUser',
+        request_serializer=steward_dot_user__pb2.CreateUserRequest.SerializeToString,
         response_deserializer=steward_dot_user__pb2.User.FromString,
         )
 
@@ -44,17 +49,29 @@ class UserServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def CreateUser(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_UserServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
       'GetUser': grpc.unary_unary_rpc_method_handler(
           servicer.GetUser,
-          request_deserializer=steward_dot_user__pb2.UserRequest.FromString,
+          request_deserializer=steward_dot_user__pb2.GetUserRequest.FromString,
           response_serializer=steward_dot_user__pb2.User.SerializeToString,
       ),
       'GetUsers': grpc.unary_stream_rpc_method_handler(
           servicer.GetUsers,
-          request_deserializer=steward_dot_user__pb2.UsersRequest.FromString,
+          request_deserializer=steward_dot_user__pb2.GetUsersRequest.FromString,
+          response_serializer=steward_dot_user__pb2.User.SerializeToString,
+      ),
+      'CreateUser': grpc.unary_unary_rpc_method_handler(
+          servicer.CreateUser,
+          request_deserializer=steward_dot_user__pb2.CreateUserRequest.FromString,
           response_serializer=steward_dot_user__pb2.User.SerializeToString,
       ),
   }

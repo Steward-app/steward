@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='steward',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x16steward/registry.proto\x12\x07steward\x1a\x12steward/user.proto2u\n\x0bUserService\x12\x30\n\x07GetUser\x12\x14.steward.UserRequest\x1a\r.steward.User\"\x00\x12\x34\n\x08GetUsers\x12\x15.steward.UsersRequest\x1a\r.steward.User\"\x00\x30\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x16steward/registry.proto\x12\x07steward\x1a\x12steward/user.proto2\xb6\x01\n\x0bUserService\x12\x33\n\x07GetUser\x12\x17.steward.GetUserRequest\x1a\r.steward.User\"\x00\x12\x37\n\x08GetUsers\x12\x18.steward.GetUsersRequest\x1a\r.steward.User\"\x00\x30\x01\x12\x39\n\nCreateUser\x12\x1a.steward.CreateUserRequest\x1a\r.steward.User\"\x00\x62\x06proto3')
   ,
   dependencies=[steward_dot_user__pb2.DESCRIPTOR,])
 
@@ -37,15 +37,15 @@ _USERSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=55,
-  serialized_end=172,
+  serialized_start=56,
+  serialized_end=238,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetUser',
     full_name='steward.UserService.GetUser',
     index=0,
     containing_service=None,
-    input_type=steward_dot_user__pb2._USERREQUEST,
+    input_type=steward_dot_user__pb2._GETUSERREQUEST,
     output_type=steward_dot_user__pb2._USER,
     serialized_options=None,
   ),
@@ -54,7 +54,16 @@ _USERSERVICE = _descriptor.ServiceDescriptor(
     full_name='steward.UserService.GetUsers',
     index=1,
     containing_service=None,
-    input_type=steward_dot_user__pb2._USERSREQUEST,
+    input_type=steward_dot_user__pb2._GETUSERSREQUEST,
+    output_type=steward_dot_user__pb2._USER,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='CreateUser',
+    full_name='steward.UserService.CreateUser',
+    index=2,
+    containing_service=None,
+    input_type=steward_dot_user__pb2._CREATEUSERREQUEST,
     output_type=steward_dot_user__pb2._USER,
     serialized_options=None,
   ),

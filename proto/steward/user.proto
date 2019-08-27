@@ -4,9 +4,11 @@ package steward;
 import "steward/organization.proto";
 
 message User {
-  int64 id = 1;
+  string _id = 1;
   string name = 2;
   string password = 3;
+  string email = 4;
+  float available_effort = 5;
 }
 
 enum UserLevel {
@@ -16,15 +18,23 @@ enum UserLevel {
 }
 
 message ACL {
-  int64 id = 1;
+  string _id = 1;
   User user = 2;
   Organization organization = 3;
   UserLevel level = 4;
 }
 
-message UserRequest {
-  int64 id = 1;
+message GetUserRequest {
+  string _id = 1;
 }
-message UsersRequest {
+
+// sample
+message GetUsersRequest {
   repeated string name = 1;
+}
+
+message CreateUserRequest {
+  string name = 1;
+  string password = 2;
+  string email = 3;
 }
