@@ -3,3 +3,5 @@ absl-py
 protobuf
 grpcio-tools
 pymongo
+WTForms
+Flask-WTF
