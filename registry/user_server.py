@@ -10,9 +10,6 @@ from bson.json_util import dumps, loads
 from registry import storage
 
 from steward import user_pb2 as u
-from steward import registry_pb2 as r
-from steward import user_pb2 as u
-from steward import user_pb2_grpc
 from steward import registry_pb2_grpc
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
@@ -25,14 +22,20 @@ class UserServiceServicer(registry_pb2_grpc.UserServiceServicer):
         id = request._id
         if not isinstance(id, ObjectId):
             id = ObjectId(id)
-        print('GetUser id type: {}'.format(type(id)))
         data_bson = self.storage.users.find_one({'_id': id})
         return self.storage.decode(data_bson, u.User)
 
     def CreateUser(self, request, context):
-        user = u.User(name=request.name, email=request.email, password=request.password, available_effort=request.available_effort)
-        result = self.storage.users.insert_one(self.storage.encode(user))
-        return self.GetUser(u.GetUserRequest(_id=str(result.inserted_id)), None)
+        # only create if user doesn't exist
+        existing_user = self.storage.users.find_one({'email': request.email})
+        if existing_user is None:
+            user = u.User(name=request.name, email=request.email, password=request.password, available_effort=request.available_effort)
+            result = self.storage.users.insert_one(self.storage.encode(user))
+            return self.GetUser(u.GetUserRequest(_id=str(result.inserted_id)), None)
+        else:
+            context.set_code(grpc.StatusCode.ALREADY_EXISTS)
+            context.set_details('User "{}" already exists.'.format(request.email))
+            return u.User()
 
     def ListUsers(self, request, context):
         for user_bson in self.storage.users.find():

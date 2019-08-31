@@ -19,16 +19,16 @@ class StorageManager():
         return self._dict2proto(bson, message)
 
     def _proto2dict(self, proto):
-        logging.warning("proto before conversion: {}".format(proto))
+        logging.debug("proto before conversion: {}".format(proto))
         dict_out = MessageToDict(proto)
-        logging.warning("bson dict after conversion: {}".format(dict_out))
+        logging.debug("bson dict after conversion: {}".format(dict_out))
         return dict_out
 
     def _dict2proto(self, bson, message):
-        logging.warning("bson dict before conversion: {}".format(bson))
+        logging.debug("bson dict before conversion: {}".format(bson))
         bson['_id'] = str(bson['_id']) # ObjectId -> str _id
-        logging.warning("bson dict after field conversions: {}".format(bson))
+        logging.debug("bson dict after field conversions: {}".format(bson))
         proto = message()
         ParseDict(bson, proto)
-        logging.warning("proto after conversion: {}".format(proto))
+        logging.debug("proto after conversion: {}".format(proto))
         return proto
