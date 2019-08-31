@@ -37,8 +37,7 @@ class UserServiceServicer(registry_pb2_grpc.UserServiceServicer):
     def ListUsers(self, request, context):
         for user_bson in self.storage.users.find():
             user = u.User()
-            self.storage.decode(user_bson)
-            yield user
+            yield self.storage.decode(user_bson, u.User)
 
 def serve(env):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
