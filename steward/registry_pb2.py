@@ -13,7 +13,6 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from steward import user_pb2 as steward_dot_user__pb2
 
 
@@ -22,9 +21,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='steward',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x16steward/registry.proto\x12\x07steward\x1a\x1bgoogle/protobuf/empty.proto\x1a\x12steward/user.proto2\xb8\x01\n\x0bUserService\x12\x33\n\x07GetUser\x12\x17.steward.GetUserRequest\x1a\r.steward.User\"\x00\x12\x39\n\nCreateUser\x12\x1a.steward.CreateUserRequest\x1a\r.steward.User\"\x00\x12\x39\n\tListUsers\x12\x19.steward.ListUsersRequest\x1a\r.steward.User\"\x00\x30\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x16steward/registry.proto\x12\x07steward\x1a\x12steward/user.proto2\xb8\x01\n\x0bUserService\x12\x33\n\x07GetUser\x12\x17.steward.GetUserRequest\x1a\r.steward.User\"\x00\x12\x39\n\nCreateUser\x12\x1a.steward.CreateUserRequest\x1a\r.steward.User\"\x00\x12\x39\n\tListUsers\x12\x19.steward.ListUsersRequest\x1a\r.steward.User\"\x00\x30\x01\x62\x06proto3')
   ,
-  dependencies=[google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,steward_dot_user__pb2.DESCRIPTOR,])
+  dependencies=[steward_dot_user__pb2.DESCRIPTOR,])
 
 
 
@@ -38,8 +37,8 @@ _USERSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=85,
-  serialized_end=269,
+  serialized_start=56,
+  serialized_end=240,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetUser',

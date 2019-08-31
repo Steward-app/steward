@@ -35,4 +35,5 @@ message CreateUserRequest {
   string name = 1;
   string password = 2;
   string email = 3;
+  float available_effort = 4;
 }

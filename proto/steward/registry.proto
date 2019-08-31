@@ -1,7 +1,6 @@
 syntax = "proto3";
 package steward;
 
-import "google/protobuf/empty.proto";
 import "steward/user.proto";
 
 service UserService {

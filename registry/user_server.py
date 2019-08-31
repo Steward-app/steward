@@ -4,7 +4,7 @@ from absl import logging
 
 import grpc
 import pymongo
-from google.protobuf.json_format import MessageToDict, Parse
+from google.protobuf.json_format import MessageToDict, ParseDict
 from google.protobuf import text_format
 
 from bson.objectid import ObjectId
@@ -25,32 +25,44 @@ class UserServiceServicer(registry_pb2_grpc.UserServiceServicer):
         self.users = self.db.user
 
     def GetUser(self, request, context):
-        return self._getUser(request._id)
-
-    def GetUsers(self, request, context):
-        yield u.User(_id='deadbeef', name='Seitan', password='********')
+        id = request._id
+        if not isinstance(id, ObjectId):
+            id = ObjectId(id)
+        print('GetUser id type: {}'.format(type(id)))
+        data_bson = self.users.find_one({'_id': id})
+        return self.decode(data_bson, u.User)
 
     def CreateUser(self, request, context):
-        user = u.User(name=request.name, email=request.email, password=request.password)
-        result = self.users.insert_one({'proto': '' })
-        _id = result.inserted_id
-        user._id = str(_id)
-        result = self.users.update_one({'_id': _id}, {"$set": { 'proto': user.SerializeToString()}})
-        return self._getUser(_id)
+        user = u.User(name=request.name, email=request.email, password=request.password, available_effort=request.available_effort)
+        result = self.users.insert_one(self.encode(user))
+        return self.GetUser(u.GetUserRequest(_id=str(result.inserted_id)), None)
 
     def ListUsers(self, request, context):
         for user_bson in self.users.find():
             user = u.User()
-            user.ParseFromString(user_bson['proto'])
+            self.decode(user_bson)
             yield user
 
-    def _getUser(self, id):
-        if not isinstance(id, ObjectId):
-            id = ObjectId(str(id))
-        data_bson = self.users.find_one({'_id': id})
-        user = u.User()
-        user.ParseFromString(data_bson['proto'])
-        return user
+    def encode(self, proto):
+        return self._proto2dict(proto)
+
+    def decode(self, bson, message):
+        return self._dict2proto(bson, message)
+
+    def _proto2dict(self, proto):
+        logging.warning("proto before conversion: {}".format(proto))
+        dict_out = MessageToDict(proto)
+        logging.warning("bson dict after conversion: {}".format(dict_out))
+        return dict_out
+
+    def _dict2proto(self, bson, message):
+        logging.warning("bson dict before conversion: {}".format(bson))
+        bson['_id'] = str(bson['_id']) # ObjectId -> str _id
+        logging.warning("bson dict after field conversions: {}".format(bson))
+        proto = message()
+        ParseDict(bson, proto)
+        logging.warning("proto after conversion: {}".format(proto))
+        return proto
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
