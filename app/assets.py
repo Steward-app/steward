@@ -12,7 +12,7 @@ class ConcatFilter(Filter):
 
 js = Bundle(
     'node_modules/jquery/dist/jquery.js',
-    'node_modules/bootstrap/dist/js/bootstrap.js',
+    'node_modules/bootstrap/dist/js/bootstrap.bundle.js',
     'node_modules/parsleyjs/dist/parsley.js',
     filters=(ConcatFilter, 'jsmin'),
     output='gen/packed.js'

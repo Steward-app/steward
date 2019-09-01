@@ -15,10 +15,10 @@
 </head>
 <body>
   <header>
-    <div id="header" class="container">
+    <div id="header" class="navbar">
       <h1>Steward > {{view}}</h1>
     </div>
-    <div>
+    <div id="header" class="navbar navbar-fixed-top">
       Menu:
       <a href="/">Home</a>
       <a href="/login">Login</a>
@@ -48,5 +48,8 @@
       <a href="https://github.com/Steward-app/steward">Steward on GitHub</a>
     {% endblock %}
   </div>
+  {% block blockscripts %}
+  <script>$('form').parsley({ successClass: 'is-valid', errorClass: 'is-invalid'});</script>
+  {% endblock %}
 </body>
 </html>
