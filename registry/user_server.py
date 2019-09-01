@@ -20,9 +20,14 @@ class UserServiceServicer(registry_pb2_grpc.UserServiceServicer):
 
     def GetUser(self, request, context):
         id = request._id
-        if not isinstance(id, ObjectId):
-            id = ObjectId(id)
-        data_bson = self.storage.users.find_one({'_id': id})
+        email = request.email
+        if id:
+            if not isinstance(id, ObjectId):
+                id = ObjectId(id)
+            data_bson = self.storage.users.find_one({'_id': id})
+        elif email:
+            data_bson = self.storage.users.find_one({'email': email})
+
         return self.storage.decode(data_bson, u.User)
 
     def CreateUser(self, request, context):
