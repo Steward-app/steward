@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% block head %}
   <title>{%block title %}{% endblock %} - Steward</title>
   {% endblock %}
@@ -43,9 +45,8 @@
 
   <div id="footer" class="container">
     {% block footer %}
-      <a href="https://github.com/Artanicus/maintcal">Steward</a>
+      <a href="https://github.com/Steward-app/steward">Steward on GitHub</a>
     {% endblock %}
   </div>
-  <script src="{{url_for('static', filename='js/clickable.js')}}"></script>
 </body>
 </html>
