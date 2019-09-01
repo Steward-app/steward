@@ -11,9 +11,9 @@ class ConcatFilter(Filter):
         out.write(';'.join([h.data() for h, info in hunks]))
 
 js = Bundle(
-    'node_modules/jquery/dist/jquery.min.js',
-    'node_modules/bootstrap/dist/js/bootstrap.min.js',
-    'node_modules/parsleyjs/dist/parsley.min.js',
+    'node_modules/jquery/dist/jquery.js',
+    'node_modules/bootstrap/dist/js/bootstrap.js',
+    'node_modules/parsleyjs/dist/parsley.js',
     filters=(ConcatFilter, 'jsmin'),
     output='gen/packed.js'
 )
