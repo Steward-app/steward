@@ -1,16 +1,18 @@
 {% extends "base.html" %}
+{% set view = "Login" %}
 
 {% block content %}
-    <h1>Sign In</h1>
+    <h1>Login</h1>
+    <h2><a href='/register'>Register instead?</a></h2>
     <form action="" method="post" data-parsley-validate>
         {{ form.hidden_tag() }}
         <p>
             {{ form.email.label }}<br>
-            {{ form.email(size=32) }}
+            {{ form.email(class_="form-control") }}
         </p>
         <p>
             {{ form.password.label }}<br>
-            {{ form.password(size=32) }}
+            {{ form.password(class_="form-control") }}
         </p>
         <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
         <p>{{ form.submit() }}</p>

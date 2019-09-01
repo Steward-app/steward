@@ -2,6 +2,6 @@
 __pycache__
 _schemacrawler
 yarn.lock
-node_modules
+app/static/node_modules
 .webassets-cache
 app/static/gen

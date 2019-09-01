@@ -27,6 +27,9 @@ class UserServiceServicer(registry_pb2_grpc.UserServiceServicer):
             data_bson = self.storage.users.find_one({'_id': id})
         elif email:
             data_bson = self.storage.users.find_one({'email': email})
+        else:
+            context.set_code(grpc.StatusCode.NOT_FOUND)
+            context.set_details('User "{}" not found.'.format(request))
 
         return self.storage.decode(data_bson, u.User)
 

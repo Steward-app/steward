@@ -15,26 +15,21 @@
 </head>
 <body>
   <header>
-    <div id="header" class="navbar">
+    <div id="title" class="navbar">
       <h1>Steward > {{view}}</h1>
     </div>
-    <div id="header" class="navbar navbar-fixed-top">
-      Menu:
-      <a href="/">Home</a>
-      <a href="/login">Login</a>
-      <a href="/signup">Sign Up</a>
-    </div>
-    <hr />
-    {% with messages = get_flashed_messages() %}
+    {% include 'nav.html' %}
+  </header>
+
+  {% with messages = get_flashed_messages() %}
     {% if messages %}
     <ul>
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
     </ul>
     {% endif %}
-    {% endwith %}
-  </header>
+  {% endwith %}
 
 
   <div id="content" class="container">
@@ -45,6 +40,9 @@
 
   <div id="footer" class="container">
     {% block footer %}
+    {% if current_user.is_authenticated %}
+    <span>Logged in as: {{current_user.user.name}}</span>
+    {% endif %}
       <a href="https://github.com/Steward-app/steward">Steward on GitHub</a>
     {% endblock %}
   </div>

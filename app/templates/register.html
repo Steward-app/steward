@@ -1,7 +1,10 @@
 {% extends "base.html" %}
+{% set view = "Register" %}
 
 {% block content %}
-    <h1>Sign Up</h1>
+    <h1>Register</h1>
+    <h2><a href='/login'>Login instead?</a></h2>
+
     <form action="" method="post" data-parsley-validate>
         {{ form.hidden_tag() }}
         <p>
