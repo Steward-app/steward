@@ -4,16 +4,19 @@ __version__ = "0.0.1"
 
 from absl import logging
 from flask import Flask, render_template, flash, redirect
+from flask_assets import Environment, Bundle
 import grpc
 
 from steward import user_pb2 as u
 from steward import registry_pb2 as r
 from steward import registry_pb2_grpc
 
-from web.forms import LoginForm, CreateUserForm
+from app.assets import assets
+from app.forms import LoginForm, CreateUserForm
 
 app = Flask(__name__)
 app.config.from_object('websiteconfig')
+assets.init_app(app)
 
 channel = grpc.insecure_channel('localhost:50051')
 users = registry_pb2_grpc.UserServiceStub(channel)

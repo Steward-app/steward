@@ -3,3 +3,7 @@
 .eggs
 __pycache__
 _schemacrawler
+yarn.lock
+node_modules
+.webassets-cache
+app/static/gen

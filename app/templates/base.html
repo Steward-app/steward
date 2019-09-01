@@ -4,9 +4,12 @@
   {% block head %}
   <title>{%block title %}{% endblock %} - Steward</title>
   {% endblock %}
-  <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}" />
-  <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  {% assets "js_all" -%}
+      <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+  {%- endassets %}
+  {% assets "css_all" -%}
+      <link rel="stylesheet" href="{{ ASSET_URL }}">
+  {%- endassets %}
 </head>
 <body>
   <header>

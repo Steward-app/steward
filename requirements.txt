@@ -1,7 +1,18 @@
+# both
 googleapis-common-protos
 absl-py
 protobuf
+
+# registry
 grpcio-tools
 pymongo
+
+# web
 WTForms
+WTForms-ParsleyJS
 Flask-WTF
+Flask-Assets
+Flask-Login
+jsmin
+gunicorn
+cssmin

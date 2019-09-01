@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import DataRequired
+from wtforms import SubmitField
+from wtformsparsleyjs import StringField, PasswordField, BooleanField
+from wtforms.validators import DataRequired, Email
 
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired()])
@@ -10,7 +11,7 @@ class LoginForm(FlaskForm):
 
 class CreateUserForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     password_repeat = PasswordField('Password again', validators=[DataRequired()])
     submit = SubmitField('Create User')
