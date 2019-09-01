@@ -13,6 +13,9 @@ WTForms-ParsleyJS
 Flask-WTF
 Flask-Assets
 Flask-Login
+Flask-Bcrypt
+Flask-Mail
+Flask-Travis
 jsmin
 gunicorn
 cssmin

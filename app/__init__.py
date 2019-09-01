@@ -4,7 +4,6 @@ __version__ = "0.0.1"
 
 from absl import logging
 from flask import Flask, render_template, flash, redirect
-from flask_assets import Environment, Bundle
 import grpc
 
 from steward import user_pb2 as u
@@ -13,10 +12,15 @@ from steward import registry_pb2_grpc
 
 from app.assets import assets
 from app.forms import LoginForm, CreateUserForm
+from app.extensions import lm, mail, bcrypt
 
 app = Flask(__name__)
 app.config.from_object('websiteconfig')
 assets.init_app(app)
+lm.init_app(app)
+mail.init_app(app)
+bcrypt.init_app(app)
+
 
 channel = grpc.insecure_channel('localhost:50051')
 users = registry_pb2_grpc.UserServiceStub(channel)
@@ -44,7 +48,7 @@ def signup():
         user = u.CreateUserRequest()
         user.name = form.name.data
         user.email = form.email.data
-        user.password = form.password.data
+        user.password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         users.CreateUser(user)
         flash('User Created for {}'.format(form.email.data))
         return redirect('/')
