@@ -30,10 +30,12 @@ class UserServiceServicer(registry_pb2_grpc.UserServiceServicer):
         else:
             context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
             context.set_details('No search parameter provided, one available field should be set.')
+            return u.User()
 
         if data_bson is None:
             context.set_code(grpc.StatusCode.NOT_FOUND)
             context.set_details('User "{}" not found.'.format(request))
+            return u.User()
 
         return self.storage.decode(data_bson, u.User)
 
