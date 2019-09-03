@@ -26,6 +26,8 @@ class StorageManager():
 
     def _dict2proto(self, bson, message):
         logging.debug("bson dict before conversion: {}".format(bson))
+        if bson is None:
+            return None # search operations expect an empty response set to be None
         bson['_id'] = str(bson['_id']) # ObjectId -> str _id
         logging.debug("bson dict after field conversions: {}".format(bson))
         proto = message()
