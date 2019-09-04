@@ -6,5 +6,7 @@ import "steward/user.proto";
 service UserService {
     rpc GetUser(GetUserRequest) returns (User) {} ;
     rpc CreateUser(CreateUserRequest) returns (User) {} ;
+    rpc DeleteUser(DeleteUserRequest) returns (User) {} ;
+    rpc UpdateUser(UpdateUserRequest) returns (User) {} ;
     rpc ListUsers(ListUsersRequest) returns (stream User) {} ;
 }

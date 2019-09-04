@@ -29,6 +29,15 @@ message GetUserRequest {
   string email = 2;
 }
 
+message DeleteUserRequest {
+  string _id = 1;
+}
+
+message UpdateUserRequest {
+  string _id = 1;
+  User user = 2;
+}
+
 message ListUsersRequest {
 }
 

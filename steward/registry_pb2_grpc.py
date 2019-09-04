@@ -24,6 +24,16 @@ class UserServiceStub(object):
         request_serializer=steward_dot_user__pb2.CreateUserRequest.SerializeToString,
         response_deserializer=steward_dot_user__pb2.User.FromString,
         )
+    self.DeleteUser = channel.unary_unary(
+        '/steward.UserService/DeleteUser',
+        request_serializer=steward_dot_user__pb2.DeleteUserRequest.SerializeToString,
+        response_deserializer=steward_dot_user__pb2.User.FromString,
+        )
+    self.UpdateUser = channel.unary_unary(
+        '/steward.UserService/UpdateUser',
+        request_serializer=steward_dot_user__pb2.UpdateUserRequest.SerializeToString,
+        response_deserializer=steward_dot_user__pb2.User.FromString,
+        )
     self.ListUsers = channel.unary_stream(
         '/steward.UserService/ListUsers',
         request_serializer=steward_dot_user__pb2.ListUsersRequest.SerializeToString,
@@ -49,6 +59,20 @@ class UserServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def DeleteUser(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def UpdateUser(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
   def ListUsers(self, request, context):
     # missing associated documentation comment in .proto file
     pass
@@ -67,6 +91,16 @@ def add_UserServiceServicer_to_server(servicer, server):
       'CreateUser': grpc.unary_unary_rpc_method_handler(
           servicer.CreateUser,
           request_deserializer=steward_dot_user__pb2.CreateUserRequest.FromString,
+          response_serializer=steward_dot_user__pb2.User.SerializeToString,
+      ),
+      'DeleteUser': grpc.unary_unary_rpc_method_handler(
+          servicer.DeleteUser,
+          request_deserializer=steward_dot_user__pb2.DeleteUserRequest.FromString,
+          response_serializer=steward_dot_user__pb2.User.SerializeToString,
+      ),
+      'UpdateUser': grpc.unary_unary_rpc_method_handler(
+          servicer.UpdateUser,
+          request_deserializer=steward_dot_user__pb2.UpdateUserRequest.FromString,
           response_serializer=steward_dot_user__pb2.User.SerializeToString,
       ),
       'ListUsers': grpc.unary_stream_rpc_method_handler(

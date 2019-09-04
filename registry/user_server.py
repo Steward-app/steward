@@ -45,10 +45,46 @@ class UserServiceServicer(registry_pb2_grpc.UserServiceServicer):
         if existing_user is None:
             user = u.User(name=request.name, email=request.email, password=request.password, available_effort=request.available_effort)
             result = self.storage.users.insert_one(self.storage.encode(user))
-            return self.GetUser(u.GetUserRequest(_id=str(result.inserted_id)), None)
+            return self.GetUser(u.GetUserRequest(_id=str(result.inserted_id)), context)
         else:
             context.set_code(grpc.StatusCode.ALREADY_EXISTS)
             context.set_details('User "{}" already exists.'.format(request.email))
+            return u.User()
+
+    def UpdateUser(self, request, context):
+        user_id = request._id
+        if not isinstance(user_id, ObjectId):
+            user_id = ObjectId(user_id)
+
+        # only update if user exists
+        existing_user = self.storage.users.find_one({'_id': user_id})
+        if existing_user is not None:
+            existing_user = self.storage.decode(existing_user, u.User)
+            existing_user.MergeFrom(request.user)
+            result = self.storage.users.replace_one(
+                    {'_id': user_id},
+                    self.storage.encode(existing_user)
+                    )
+            return self.GetUser(u.GetUserRequest(_id=request._id), context)
+        else:
+            context.set_code(grpc.StatusCode.NOT_FOUND)
+            context.set_details('User id "{}" does not exist.'.format(user_id))
+            return u.User()
+
+    def DeleteUser(self, request, context):
+        user_id = request._id
+        if not isinstance(user_id, ObjectId):
+            user_id = ObjectId(user_id)
+
+        # only delete if user exists and we need to return the deleted user anyway
+        existing_user = self.storage.users.find_one({'_id': user_id})
+        if existing_user is not None:
+            result = self.storage.users.delete_one({'_id': user_id})
+            del existing_user['_id'] # delete id to signify the user doesn't exist
+            return self.storage.decode(existing_user, u.User)
+        else:
+            context.set_code(grpc.StatusCode.NOT_FOUND)
+            context.set_details('User id "{}" does not exist.'.format(user_id))
             return u.User()
 
     def ListUsers(self, request, context):

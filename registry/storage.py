@@ -26,7 +26,8 @@ class StorageManager():
 
     def _dict2proto(self, bson, message):
         logging.debug("bson dict before conversion: {}".format(bson))
-        bson['_id'] = str(bson['_id']) # ObjectId -> str _id
+        if '_id' in bson:
+            bson['_id'] = str(bson['_id']) # ObjectId -> str _id
         logging.debug("bson dict after field conversions: {}".format(bson))
         proto = message()
         ParseDict(bson, proto)
