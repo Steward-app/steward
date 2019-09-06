@@ -26,6 +26,7 @@ message ACL {
 
 message GetUserRequest {
   string _id = 1;
+  string email = 2;
 }
 
 message ListUsersRequest {

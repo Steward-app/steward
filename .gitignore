@@ -1,5 +1,7 @@
-*.db
-*.json
 .eggs
 __pycache__
 _schemacrawler
+yarn.lock
+app/static/node_modules
+.webassets-cache
+app/static/gen
