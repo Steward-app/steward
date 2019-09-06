@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='steward',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x16steward/registry.proto\x12\x07steward\x1a\x12steward/user.proto2\xb8\x01\n\x0bUserService\x12\x33\n\x07GetUser\x12\x17.steward.GetUserRequest\x1a\r.steward.User\"\x00\x12\x39\n\nCreateUser\x12\x1a.steward.CreateUserRequest\x1a\r.steward.User\"\x00\x12\x39\n\tListUsers\x12\x19.steward.ListUsersRequest\x1a\r.steward.User\"\x00\x30\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x16steward/registry.proto\x12\x07steward\x1a\x12steward/user.proto2\xae\x02\n\x0bUserService\x12\x33\n\x07GetUser\x12\x17.steward.GetUserRequest\x1a\r.steward.User\"\x00\x12\x39\n\nCreateUser\x12\x1a.steward.CreateUserRequest\x1a\r.steward.User\"\x00\x12\x39\n\nDeleteUser\x12\x1a.steward.DeleteUserRequest\x1a\r.steward.User\"\x00\x12\x39\n\nUpdateUser\x12\x1a.steward.UpdateUserRequest\x1a\r.steward.User\"\x00\x12\x39\n\tListUsers\x12\x19.steward.ListUsersRequest\x1a\r.steward.User\"\x00\x30\x01\x62\x06proto3')
   ,
   dependencies=[steward_dot_user__pb2.DESCRIPTOR,])
 
@@ -38,7 +38,7 @@ _USERSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   serialized_start=56,
-  serialized_end=240,
+  serialized_end=358,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetUser',
@@ -59,9 +59,27 @@ _USERSERVICE = _descriptor.ServiceDescriptor(
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
+    name='DeleteUser',
+    full_name='steward.UserService.DeleteUser',
+    index=2,
+    containing_service=None,
+    input_type=steward_dot_user__pb2._DELETEUSERREQUEST,
+    output_type=steward_dot_user__pb2._USER,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='UpdateUser',
+    full_name='steward.UserService.UpdateUser',
+    index=3,
+    containing_service=None,
+    input_type=steward_dot_user__pb2._UPDATEUSERREQUEST,
+    output_type=steward_dot_user__pb2._USER,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
     name='ListUsers',
     full_name='steward.UserService.ListUsers',
-    index=2,
+    index=4,
     containing_service=None,
     input_type=steward_dot_user__pb2._LISTUSERSREQUEST,
     output_type=steward_dot_user__pb2._USER,

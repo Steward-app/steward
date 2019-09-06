@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='steward',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x12steward/user.proto\x12\x07steward\x1a\x1asteward/organization.proto\"\\\n\x04User\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08password\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x18\n\x10\x61vailable_effort\x18\x05 \x01(\x02\"\x7f\n\x03\x41\x43L\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x1b\n\x04user\x18\x02 \x01(\x0b\x32\r.steward.User\x12+\n\x0corganization\x18\x03 \x01(\x0b\x32\x15.steward.Organization\x12!\n\x05level\x18\x04 \x01(\x0e\x32\x12.steward.UserLevel\",\n\x0eGetUserRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\"\x12\n\x10ListUsersRequest\"\\\n\x11\x43reateUserRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t\x12\x18\n\x10\x61vailable_effort\x18\x04 \x01(\x02*/\n\tUserLevel\x12\r\n\tANONYMOUS\x10\x00\x12\x08\n\x04USER\x10\x01\x12\t\n\x05OWNER\x10\x02\x62\x06proto3')
+  serialized_pb=_b('\n\x12steward/user.proto\x12\x07steward\x1a\x1asteward/organization.proto\"\\\n\x04User\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08password\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x18\n\x10\x61vailable_effort\x18\x05 \x01(\x02\"\x7f\n\x03\x41\x43L\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x1b\n\x04user\x18\x02 \x01(\x0b\x32\r.steward.User\x12+\n\x0corganization\x18\x03 \x01(\x0b\x32\x15.steward.Organization\x12!\n\x05level\x18\x04 \x01(\x0e\x32\x12.steward.UserLevel\",\n\x0eGetUserRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\" \n\x11\x44\x65leteUserRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"=\n\x11UpdateUserRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x1b\n\x04user\x18\x02 \x01(\x0b\x32\r.steward.User\"\x12\n\x10ListUsersRequest\"\\\n\x11\x43reateUserRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t\x12\x18\n\x10\x61vailable_effort\x18\x04 \x01(\x02*/\n\tUserLevel\x12\r\n\tANONYMOUS\x10\x00\x12\x08\n\x04USER\x10\x01\x12\t\n\x05OWNER\x10\x02\x62\x06proto3')
   ,
   dependencies=[steward_dot_organization__pb2.DESCRIPTOR,])
 
@@ -47,8 +47,8 @@ _USERLEVEL = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=442,
-  serialized_end=489,
+  serialized_start=539,
+  serialized_end=586,
 )
 _sym_db.RegisterEnumDescriptor(_USERLEVEL)
 
@@ -208,6 +208,75 @@ _GETUSERREQUEST = _descriptor.Descriptor(
 )
 
 
+_DELETEUSERREQUEST = _descriptor.Descriptor(
+  name='DeleteUserRequest',
+  full_name='steward.DeleteUserRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='_id', full_name='steward.DeleteUserRequest._id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=328,
+  serialized_end=360,
+)
+
+
+_UPDATEUSERREQUEST = _descriptor.Descriptor(
+  name='UpdateUserRequest',
+  full_name='steward.UpdateUserRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='_id', full_name='steward.UpdateUserRequest._id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='user', full_name='steward.UpdateUserRequest.user', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=362,
+  serialized_end=423,
+)
+
+
 _LISTUSERSREQUEST = _descriptor.Descriptor(
   name='ListUsersRequest',
   full_name='steward.ListUsersRequest',
@@ -227,8 +296,8 @@ _LISTUSERSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=328,
-  serialized_end=346,
+  serialized_start=425,
+  serialized_end=443,
 )
 
 
@@ -279,16 +348,19 @@ _CREATEUSERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=348,
-  serialized_end=440,
+  serialized_start=445,
+  serialized_end=537,
 )
 
 _ACL.fields_by_name['user'].message_type = _USER
 _ACL.fields_by_name['organization'].message_type = steward_dot_organization__pb2._ORGANIZATION
 _ACL.fields_by_name['level'].enum_type = _USERLEVEL
+_UPDATEUSERREQUEST.fields_by_name['user'].message_type = _USER
 DESCRIPTOR.message_types_by_name['User'] = _USER
 DESCRIPTOR.message_types_by_name['ACL'] = _ACL
 DESCRIPTOR.message_types_by_name['GetUserRequest'] = _GETUSERREQUEST
+DESCRIPTOR.message_types_by_name['DeleteUserRequest'] = _DELETEUSERREQUEST
+DESCRIPTOR.message_types_by_name['UpdateUserRequest'] = _UPDATEUSERREQUEST
 DESCRIPTOR.message_types_by_name['ListUsersRequest'] = _LISTUSERSREQUEST
 DESCRIPTOR.message_types_by_name['CreateUserRequest'] = _CREATEUSERREQUEST
 DESCRIPTOR.enum_types_by_name['UserLevel'] = _USERLEVEL
@@ -314,6 +386,20 @@ GetUserRequest = _reflection.GeneratedProtocolMessageType('GetUserRequest', (_me
   # @@protoc_insertion_point(class_scope:steward.GetUserRequest)
   })
 _sym_db.RegisterMessage(GetUserRequest)
+
+DeleteUserRequest = _reflection.GeneratedProtocolMessageType('DeleteUserRequest', (_message.Message,), {
+  'DESCRIPTOR' : _DELETEUSERREQUEST,
+  '__module__' : 'steward.user_pb2'
+  # @@protoc_insertion_point(class_scope:steward.DeleteUserRequest)
+  })
+_sym_db.RegisterMessage(DeleteUserRequest)
+
+UpdateUserRequest = _reflection.GeneratedProtocolMessageType('UpdateUserRequest', (_message.Message,), {
+  'DESCRIPTOR' : _UPDATEUSERREQUEST,
+  '__module__' : 'steward.user_pb2'
+  # @@protoc_insertion_point(class_scope:steward.UpdateUserRequest)
+  })
+_sym_db.RegisterMessage(UpdateUserRequest)
 
 ListUsersRequest = _reflection.GeneratedProtocolMessageType('ListUsersRequest', (_message.Message,), {
   'DESCRIPTOR' : _LISTUSERSREQUEST,

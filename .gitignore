@@ -5,3 +5,5 @@ yarn.lock
 app/static/node_modules
 .webassets-cache
 app/static/gen
+.coverage
+*.egg-info
