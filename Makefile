@@ -26,3 +26,6 @@ run_backend:
 
 run_frontend:
 	python3 -c 'from app import app; app.run(host="0.0.0.0", port=5000)'
+
+test:
+	python3 -m pytest
