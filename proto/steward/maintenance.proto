@@ -14,6 +14,7 @@ message Maintenance {
   string name = 2;
   string description = 3;
   Asset asset = 4;
+  bool enabled = 5;
 
   message Schedule {
     string description = 1;
