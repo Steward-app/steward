@@ -2,11 +2,28 @@ syntax = "proto3";
 package steward;
 
 import "steward/user.proto";
+import "steward/maintenance.proto";
 
 service UserService {
-    rpc GetUser(GetUserRequest) returns (User) {} ;
-    rpc CreateUser(CreateUserRequest) returns (User) {} ;
-    rpc DeleteUser(DeleteUserRequest) returns (User) {} ;
-    rpc UpdateUser(UpdateUserRequest) returns (User) {} ;
-    rpc ListUsers(ListUsersRequest) returns (stream User) {} ;
+  rpc GetUser(GetUserRequest) returns (User) {} ;
+  rpc CreateUser(CreateUserRequest) returns (User) {} ;
+  rpc DeleteUser(DeleteUserRequest) returns (User) {} ;
+  rpc UpdateUser(UpdateUserRequest) returns (User) {} ;
+  rpc ListUsers(ListUsersRequest) returns (stream User) {} ;
+}
+
+service MaintenanceService {
+  rpc GetMaintenance(GetMaintenanceRequest) returns (Maintenance) {} ;
+  rpc CreateMaintenance(CreateMaintenanceRequest) returns (Maintenance) {} ;
+  rpc DeleteMaintenance(DeleteMaintenanceRequest) returns (Maintenance) {} ;
+  rpc UpdateMaintenance(UpdateMaintenanceRequest) returns (Maintenance) {} ;
+  rpc ListMaintenances(ListMaintenancesRequest) returns (stream Maintenance) {} ;
+}
+
+service MaintenanceDefaultsService {
+  rpc GetMaintenanceDefaults(GetMaintenanceDefaultsRequest) returns (Maintenance) {} ;
+  rpc CreateMaintenanceDefaults(CreateMaintenanceDefaultsRequest) returns (Maintenance) {} ;
+  rpc DeleteMaintenanceDefaults(DeleteMaintenanceDefaultsRequest) returns (Maintenance) {} ;
+  rpc UpdateMaintenanceDefaults(UpdateMaintenanceDefaultsRequest) returns (Maintenance) {} ;
+  rpc ListMaintenanceDefaults(ListMaintenanceDefaultsRequest) returns (stream Maintenance) {} ;
 }

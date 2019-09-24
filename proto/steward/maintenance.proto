@@ -26,3 +26,46 @@ message Maintenance {
     google.protobuf.Duration duration = 2;
   }
 }
+
+message GetMaintenanceRequest {
+  string _id = 1;
+}
+
+message DeleteMaintenanceRequest {
+  string _id = 1;
+}
+
+message UpdateMaintenanceRequest {
+  string _id = 1;
+  Maintenance maintenance = 2;
+}
+
+message ListMaintenancesRequest {
+  Asset asset = 2;
+}
+
+message CreateMaintenanceRequest {
+  Maintenance maintenance = 1;
+}
+
+
+message GetMaintenanceDefaultsRequest {
+  string _id = 1;
+}
+
+message DeleteMaintenanceDefaultsRequest {
+  string _id = 1;
+}
+
+message UpdateMaintenanceDefaultsRequest {
+  string _id = 1;
+  Maintenance maintenance = 2;
+}
+
+message ListMaintenanceDefaultsRequest {
+  Asset asset = 2;
+}
+
+message CreateMaintenanceDefaultsRequest {
+  Maintenance maintenance = 1;
+}
