@@ -18,6 +18,7 @@ class StorageManager():
         collection = 'steward-' + FLAGS.env
         self.db = self.mongo_client[collection]
         self.users = self.db.user
+        self.maintenances = self.db.maintenance
         logging.info('StorageManager using {}/{}'.format(FLAGS.db, collection))
 
     def encode(self, proto):
