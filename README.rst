@@ -24,6 +24,7 @@ Python3.5 is the current minimum supported version of Python.
 API exploration
 ---------------
 .. code:: console
+
        make run_backend_monolithic & # defaults assume MongoDB running on localhost
        evans -r
        steward@127.0.0.1:50051> show service # list services and their RPCs and request types
