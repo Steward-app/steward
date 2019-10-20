@@ -3,16 +3,16 @@ NODE_MODULES = static/node_modules
 PROTO_OUT = steward
 PROTO_IN = proto/steward
 PROTO_INCLUDE = proto
+BACKENDS = registry.user_server registry.maintenance_server
 
 dependencies:
 	sudo pip3 install -r requirements.txt
 
-.PHONY: app
+.PHONY: app proto clean run_backend $(BACKENDS) run_frontend
 app:
 	cd app; yarn install --modules-folder $(NODE_MODULES)
 	cd app; FLASK_APP=__init__.py flask assets build
 
-.PHONY: proto
 proto:
 	rm -rf $(PROTO_OUT)/*.py
 	rm -rf $(PROTO_OUT)/__pycache__
@@ -21,8 +21,13 @@ proto:
 clean:
 	rm  -rf app/$(NODE_MODULES) $(PROTO_OUT)
 
-run_backend:
-	python3 -m registry.user_server --env dev
+run_backend: $(BACKENDS)
+
+registry.user_server:
+	python3 -m $@ --env dev $(ARGS)
+
+registry.maintenance_server:
+	python3 -m $@ --env dev $(ARGS)
 
 run_frontend:
 	python3 -c 'from app import app; app.run(host="0.0.0.0", port=5000)'

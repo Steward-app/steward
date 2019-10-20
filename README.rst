@@ -17,7 +17,7 @@ Python3.5 is the current minimum supported version of Python.
        make dependencies # python requirements
        make proto # proto client libraries
        make app # frontend resources
-       make run_backend # run backend service with defaults
+       make run_backend -j 10 # run backend services with defaults
        make run_frontend # run frontend service with defaults
 
 
