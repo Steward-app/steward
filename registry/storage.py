@@ -10,7 +10,7 @@ from steward import user_pb2 as u
 FLAGS=flags.FLAGS
 
 flags.DEFINE_enum('env', 'dev', ['dev', 'testing', 'prod'], 'Environment to use.')
-flags.DEFINE_string('db', 'mongodb://steward.lxc:27017', 'MongoDB connection string.')
+flags.DEFINE_string('db', 'mongodb://localhost:27017', 'MongoDB connection string.')
 
 class StorageManager():
     def __init__(self):

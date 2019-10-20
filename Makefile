@@ -4,6 +4,8 @@ PROTO_OUT = steward
 PROTO_IN = proto/steward
 PROTO_INCLUDE = proto
 BACKENDS = registry.user_server registry.maintenance_server
+BE_ARGS = --env dev --logtostderr --db=mongodb://127.0.0.1:27017
+FE_PORT = 5000
 
 dependencies:
 	sudo pip3 install -r requirements.txt
@@ -24,13 +26,13 @@ clean:
 run_backend: $(BACKENDS)
 
 registry.user_server:
-	python3 -m $@ --env dev $(ARGS)
+	python3 -m $@ $(BE_ARGS) $(ARGS)
 
 registry.maintenance_server:
-	python3 -m $@ --env dev $(ARGS)
+	python3 -m $@ $(BE_ARGS) $(ARGS)
 
 run_frontend:
-	python3 -c 'from app import app; app.run(host="0.0.0.0", port=5000)'
+	python3 -c 'from app import app; app.run(host="0.0.0.0", port=$(FE_PORT))'
 
 test:
 	python3 -m pytest
