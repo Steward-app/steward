@@ -10,7 +10,7 @@ FE_PORT = 5000
 dependencies:
 	sudo pip3 install -r requirements.txt
 
-.PHONY: app proto clean run_backend $(BACKENDS) run_frontend
+.PHONY: app proto clean run_backend $(BACKENDS) run_frontend run_backend_monolithic registry.monolithic_server
 app:
 	cd app; yarn install --modules-folder $(NODE_MODULES)
 	cd app; FLASK_APP=__init__.py flask assets build
@@ -25,10 +25,15 @@ clean:
 
 run_backend: $(BACKENDS)
 
+run_backend_monolithic: registry.monolithic_server
+
 registry.user_server:
-	python3 -m $@ $(BE_ARGS) $(ARGS)
+	python3 -m $@ $(BE_ARGS) $(ARGS) --listen_addr '[::]:50051'
 
 registry.maintenance_server:
+	python3 -m $@ $(BE_ARGS) $(ARGS) --listen_addr '[::]:50052'
+
+registry.monolithic_server:
 	python3 -m $@ $(BE_ARGS) $(ARGS)
 
 run_frontend:

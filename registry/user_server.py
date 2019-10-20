@@ -1,21 +1,18 @@
-import time
 from concurrent import futures
 from absl import logging, flags, app
 
 import grpc
+from grpc_reflection.v1alpha import reflection
 
 from bson.objectid import ObjectId
 from bson.json_util import dumps, loads
 
-from registry import storage
+from registry import storage, server_flags
 
 from steward import user_pb2 as u
-from steward import registry_pb2_grpc
+from steward import registry_pb2_grpc, registry_pb2
 
 FLAGS = flags.FLAGS
-_ONE_DAY_IN_SECONDS = 60 * 60 * 24
-
-flags.DEFINE_string('listen_addr', '[::]:50051', 'Address to listen.')
 
 class UserServiceServicer(registry_pb2_grpc.UserServiceServicer):
     def __init__(self, argv=None):
@@ -103,14 +100,16 @@ class UserServiceServicer(registry_pb2_grpc.UserServiceServicer):
 def serve(argv):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     registry_pb2_grpc.add_UserServiceServicer_to_server(UserServiceServicer(), server)
+    SERVICE_NAMES = (
+            registry_pb2.DESCRIPTOR.services_by_name['UserService'].full_name,
+            reflection.SERVICE_NAME,
+            )
+    reflection.enable_server_reflection(SERVICE_NAMES, server)
     server.add_insecure_port(FLAGS.listen_addr)
+    logging.info('User Microserver listening to: {0}'.format(FLAGS.listen_addr))
     server.start()
+    server.wait_for_termination()
 
-    try:
-        while True:
-                time.sleep(_ONE_DAY_IN_SECONDS)
-    except KeyboardInterrupt:
-        server.stop(0)
 
 if __name__ == '__main__':
     app.run(serve)

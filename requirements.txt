@@ -2,9 +2,11 @@
 googleapis-common-protos
 absl-py
 protobuf
+grpcio
 
 # registry
 grpcio-tools
+grpcio-reflection
 pymongo
 
 # web
