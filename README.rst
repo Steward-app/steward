@@ -24,11 +24,11 @@ Python3.5 is the current minimum supported version of Python.
 API exploration
 ---------------
 .. code:: console
-  make run_backend_monolithic & # defaults assume MongoDB running on localhost
-  evans -r
-  steward@127.0.0.1:50051> show service # list services and their RPCs and request types
-  steward@127.0.0.1:50051> service UserService # select service
-  steward.UserService@127.0.0.1:50051> call ListUsers # perform a call
+       make run_backend_monolithic & # defaults assume MongoDB running on localhost
+       evans -r
+       steward@127.0.0.1:50051> show service # list services and their RPCs and request types
+       steward@127.0.0.1:50051> service UserService # select service
+       steward.UserService@127.0.0.1:50051> call ListUsers # perform a call
 
 .. |docs| image:: https://readthedocs.org/projects/steward-app/badge/?version=latest
   :target: http://steward-app.readthedocs.io/en/latest/?badge=latest
