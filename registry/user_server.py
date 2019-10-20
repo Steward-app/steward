@@ -20,6 +20,7 @@ flags.DEFINE_string('listen_addr', '[::]:50051', 'Address to listen.')
 class UserServiceServicer(registry_pb2_grpc.UserServiceServicer):
     def __init__(self, argv=None):
         self.storage = storage.StorageManager()
+        logging.info('UserService initialized.')
 
     def GetUser(self, request, context):
         user_id = request._id
