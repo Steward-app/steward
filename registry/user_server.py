@@ -15,8 +15,11 @@ from steward import registry_pb2_grpc, registry_pb2
 FLAGS = flags.FLAGS
 
 class UserServiceServicer(registry_pb2_grpc.UserServiceServicer):
-    def __init__(self, argv=None):
-        self.storage = storage.StorageManager()
+    def __init__(self, storage_manager=None, argv=None):
+        if not storage_manager:
+            self.storage = storage.StorageManager()
+        else:
+            self.storage = storage_manager
         logging.info('UserService initialized.')
 
     def GetUser(self, request, context):

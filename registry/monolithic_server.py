@@ -7,16 +7,17 @@ from grpc_reflection.v1alpha import reflection
 from steward import user_pb2 as u
 from steward import maintenance_pb2 as m
 from steward import registry_pb2_grpc, registry_pb2
-from registry import server_flags, user_server, maintenance_server
+from registry import server_flags, user_server, maintenance_server, storage
 
 FLAGS = flags.FLAGS
 
 #flags.DEFINE_string('listen_addr', '[::]:50051', 'Address to listen.')
 
 def serve(argv):
+    s = storage.StorageManager()
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    registry_pb2_grpc.add_UserServiceServicer_to_server(user_server.UserServiceServicer(), server)
-    registry_pb2_grpc.add_MaintenanceServiceServicer_to_server(maintenance_server.MaintenanceServiceServicer(), server)
+    registry_pb2_grpc.add_UserServiceServicer_to_server(user_server.UserServiceServicer(storage_manager=s), server)
+    registry_pb2_grpc.add_MaintenanceServiceServicer_to_server(maintenance_server.MaintenanceServiceServicer(storage_manager=s), server)
     SERVICE_NAMES = (
             registry_pb2.DESCRIPTOR.services_by_name['UserService'].full_name,
             registry_pb2.DESCRIPTOR.services_by_name['MaintenanceService'].full_name,

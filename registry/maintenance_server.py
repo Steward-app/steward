@@ -16,8 +16,11 @@ FLAGS = flags.FLAGS
 
 
 class MaintenanceServiceServicer(registry_pb2_grpc.MaintenanceServiceServicer):
-    def __init__(self, argv=None):
-        self.storage = storage.StorageManager()
+    def __init__(self, storage_manager=None, argv=None):
+        if not storage_manager:
+            self.storage = storage.StorageManager()
+        else:
+            self.storage = storage_manager
         logging.info('MaintenanceService initialized.')
 
     def GetMaintenance(self, request, context):
