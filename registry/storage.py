@@ -3,31 +3,71 @@ from absl import logging, flags
 import pymongo
 from google.protobuf.json_format import MessageToDict, ParseDict
 from bson.objectid import ObjectId
+from bson.errors import InvalidId
 from copy import deepcopy
 
 from steward import user_pb2 as u
+from steward import maintenance_pb2 as m
 
 FLAGS=flags.FLAGS
 
 flags.DEFINE_enum('env', 'dev', ['dev', 'testing', 'prod'], 'Environment to use.')
 flags.DEFINE_string('db', 'mongodb://localhost:27017', 'MongoDB connection string.')
 
-class StorageManager():
-    def __init__(self):
-        self.mongo_client = pymongo.MongoClient(FLAGS.db)
-        collection = 'steward-' + FLAGS.env
-        self.db = self.mongo_client[collection]
-        self.users = self.db.user
-        self.maintenances = self.db.maintenance
-        logging.info('StorageManager using {}/{}'.format(FLAGS.db, collection))
+class Collection():
+    def __init__(self, collection, proto):
+        self.collection = collection
+        self.proto = proto
+        self.name = proto.DESCRIPTOR.full_name
+        logging.info('Collection {0} live'.format(self.name))
 
-    def encode(self, proto):
+    def keys(self):
+        return [ str(i) for i in self.collection.distinct('_id')]
+
+    def _id(self, key):
+        try:
+            key = ObjectId(key)
+        except InvalidId as err:
+            raise TypeError(err)
+        return key
+
+
+    def __getitem__(self, key):
+        key = self._id(key)
+        return self._decode(
+                self.collection.find_one({'_id': key}),
+                self.proto)
+
+    def __setitem__(self, key, value):
+        key = self._id(key)
+        if not isinstance(value, self.proto):
+            raise TypeError('{0} is not a valid id')
+        value = parent._encode(value)
+        return self.collection.find_one({'_id': key})
+
+    def __delitem__(self, key):
+        key = self._id(key)
+        user = self.__getitem__(key)
+        self.collection.delete_one({'_id': key})
+        del user['_id'] # unset _id since it won't work anymore
+        return user
+
+    def __contains__(self, item):
+        item = self._id(item)
+        user = self.collection.find_one({'_id': item})
+        return user is not None
+
+    def __iter__(self):
+        for key in self.keys():
+            yield key
+
+    def _encode(self, proto):
         logging.info('Proto->Dict before encode: {}'.format(proto))
         bson = self._proto2dict(proto)
         logging.info('Proto->Dict after encode: {}'.format(bson))
         return bson
 
-    def decode(self, bson, message):
+    def _decode(self, bson, message):
         logging.info('Dict->Proto before decode: {}'.format(bson))
         proto = self._dict2proto(bson, message)
         logging.info('Dict->Proto after decode: {}'.format(proto))
@@ -51,3 +91,13 @@ class StorageManager():
         proto = message()
         ParseDict(bson, proto)
         return proto
+
+
+class StorageManager():
+    def __init__(self):
+        self.mongo_client = pymongo.MongoClient(FLAGS.db)
+        database_name = 'steward-' + FLAGS.env
+        self.db = self.mongo_client[database_name]
+        self.users = Collection(self.db.user, u.User)
+        self.maintenances = Collection(self.db.maintenance, m.Maintenance)
+        logging.info('StorageManager using {}/{}'.format(FLAGS.db, database_name))
