@@ -24,6 +24,12 @@ class Collection():
     def keys(self):
         return [ str(i) for i in self.collection.distinct('_id')]
 
+    def get_by_attr(self, **kwargs):
+        index, key = kwargs.popitem() # only last one is honored
+        return self.__getitem__(key, index=index)
+
+
+    # Convert string key into an ObjectId key compatible with bson
     def _id(self, key):
         try:
             key = ObjectId(key)
@@ -32,10 +38,11 @@ class Collection():
         return key
 
 
-    def __getitem__(self, key):
-        key = self._id(key)
+    def __getitem__(self, key, index='_id'):
+        if index == '_id':
+            key = self._id(key)
         return self._decode(
-                self.collection.find_one({'_id': key}),
+                self.collection.find_one({index: key}),
                 self.proto)
 
     def __setitem__(self, key, value):
@@ -86,11 +93,11 @@ class Collection():
         return dict_out
 
     def _dict2proto(self, bson, message):
-        if '_id' in bson:
-            bson['_id'] = str(bson['_id']) # ObjectId -> str _id
         proto = message()
-        ParseDict(bson, proto)
-        return proto
+        if bson and '_id' in bson:
+            bson['_id'] = str(bson['_id']) # ObjectId -> str _id
+            ParseDict(bson, proto)
+        return proto # returns empty if the dict is empty or incompatible
 
 
 class StorageManager():

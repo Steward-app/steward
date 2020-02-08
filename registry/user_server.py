@@ -26,21 +26,20 @@ class UserServiceServicer(registry_pb2_grpc.UserServiceServicer):
         user_id = request._id
         email = request.email
         if user_id:
-            user_id = ObjectId(user_id) # str -> ObjectId
-            data_bson = self.storage.users.find_one({'_id': user_id})
+            user = self.storage.users[user_id]
         elif email:
-            data_bson = self.storage.users.find_one({'email': email})
+            user = self.storage.users[email]
         else:
             context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
             context.set_details('No search parameter provided, one available field should be set.')
             return u.User()
 
-        if data_bson is None:
+        if user is None:
             context.set_code(grpc.StatusCode.NOT_FOUND)
             context.set_details('User "{}" not found.'.format(request))
             return u.User()
 
-        return self.storage.decode(data_bson, u.User)
+        return user
 
     def CreateUser(self, request, context):
         # only create if user doesn't exist
