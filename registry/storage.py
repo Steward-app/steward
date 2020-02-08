@@ -65,8 +65,6 @@ class Collection():
         key = self._id(key)
         user = self.__getitem__(key)
         self.collection.delete_one({'_id': key})
-        del user['_id'] # unset _id since it won't work anymore
-        return user
 
     def __contains__(self, item):
         item = self._id(item)

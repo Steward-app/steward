@@ -75,10 +75,9 @@ class UserServiceServicer(registry_pb2_grpc.UserServiceServicer):
 
         # only delete if user exists and we need to return the deleted user anyway
         user = self.storage.users[user_id]
-        if user != user.User():
-            result = self.storage.users.delete_one({'_id': user_id})
-            del existing_user['_id'] # delete id to signify the user doesn't exist
-            return self.storage.decode(existing_user, u.User)
+        if user != u.User():
+            del self.storage.users[user_id]
+            return user
         else:
             context.set_code(grpc.StatusCode.NOT_FOUND)
             context.set_details('User id "{}" does not exist.'.format(user_id))
