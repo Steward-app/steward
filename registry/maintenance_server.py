@@ -4,16 +4,13 @@ from absl import logging, flags, app
 import grpc
 from grpc_reflection.v1alpha import reflection
 
-from bson.objectid import ObjectId
-
 from registry import storage, server_flags
+from registry.decorators import must_have, must_have_any
 
 from steward import maintenance_pb2 as m
 from steward import registry_pb2_grpc, registry_pb2
 
-
 FLAGS = flags.FLAGS
-
 
 class MaintenanceServiceServicer(registry_pb2_grpc.MaintenanceServiceServicer):
     def __init__(self, storage_manager=None, argv=None):
@@ -23,80 +20,69 @@ class MaintenanceServiceServicer(registry_pb2_grpc.MaintenanceServiceServicer):
             self.storage = storage_manager
         logging.info('MaintenanceService initialized.')
 
+    @must_have_any(['_id', 'email'], m.Maintenance)
     def GetMaintenance(self, request, context):
         maintenance_id = request._id
+        email = request.email
         if maintenance_id:
-            maintenance_id = ObjectId(maintenance_id) # str -> ObjectId
-            data_bson = self.storage.maintenances.find_one({'_id': maintenance_id})
-        else:
-            context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
-            context.set_details('No search parameter provided, one available field should be set.')
-            return m.Maintenance()
+            return self.storage.maintenances[maintenance_id]
+        elif email:
+            return self.storage.maintenances.get_by_attr(email=email)
 
-        if data_bson is None:
+        if maintenance == m.Maintenance():
             context.set_code(grpc.StatusCode.NOT_FOUND)
             context.set_details('Maintenance "{}" not found.'.format(request))
             return m.Maintenance()
 
-        return self.storage.decode(data_bson, m.Maintenance)
+        return maintenance
 
+    @must_have('email', m.Maintenance)
+    @must_have('name', m.Maintenance)
+    @must_have('password', m.Maintenance)
     def CreateMaintenance(self, request, context):
         # only create if maintenance doesn't exist
-        existing_maintenance = self.storage.maintenances.find_one({'email': request.email})
-        if existing_maintenance is None:
+        existing_maintenance = self.storage.maintenances.get_by_attr(email=request.email)
+        if existing_maintenance == m.Maintenance():
             maintenance = m.Maintenance(name=request.name, email=request.email, password=request.password, available_effort=request.available_effort)
-            result = self.storage.maintenances.insert_one(self.storage.encode(maintenance))
-            return self.GetMaintenance(m.GetMaintenanceRequest(_id=str(result.inserted_id)), context)
+            return self.storage.maintenances.new(maintenance)
         else:
             context.set_code(grpc.StatusCode.ALREADY_EXISTS)
             context.set_details('Maintenance "{}" already exists.'.format(request.email))
             return m.Maintenance()
 
+    @must_have('_id', m.Maintenance)
     def UpdateMaintenance(self, request, context):
         maintenance_id = request._id
-        if maintenance_id:
-            maintenance_id = ObjectId(maintenance_id)
-            # only update if maintenance exists
-            existing_maintenance = self.storage.maintenances.find_one({'_id': maintenance_id})
-            if existing_maintenance is not None:
-                logging.info('UpdateMaintenance, before update in dict: {}'.format(existing_maintenance))
-                existing_maintenance = self.storage.decode(existing_maintenance, m.Maintenance)
-                existing_maintenance.MergeFrom(request.maintenance)
-                logging.info('UpdateMaintenance, merged Proto: {}'.format(existing_maintenance))
-                result = self.storage.maintenances.replace_one(
-                        {'_id': maintenance_id},
-                        self.storage.encode(existing_maintenance)
-                        )
-                return self.GetMaintenance(m.GetMaintenanceRequest(_id=request._id), context)
-            else:
-                context.set_code(grpc.StatusCode.NOT_FOUND)
-                context.set_details('Maintenance id "{}" does not exist.'.format(maintenance_id))
-                return m.Maintenance()
+        # only update if maintenance exists
+        existing_maintenance = self.storage.maintenances[maintenance_id]
+        if maintenance is not m.Maintenance(): # if not empty
+            logging.info('UpdateMaintenance, before update in dict: {}'.format(maintenance))
+            maintenance.MergeFrom(request.maintenance)
+            logging.info('UpdateMaintenance, merged Proto: {}'.format(maintenance))
+            result = self.storage.maintenances[maintenance_id] = maintenance
+            return self.GetMaintenance(m.GetMaintenanceRequest(_id=maintenance_id), context)
         else:
-            context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
-            context.set_details('_id is mandatory'.format(maintenance_id))
+            context.set_code(grpc.StatusCode.NOT_FOUND)
+            context.set_details('Maintenance id "{}" does not exist.'.format(maintenance_id))
             return m.Maintenance()
 
+    @must_have('_id', m.Maintenance)
     def DeleteMaintenance(self, request, context):
         maintenance_id = request._id
-        if not isinstance(maintenance_id, ObjectId):
-            maintenance_id = ObjectId(maintenance_id)
 
         # only delete if maintenance exists and we need to return the deleted maintenance anyway
-        existing_maintenance = self.storage.maintenances.find_one({'_id': maintenance_id})
-        if existing_maintenance is not None:
-            result = self.storage.maintenances.delete_one({'_id': maintenance_id})
-            del existing_maintenance['_id'] # delete id to signify the maintenance doesn't exist
-            return self.storage.decode(existing_maintenance, m.Maintenance)
+        maintenance = self.storage.maintenances[maintenance_id]
+        if maintenance != m.Maintenance():
+            del self.storage.maintenances[maintenance_id]
+            return maintenance
         else:
             context.set_code(grpc.StatusCode.NOT_FOUND)
             context.set_details('Maintenance id "{}" does not exist.'.format(maintenance_id))
             return m.Maintenance()
 
     def ListMaintenances(self, request, context):
-        for maintenance_bson in self.storage.maintenances.find():
-            maintenance = m.Maintenance()
-            yield self.storage.decode(maintenance_bson, m.Maintenance)
+        for maintenance in self.storage.maintenances:
+            yield maintenance
 
 def serve(argv):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
