@@ -8,7 +8,7 @@ from bson.objectid import ObjectId
 from bson.json_util import dumps, loads
 
 from registry import storage, server_flags
-from registry.decorators import must_have
+from registry.decorators import must_have, must_have_any
 
 from steward import user_pb2 as u
 from steward import registry_pb2_grpc, registry_pb2
@@ -23,20 +23,16 @@ class UserServiceServicer(registry_pb2_grpc.UserServiceServicer):
             self.storage = storage_manager
         logging.info('UserService initialized.')
 
-    @must_have('_id', u.User)
+    @must_have_any(['_id', 'email'], u.User)
     def GetUser(self, request, context):
         user_id = request._id
         email = request.email
         if user_id:
-            user = self.storage.users[user_id]
+            return self.storage.users[user_id]
         elif email:
-            user = self.storage.users[email]
-        else:
-            context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
-            context.set_details('No search parameter provided, one available field should be set.')
-            return u.User()
+            return self.storage.users.get_by_attr(email=email)
 
-        if user is None:
+        if user == u.User():
             context.set_code(grpc.StatusCode.NOT_FOUND)
             context.set_details('User "{}" not found.'.format(request))
             return u.User()
