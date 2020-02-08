@@ -59,7 +59,7 @@ class Collection():
 
     def __iter__(self):
         for key in self.keys():
-            yield key
+            yield self.__getitem__(key)
 
     def _encode(self, proto):
         logging.info('Proto->Dict before encode: {}'.format(proto))
