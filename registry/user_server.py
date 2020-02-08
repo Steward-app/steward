@@ -8,6 +8,7 @@ from bson.objectid import ObjectId
 from bson.json_util import dumps, loads
 
 from registry import storage, server_flags
+from registry.decorators import must_have
 
 from steward import user_pb2 as u
 from steward import registry_pb2_grpc, registry_pb2
@@ -22,6 +23,7 @@ class UserServiceServicer(registry_pb2_grpc.UserServiceServicer):
             self.storage = storage_manager
         logging.info('UserService initialized.')
 
+    @must_have('_id', u.User)
     def GetUser(self, request, context):
         user_id = request._id
         email = request.email
@@ -41,6 +43,7 @@ class UserServiceServicer(registry_pb2_grpc.UserServiceServicer):
 
         return user
 
+    @must_have('email', u.User)
     def CreateUser(self, request, context):
         # only create if user doesn't exist
         existing_user = self.storage.users.find_one({'email': request.email})
@@ -53,39 +56,29 @@ class UserServiceServicer(registry_pb2_grpc.UserServiceServicer):
             context.set_details('User "{}" already exists.'.format(request.email))
             return u.User()
 
+    @must_have('_id', u.User)
     def UpdateUser(self, request, context):
         user_id = request._id
-        if user_id:
-            user_id = ObjectId(user_id)
-            # only update if user exists
-            existing_user = self.storage.users.find_one({'_id': user_id})
-            if existing_user is not None:
-                logging.info('UpdateUser, before update in dict: {}'.format(existing_user))
-                existing_user = self.storage.decode(existing_user, u.User)
-                existing_user.MergeFrom(request.user)
-                logging.info('UpdateUser, merged Proto: {}'.format(existing_user))
-                result = self.storage.users.replace_one(
-                        {'_id': user_id},
-                        self.storage.encode(existing_user)
-                        )
-                return self.GetUser(u.GetUserRequest(_id=request._id), context)
-            else:
-                context.set_code(grpc.StatusCode.NOT_FOUND)
-                context.set_details('User id "{}" does not exist.'.format(user_id))
-                return u.User()
+        # only update if user exists
+        existing_user = self.storage.users[user_id]
+        if user is not u.User(): # if not empty
+            logging.info('UpdateUser, before update in dict: {}'.format(user))
+            user.MergeFrom(request.user)
+            logging.info('UpdateUser, merged Proto: {}'.format(user))
+            result = self.storage.users[user_id] = user
+            return self.GetUser(u.GetUserRequest(_id=user_id), context)
         else:
-            context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
-            context.set_details('_id is mandatory'.format(user_id))
+            context.set_code(grpc.StatusCode.NOT_FOUND)
+            context.set_details('User id "{}" does not exist.'.format(user_id))
             return u.User()
 
+    @must_have('_id', u.User)
     def DeleteUser(self, request, context):
         user_id = request._id
-        if not isinstance(user_id, ObjectId):
-            user_id = ObjectId(user_id)
 
         # only delete if user exists and we need to return the deleted user anyway
-        existing_user = self.storage.users.find_one({'_id': user_id})
-        if existing_user is not None:
+        user = self.storage.users[user_id]
+        if user != user.User():
             result = self.storage.users.delete_one({'_id': user_id})
             del existing_user['_id'] # delete id to signify the user doesn't exist
             return self.storage.decode(existing_user, u.User)
