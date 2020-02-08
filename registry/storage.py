@@ -48,9 +48,18 @@ class Collection():
     def __setitem__(self, key, value):
         key = self._id(key)
         if not isinstance(value, self.proto):
-            raise TypeError('{0} is not a valid id')
-        value = parent._encode(value)
-        return self.collection.find_one({'_id': key})
+            raise TypeError('{0} is not a valid type of data, expected {1}'.format(value, self.proto))
+        value = self._encode(value)
+        self.collection.replace_one({'_id': key}, value)
+        return self.__getitem__(key)
+
+    def new(self, value):
+        if not isinstance(value, self.proto):
+            raise TypeError('{0} is not a valid type of data, expected {1}'.format(value, self.proto))
+        value = self._encode(value)
+        result = self.collection.insert_one(value)
+        key = result.inserted_id
+        return self.__getitem__(key)
 
     def __delitem__(self, key):
         key = self._id(key)

@@ -44,13 +44,14 @@ class UserServiceServicer(registry_pb2_grpc.UserServiceServicer):
         return user
 
     @must_have('email', u.User)
+    @must_have('name', u.User)
+    @must_have('password', u.User)
     def CreateUser(self, request, context):
         # only create if user doesn't exist
-        existing_user = self.storage.users.find_one({'email': request.email})
-        if existing_user is None:
+        existing_user = self.storage.users.get_by_attr(email=request.email)
+        if existing_user == u.User():
             user = u.User(name=request.name, email=request.email, password=request.password, available_effort=request.available_effort)
-            result = self.storage.users.insert_one(self.storage.encode(user))
-            return self.GetUser(u.GetUserRequest(_id=str(result.inserted_id)), context)
+            return self.storage.users.new(user)
         else:
             context.set_code(grpc.StatusCode.ALREADY_EXISTS)
             context.set_details('User "{}" already exists.'.format(request.email))
