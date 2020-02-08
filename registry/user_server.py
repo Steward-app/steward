@@ -4,9 +4,6 @@ from absl import logging, flags, app
 import grpc
 from grpc_reflection.v1alpha import reflection
 
-from bson.objectid import ObjectId
-from bson.json_util import dumps, loads
-
 from registry import storage, server_flags
 from registry.decorators import must_have, must_have_any
 
