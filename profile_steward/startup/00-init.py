@@ -17,3 +17,6 @@ maintenances = registry_pb2_grpc.MaintenanceServiceStub(channel)
 
 flags.FLAGS.mark_as_parsed()
 s = storage.StorageManager()
+
+print('Available objects: s')
+print('Available protos: u, m')
