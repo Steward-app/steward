@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x19steward/maintenance.proto\x12\x07steward\x1a\x1egoogle/protobuf/duration.proto\x1a\x13steward/asset.proto\"\xac\x02\n\x0bMaintenance\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x1d\n\x05\x61sset\x18\x04 \x01(\x0b\x32\x0e.steward.Asset\x12\x0f\n\x07\x65nabled\x18\x05 \x01(\x08\x1aq\n\x08Schedule\x12\x13\n\x0b\x64\x65scription\x18\x01 \x01(\t\x12#\n\x04type\x18\x02 \x01(\x0e\x32\x15.steward.ScheduleType\x12+\n\x08interval\x18\x03 \x01(\x0b\x32\x19.google.protobuf.Duration\x1aJ\n\x06Snooze\x12\x13\n\x0b\x64\x65scription\x18\x01 \x01(\t\x12+\n\x08\x64uration\x18\x02 \x01(\x0b\x32\x19.google.protobuf.Duration\"$\n\x15GetMaintenanceRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"\'\n\x18\x44\x65leteMaintenanceRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"R\n\x18UpdateMaintenanceRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12)\n\x0bmaintenance\x18\x02 \x01(\x0b\x32\x14.steward.Maintenance\"8\n\x17ListMaintenancesRequest\x12\x1d\n\x05\x61sset\x18\x02 \x01(\x0b\x32\x0e.steward.Asset\",\n\x1dGetMaintenanceDefaultsRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"/\n DeleteMaintenanceDefaultsRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"Z\n UpdateMaintenanceDefaultsRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12)\n\x0bmaintenance\x18\x02 \x01(\x0b\x32\x14.steward.Maintenance\"?\n\x1eListMaintenanceDefaultsRequest\x12\x1d\n\x05\x61sset\x18\x02 \x01(\x0b\x32\x0e.steward.Asset\"M\n CreateMaintenanceDefaultsRequest\x12)\n\x0bmaintenance\x18\x01 \x01(\x0b\x32\x14.steward.Maintenance**\n\x0cScheduleType\x12\x0c\n\x08\x44URATION\x10\x00\x12\x0c\n\x08\x45XTERNAL\x10\x01\x62\x06proto3'
+  serialized_pb=b'\n\x19steward/maintenance.proto\x12\x07steward\x1a\x1egoogle/protobuf/duration.proto\x1a\x13steward/asset.proto\"\xb3\x01\n\x0bMaintenance\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x1d\n\x05\x61sset\x18\x04 \x01(\x0b\x32\x0e.steward.Asset\x12\x0f\n\x07\x65nabled\x18\x05 \x01(\x08\x12#\n\x08schedule\x18\x06 \x01(\x0b\x32\x11.steward.Schedule\x12\x1f\n\x06snooze\x18\x07 \x01(\x0b\x32\x0f.steward.Snooze\"q\n\x08Schedule\x12\x13\n\x0b\x64\x65scription\x18\x01 \x01(\t\x12#\n\x04type\x18\x02 \x01(\x0e\x32\x15.steward.ScheduleType\x12+\n\x08interval\x18\x03 \x01(\x0b\x32\x19.google.protobuf.Duration\"J\n\x06Snooze\x12\x13\n\x0b\x64\x65scription\x18\x01 \x01(\t\x12+\n\x08\x64uration\x18\x02 \x01(\x0b\x32\x19.google.protobuf.Duration\"$\n\x15GetMaintenanceRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"\'\n\x18\x44\x65leteMaintenanceRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"R\n\x18UpdateMaintenanceRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12)\n\x0bmaintenance\x18\x02 \x01(\x0b\x32\x14.steward.Maintenance\"8\n\x17ListMaintenancesRequest\x12\x1d\n\x05\x61sset\x18\x02 \x01(\x0b\x32\x0e.steward.Asset\",\n\x1dGetMaintenanceDefaultsRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"/\n DeleteMaintenanceDefaultsRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"Z\n UpdateMaintenanceDefaultsRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12)\n\x0bmaintenance\x18\x02 \x01(\x0b\x32\x14.steward.Maintenance\"?\n\x1eListMaintenanceDefaultsRequest\x12\x1d\n\x05\x61sset\x18\x02 \x01(\x0b\x32\x0e.steward.Asset\"M\n CreateMaintenanceDefaultsRequest\x12)\n\x0bmaintenance\x18\x01 \x01(\x0b\x32\x14.steward.Maintenance**\n\x0cScheduleType\x12\x0c\n\x08\x44URATION\x10\x00\x12\x0c\n\x08\x45XTERNAL\x10\x01\x62\x06proto3'
   ,
   dependencies=[google_dot_protobuf_dot_duration__pb2.DESCRIPTOR,steward_dot_asset__pb2.DESCRIPTOR,])
 
@@ -46,8 +46,8 @@ _SCHEDULETYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=946,
-  serialized_end=988,
+  serialized_start=1016,
+  serialized_end=1058,
 )
 _sym_db.RegisterEnumDescriptor(_SCHEDULETYPE)
 
@@ -56,89 +56,6 @@ DURATION = 0
 EXTERNAL = 1
 
 
-
-_MAINTENANCE_SCHEDULE = _descriptor.Descriptor(
-  name='Schedule',
-  full_name='steward.Maintenance.Schedule',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='description', full_name='steward.Maintenance.Schedule.description', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='type', full_name='steward.Maintenance.Schedule.type', index=1,
-      number=2, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='interval', full_name='steward.Maintenance.Schedule.interval', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=203,
-  serialized_end=316,
-)
-
-_MAINTENANCE_SNOOZE = _descriptor.Descriptor(
-  name='Snooze',
-  full_name='steward.Maintenance.Snooze',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='description', full_name='steward.Maintenance.Snooze.description', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='duration', full_name='steward.Maintenance.Snooze.duration', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=318,
-  serialized_end=392,
-)
 
 _MAINTENANCE = _descriptor.Descriptor(
   name='Maintenance',
@@ -183,10 +100,24 @@ _MAINTENANCE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='schedule', full_name='steward.Maintenance.schedule', index=5,
+      number=6, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='snooze', full_name='steward.Maintenance.snooze', index=6,
+      number=7, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
-  nested_types=[_MAINTENANCE_SCHEDULE, _MAINTENANCE_SNOOZE, ],
+  nested_types=[],
   enum_types=[
   ],
   serialized_options=None,
@@ -196,7 +127,92 @@ _MAINTENANCE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=92,
-  serialized_end=392,
+  serialized_end=271,
+)
+
+
+_SCHEDULE = _descriptor.Descriptor(
+  name='Schedule',
+  full_name='steward.Schedule',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='description', full_name='steward.Schedule.description', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='type', full_name='steward.Schedule.type', index=1,
+      number=2, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='interval', full_name='steward.Schedule.interval', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=273,
+  serialized_end=386,
+)
+
+
+_SNOOZE = _descriptor.Descriptor(
+  name='Snooze',
+  full_name='steward.Snooze',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='description', full_name='steward.Snooze.description', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='duration', full_name='steward.Snooze.duration', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=388,
+  serialized_end=462,
 )
 
 
@@ -227,8 +243,8 @@ _GETMAINTENANCEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=394,
-  serialized_end=430,
+  serialized_start=464,
+  serialized_end=500,
 )
 
 
@@ -259,8 +275,8 @@ _DELETEMAINTENANCEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=432,
-  serialized_end=471,
+  serialized_start=502,
+  serialized_end=541,
 )
 
 
@@ -298,8 +314,8 @@ _UPDATEMAINTENANCEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=473,
-  serialized_end=555,
+  serialized_start=543,
+  serialized_end=625,
 )
 
 
@@ -330,8 +346,8 @@ _LISTMAINTENANCESREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=557,
-  serialized_end=613,
+  serialized_start=627,
+  serialized_end=683,
 )
 
 
@@ -362,8 +378,8 @@ _GETMAINTENANCEDEFAULTSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=615,
-  serialized_end=659,
+  serialized_start=685,
+  serialized_end=729,
 )
 
 
@@ -394,8 +410,8 @@ _DELETEMAINTENANCEDEFAULTSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=661,
-  serialized_end=708,
+  serialized_start=731,
+  serialized_end=778,
 )
 
 
@@ -433,8 +449,8 @@ _UPDATEMAINTENANCEDEFAULTSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=710,
-  serialized_end=800,
+  serialized_start=780,
+  serialized_end=870,
 )
 
 
@@ -465,8 +481,8 @@ _LISTMAINTENANCEDEFAULTSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=802,
-  serialized_end=865,
+  serialized_start=872,
+  serialized_end=935,
 )
 
 
@@ -497,22 +513,24 @@ _CREATEMAINTENANCEDEFAULTSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=867,
-  serialized_end=944,
+  serialized_start=937,
+  serialized_end=1014,
 )
 
-_MAINTENANCE_SCHEDULE.fields_by_name['type'].enum_type = _SCHEDULETYPE
-_MAINTENANCE_SCHEDULE.fields_by_name['interval'].message_type = google_dot_protobuf_dot_duration__pb2._DURATION
-_MAINTENANCE_SCHEDULE.containing_type = _MAINTENANCE
-_MAINTENANCE_SNOOZE.fields_by_name['duration'].message_type = google_dot_protobuf_dot_duration__pb2._DURATION
-_MAINTENANCE_SNOOZE.containing_type = _MAINTENANCE
 _MAINTENANCE.fields_by_name['asset'].message_type = steward_dot_asset__pb2._ASSET
+_MAINTENANCE.fields_by_name['schedule'].message_type = _SCHEDULE
+_MAINTENANCE.fields_by_name['snooze'].message_type = _SNOOZE
+_SCHEDULE.fields_by_name['type'].enum_type = _SCHEDULETYPE
+_SCHEDULE.fields_by_name['interval'].message_type = google_dot_protobuf_dot_duration__pb2._DURATION
+_SNOOZE.fields_by_name['duration'].message_type = google_dot_protobuf_dot_duration__pb2._DURATION
 _UPDATEMAINTENANCEREQUEST.fields_by_name['maintenance'].message_type = _MAINTENANCE
 _LISTMAINTENANCESREQUEST.fields_by_name['asset'].message_type = steward_dot_asset__pb2._ASSET
 _UPDATEMAINTENANCEDEFAULTSREQUEST.fields_by_name['maintenance'].message_type = _MAINTENANCE
 _LISTMAINTENANCEDEFAULTSREQUEST.fields_by_name['asset'].message_type = steward_dot_asset__pb2._ASSET
 _CREATEMAINTENANCEDEFAULTSREQUEST.fields_by_name['maintenance'].message_type = _MAINTENANCE
 DESCRIPTOR.message_types_by_name['Maintenance'] = _MAINTENANCE
+DESCRIPTOR.message_types_by_name['Schedule'] = _SCHEDULE
+DESCRIPTOR.message_types_by_name['Snooze'] = _SNOOZE
 DESCRIPTOR.message_types_by_name['GetMaintenanceRequest'] = _GETMAINTENANCEREQUEST
 DESCRIPTOR.message_types_by_name['DeleteMaintenanceRequest'] = _DELETEMAINTENANCEREQUEST
 DESCRIPTOR.message_types_by_name['UpdateMaintenanceRequest'] = _UPDATEMAINTENANCEREQUEST
@@ -526,27 +544,25 @@ DESCRIPTOR.enum_types_by_name['ScheduleType'] = _SCHEDULETYPE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Maintenance = _reflection.GeneratedProtocolMessageType('Maintenance', (_message.Message,), {
-
-  'Schedule' : _reflection.GeneratedProtocolMessageType('Schedule', (_message.Message,), {
-    'DESCRIPTOR' : _MAINTENANCE_SCHEDULE,
-    '__module__' : 'steward.maintenance_pb2'
-    # @@protoc_insertion_point(class_scope:steward.Maintenance.Schedule)
-    })
-  ,
-
-  'Snooze' : _reflection.GeneratedProtocolMessageType('Snooze', (_message.Message,), {
-    'DESCRIPTOR' : _MAINTENANCE_SNOOZE,
-    '__module__' : 'steward.maintenance_pb2'
-    # @@protoc_insertion_point(class_scope:steward.Maintenance.Snooze)
-    })
-  ,
   'DESCRIPTOR' : _MAINTENANCE,
   '__module__' : 'steward.maintenance_pb2'
   # @@protoc_insertion_point(class_scope:steward.Maintenance)
   })
 _sym_db.RegisterMessage(Maintenance)
-_sym_db.RegisterMessage(Maintenance.Schedule)
-_sym_db.RegisterMessage(Maintenance.Snooze)
+
+Schedule = _reflection.GeneratedProtocolMessageType('Schedule', (_message.Message,), {
+  'DESCRIPTOR' : _SCHEDULE,
+  '__module__' : 'steward.maintenance_pb2'
+  # @@protoc_insertion_point(class_scope:steward.Schedule)
+  })
+_sym_db.RegisterMessage(Schedule)
+
+Snooze = _reflection.GeneratedProtocolMessageType('Snooze', (_message.Message,), {
+  'DESCRIPTOR' : _SNOOZE,
+  '__module__' : 'steward.maintenance_pb2'
+  # @@protoc_insertion_point(class_scope:steward.Snooze)
+  })
+_sym_db.RegisterMessage(Snooze)
 
 GetMaintenanceRequest = _reflection.GeneratedProtocolMessageType('GetMaintenanceRequest', (_message.Message,), {
   'DESCRIPTOR' : _GETMAINTENANCEREQUEST,

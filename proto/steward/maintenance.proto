@@ -15,16 +15,18 @@ message Maintenance {
   string description = 3;
   Asset asset = 4;
   bool enabled = 5;
+  Schedule schedule = 6;
+  Snooze snooze = 7;
+}
 
-  message Schedule {
-    string description = 1;
-    ScheduleType type = 2;
-    google.protobuf.Duration interval = 3;
-  }
-  message Snooze {
-    string description = 1;
-    google.protobuf.Duration duration = 2;
-  }
+message Schedule {
+  string description = 1;
+  ScheduleType type = 2;
+  google.protobuf.Duration interval = 3;
+}
+message Snooze {
+  string description = 1;
+  google.protobuf.Duration duration = 2;
 }
 
 message GetMaintenanceRequest {
