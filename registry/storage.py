@@ -56,6 +56,7 @@ class Collection():
     def new(self, value):
         if not isinstance(value, self.proto):
             raise TypeError('{0} is not a valid type of data, expected {1}'.format(value, self.proto))
+        logging.info('Creating new storage object from ({typeof}): \'{value}\''.format(value=value, typeof=type(value)))
         value = self._encode(value)
         result = self.collection.insert_one(value)
         key = result.inserted_id
@@ -65,8 +66,6 @@ class Collection():
         key = self._id(key)
         user = self.__getitem__(key)
         self.collection.delete_one({'_id': key})
-
-    def __contains__(self, item):
         item = self._id(item)
         user = self.collection.find_one({'_id': item})
         return user is not None
@@ -75,9 +74,9 @@ class Collection():
         for key in self.keys():
             yield self.__getitem__(key)
 
-    def _encode(self, proto):
-        logging.info('Proto->Dict before encode: {}'.format(proto))
-        bson = self._proto2dict(proto)
+    def _encode(self, value):
+        logging.info('Proto->Dict before encode({typeof}): \'{value}\''.format(value=value, typeof=type(value)))
+        bson = self._proto2dict(value)
         logging.info('Proto->Dict after encode: {}'.format(bson))
         return bson
 

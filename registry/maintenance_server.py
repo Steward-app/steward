@@ -20,14 +20,11 @@ class MaintenanceServiceServicer(registry_pb2_grpc.MaintenanceServiceServicer):
             self.storage = storage_manager
         logging.info('MaintenanceService initialized.')
 
-    @must_have_any(['_id', 'email'], m.Maintenance)
+    @must_have('_id', m.Maintenance)
     def GetMaintenance(self, request, context):
         maintenance_id = request._id
-        email = request.email
         if maintenance_id:
-            return self.storage.maintenances[maintenance_id]
-        elif email:
-            return self.storage.maintenances.get_by_attr(email=email)
+            maintenance = self.storage.maintenances[maintenance_id]
 
         if maintenance == m.Maintenance():
             context.set_code(grpc.StatusCode.NOT_FOUND)
@@ -36,19 +33,11 @@ class MaintenanceServiceServicer(registry_pb2_grpc.MaintenanceServiceServicer):
 
         return maintenance
 
-    @must_have('email', m.Maintenance)
     @must_have('name', m.Maintenance)
-    @must_have('password', m.Maintenance)
+    @must_have('asset', m.Maintenance)
     def CreateMaintenance(self, request, context):
-        # only create if maintenance doesn't exist
-        existing_maintenance = self.storage.maintenances.get_by_attr(email=request.email)
-        if existing_maintenance == m.Maintenance():
-            maintenance = m.Maintenance(name=request.name, email=request.email, password=request.password, available_effort=request.available_effort)
-            return self.storage.maintenances.new(maintenance)
-        else:
-            context.set_code(grpc.StatusCode.ALREADY_EXISTS)
-            context.set_details('Maintenance "{}" already exists.'.format(request.email))
-            return m.Maintenance()
+        logging.info('Creating maintenance from: {request}'.format(request=request))
+        return self.storage.maintenances.new(request)
 
     @must_have('_id', m.Maintenance)
     def UpdateMaintenance(self, request, context):
