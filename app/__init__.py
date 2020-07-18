@@ -10,6 +10,7 @@ import grpc
 from urllib.parse import urlparse, urljoin
 
 from steward import user_pb2 as u
+from steward import maintenance_pb2 as m
 from steward import registry_pb2 as r
 from steward import registry_pb2_grpc
 
@@ -25,8 +26,10 @@ mail.init_app(app)
 bcrypt.init_app(app)
 
 
+# TODO(artanicus): this hardcodes to the monolithic backend which is bad
 channel = grpc.insecure_channel('localhost:50051')
 users = registry_pb2_grpc.UserServiceStub(channel)
+maintenances = registry_pb2_grpc.MaintenanceServiceStub(channel)
 
 def is_safe_url(target):
     ref_url = urlparse(request.host_url)
@@ -45,9 +48,17 @@ def get_redirect_target():
 def root():
     return render_template('index.html', users=users.ListUsers(u.ListUsersRequest()))
 
+@app.route('/maintenances')
+def list_maintenances():
+    return render_template('maintenances.html', maintenances=maintenances.ListMaintenances(m.ListMaintenancesRequest()))
+
 @app.route('/user/<user_id>')
 def user(user_id=None):
     return render_template('user.html', user=users.GetUser(u.GetUserRequest(_id=user_id)))
+
+@app.route('/maintenance/<maintenance_id>')
+def maintenance(maintenance_id=None):
+    return render_template('maintenance.html', maintenance=maintenance.GetMaintenance(m.GetMaintenanceRequest(_id=maintenance_id)))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

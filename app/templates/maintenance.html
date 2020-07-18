@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}{{maintenance.name}} {% endblock %}
+{% set view = maintenance.name %}
+
+{% block content %}
+  {% if maintenance %}
+  <pre>
+    {{maintenance|pprint}}
+  </pre>
+  {% else %}
+    <h2>Maintenance not found.</h2>
+  {% endif %}
+{% endblock %}
