@@ -14,7 +14,7 @@ class CreateUserForm(FlaskForm):
     email = StringField('Email', validators=[validators.DataRequired(), validators.Email(message="Not a valid email address")])
     password = PasswordField('Password', validators=[
         validators.DataRequired(),
-        validators.Length(min=12)
+        validators.Regexp('^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z!@#$%^&*]{12,100}$', message='Password must contain at least one letter, at least one number, and be longer than 12 charaters.')
         ])
     password_repeat = PasswordField('Password again', validators=[
         validators.DataRequired(),
