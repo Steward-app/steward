@@ -12,8 +12,14 @@ class LoginForm(FlaskForm):
 class CreateUserForm(FlaskForm):
     name = StringField('Name', validators=[validators.DataRequired()])
     email = StringField('Email', validators=[validators.DataRequired(), validators.Email(message="Not a valid email address")])
-    password = PasswordField('Password', validators=[validators.DataRequired(), validators.EqualTo('password_repeat', message='Passwords must match')])
-    password_repeat = PasswordField('Password again', validators=[validators.DataRequired()])
+    password = PasswordField('Password', validators=[
+        validators.DataRequired(),
+        validators.Length(min=12)
+        ])
+    password_repeat = PasswordField('Password again', validators=[
+        validators.DataRequired(),
+        validators.EqualTo('password', message='Passwords must match')
+        ])
     submit = SubmitField('Create User')
 
 class CreateMaintenanceForm(FlaskForm):
