@@ -5,6 +5,7 @@
 
 {% block content %}
   {% if maintenances %}
+  <h2><a href='/maintenance/create'>Create new one?</a></h2>
     <div class="room">
     <ul id="maintenances" class="room">
       {% for maintenance in maintenances %}

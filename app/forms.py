@@ -15,3 +15,8 @@ class CreateUserForm(FlaskForm):
     password = PasswordField('Password', validators=[validators.DataRequired(), validators.EqualTo('password_repeat', message='Passwords must match')])
     password_repeat = PasswordField('Password again', validators=[validators.DataRequired()])
     submit = SubmitField('Create User')
+
+class CreateMaintenanceForm(FlaskForm):
+    name = StringField('Name', validators=[validators.DataRequired()])
+    description = StringField('Description')
+    submit = SubmitField('Create Maintenance')

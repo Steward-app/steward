@@ -15,7 +15,7 @@ from steward import registry_pb2 as r
 from steward import registry_pb2_grpc
 
 from app.assets import assets
-from app.forms import LoginForm, CreateUserForm
+from app.forms import LoginForm, CreateUserForm, CreateMaintenanceForm
 from app.extensions import lm, mail, bcrypt
 
 app = Flask(__name__)
@@ -58,10 +58,24 @@ def list_maintenances():
 def user(user_id=None):
     return render_template('user.html', user=users.GetUser(u.GetUserRequest(_id=user_id)))
 
+@app.route('/maintenance/create', methods=['GET', 'POST'])
+@login_required
+def maintenance_create():
+    form = CreateMaintenanceForm()
+    if form.validate_on_submit():
+        maintenance = m.Maintenance()
+        maintenance.name = form.name.data
+        maintenance.description = form.description.data
+        new_maintenance = maintenances.CreateMaintenance(maintenance)
+        flash('Maintenace \'{}\' Created!'.format(form.name.data))
+        return redirect('/maintenance/{}'.format(new_maintenance._id))
+    return render_template('maintenance_create.html', form=form)
+
 @app.route('/maintenance/<maintenance_id>')
 @login_required
 def maintenance(maintenance_id=None):
     return render_template('maintenance.html', maintenance=maintenances.GetMaintenance(m.GetMaintenanceRequest(_id=maintenance_id)))
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
