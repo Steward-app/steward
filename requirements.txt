@@ -21,3 +21,4 @@ Flask-Travis
 jsmin
 gunicorn
 cssmin
+email_validator

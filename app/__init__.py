@@ -49,16 +49,19 @@ def root():
     return render_template('index.html', users=users.ListUsers(u.ListUsersRequest()))
 
 @app.route('/maintenances')
+@login_required
 def list_maintenances():
     return render_template('maintenances.html', maintenances=maintenances.ListMaintenances(m.ListMaintenancesRequest()))
 
 @app.route('/user/<user_id>')
+@login_required
 def user(user_id=None):
     return render_template('user.html', user=users.GetUser(u.GetUserRequest(_id=user_id)))
 
 @app.route('/maintenance/<maintenance_id>')
+@login_required
 def maintenance(maintenance_id=None):
-    return render_template('maintenance.html', maintenance=maintenance.GetMaintenance(m.GetMaintenanceRequest(_id=maintenance_id)))
+    return render_template('maintenance.html', maintenance=maintenances.GetMaintenance(m.GetMaintenanceRequest(_id=maintenance_id)))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
