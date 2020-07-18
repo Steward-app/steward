@@ -210,7 +210,7 @@ class MaintenanceServiceStub(object):
                 )
         self.CreateMaintenance = channel.unary_unary(
                 '/steward.MaintenanceService/CreateMaintenance',
-                request_serializer=steward_dot_maintenance__pb2.CreateMaintenanceRequest.SerializeToString,
+                request_serializer=steward_dot_maintenance__pb2.Maintenance.SerializeToString,
                 response_deserializer=steward_dot_maintenance__pb2.Maintenance.FromString,
                 )
         self.DeleteMaintenance = channel.unary_unary(
@@ -273,7 +273,7 @@ def add_MaintenanceServiceServicer_to_server(servicer, server):
             ),
             'CreateMaintenance': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateMaintenance,
-                    request_deserializer=steward_dot_maintenance__pb2.CreateMaintenanceRequest.FromString,
+                    request_deserializer=steward_dot_maintenance__pb2.Maintenance.FromString,
                     response_serializer=steward_dot_maintenance__pb2.Maintenance.SerializeToString,
             ),
             'DeleteMaintenance': grpc.unary_unary_rpc_method_handler(
@@ -328,7 +328,7 @@ class MaintenanceService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/steward.MaintenanceService/CreateMaintenance',
-            steward_dot_maintenance__pb2.CreateMaintenanceRequest.SerializeToString,
+            steward_dot_maintenance__pb2.Maintenance.SerializeToString,
             steward_dot_maintenance__pb2.Maintenance.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -377,194 +377,6 @@ class MaintenanceService(object):
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/steward.MaintenanceService/ListMaintenances',
             steward_dot_maintenance__pb2.ListMaintenancesRequest.SerializeToString,
-            steward_dot_maintenance__pb2.Maintenance.FromString,
-            options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
-
-
-class MaintenanceDefaultsServiceStub(object):
-    """Missing associated documentation comment in .proto file."""
-
-    def __init__(self, channel):
-        """Constructor.
-
-        Args:
-            channel: A grpc.Channel.
-        """
-        self.GetMaintenanceDefaults = channel.unary_unary(
-                '/steward.MaintenanceDefaultsService/GetMaintenanceDefaults',
-                request_serializer=steward_dot_maintenance__pb2.GetMaintenanceDefaultsRequest.SerializeToString,
-                response_deserializer=steward_dot_maintenance__pb2.Maintenance.FromString,
-                )
-        self.CreateMaintenanceDefaults = channel.unary_unary(
-                '/steward.MaintenanceDefaultsService/CreateMaintenanceDefaults',
-                request_serializer=steward_dot_maintenance__pb2.CreateMaintenanceDefaultsRequest.SerializeToString,
-                response_deserializer=steward_dot_maintenance__pb2.Maintenance.FromString,
-                )
-        self.DeleteMaintenanceDefaults = channel.unary_unary(
-                '/steward.MaintenanceDefaultsService/DeleteMaintenanceDefaults',
-                request_serializer=steward_dot_maintenance__pb2.DeleteMaintenanceDefaultsRequest.SerializeToString,
-                response_deserializer=steward_dot_maintenance__pb2.Maintenance.FromString,
-                )
-        self.UpdateMaintenanceDefaults = channel.unary_unary(
-                '/steward.MaintenanceDefaultsService/UpdateMaintenanceDefaults',
-                request_serializer=steward_dot_maintenance__pb2.UpdateMaintenanceDefaultsRequest.SerializeToString,
-                response_deserializer=steward_dot_maintenance__pb2.Maintenance.FromString,
-                )
-        self.ListMaintenanceDefaults = channel.unary_stream(
-                '/steward.MaintenanceDefaultsService/ListMaintenanceDefaults',
-                request_serializer=steward_dot_maintenance__pb2.ListMaintenanceDefaultsRequest.SerializeToString,
-                response_deserializer=steward_dot_maintenance__pb2.Maintenance.FromString,
-                )
-
-
-class MaintenanceDefaultsServiceServicer(object):
-    """Missing associated documentation comment in .proto file."""
-
-    def GetMaintenanceDefaults(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def CreateMaintenanceDefaults(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def DeleteMaintenanceDefaults(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def UpdateMaintenanceDefaults(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def ListMaintenanceDefaults(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-
-def add_MaintenanceDefaultsServiceServicer_to_server(servicer, server):
-    rpc_method_handlers = {
-            'GetMaintenanceDefaults': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetMaintenanceDefaults,
-                    request_deserializer=steward_dot_maintenance__pb2.GetMaintenanceDefaultsRequest.FromString,
-                    response_serializer=steward_dot_maintenance__pb2.Maintenance.SerializeToString,
-            ),
-            'CreateMaintenanceDefaults': grpc.unary_unary_rpc_method_handler(
-                    servicer.CreateMaintenanceDefaults,
-                    request_deserializer=steward_dot_maintenance__pb2.CreateMaintenanceDefaultsRequest.FromString,
-                    response_serializer=steward_dot_maintenance__pb2.Maintenance.SerializeToString,
-            ),
-            'DeleteMaintenanceDefaults': grpc.unary_unary_rpc_method_handler(
-                    servicer.DeleteMaintenanceDefaults,
-                    request_deserializer=steward_dot_maintenance__pb2.DeleteMaintenanceDefaultsRequest.FromString,
-                    response_serializer=steward_dot_maintenance__pb2.Maintenance.SerializeToString,
-            ),
-            'UpdateMaintenanceDefaults': grpc.unary_unary_rpc_method_handler(
-                    servicer.UpdateMaintenanceDefaults,
-                    request_deserializer=steward_dot_maintenance__pb2.UpdateMaintenanceDefaultsRequest.FromString,
-                    response_serializer=steward_dot_maintenance__pb2.Maintenance.SerializeToString,
-            ),
-            'ListMaintenanceDefaults': grpc.unary_stream_rpc_method_handler(
-                    servicer.ListMaintenanceDefaults,
-                    request_deserializer=steward_dot_maintenance__pb2.ListMaintenanceDefaultsRequest.FromString,
-                    response_serializer=steward_dot_maintenance__pb2.Maintenance.SerializeToString,
-            ),
-    }
-    generic_handler = grpc.method_handlers_generic_handler(
-            'steward.MaintenanceDefaultsService', rpc_method_handlers)
-    server.add_generic_rpc_handlers((generic_handler,))
-
-
- # This class is part of an EXPERIMENTAL API.
-class MaintenanceDefaultsService(object):
-    """Missing associated documentation comment in .proto file."""
-
-    @staticmethod
-    def GetMaintenanceDefaults(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/steward.MaintenanceDefaultsService/GetMaintenanceDefaults',
-            steward_dot_maintenance__pb2.GetMaintenanceDefaultsRequest.SerializeToString,
-            steward_dot_maintenance__pb2.Maintenance.FromString,
-            options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def CreateMaintenanceDefaults(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/steward.MaintenanceDefaultsService/CreateMaintenanceDefaults',
-            steward_dot_maintenance__pb2.CreateMaintenanceDefaultsRequest.SerializeToString,
-            steward_dot_maintenance__pb2.Maintenance.FromString,
-            options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def DeleteMaintenanceDefaults(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/steward.MaintenanceDefaultsService/DeleteMaintenanceDefaults',
-            steward_dot_maintenance__pb2.DeleteMaintenanceDefaultsRequest.SerializeToString,
-            steward_dot_maintenance__pb2.Maintenance.FromString,
-            options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def UpdateMaintenanceDefaults(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/steward.MaintenanceDefaultsService/UpdateMaintenanceDefaults',
-            steward_dot_maintenance__pb2.UpdateMaintenanceDefaultsRequest.SerializeToString,
-            steward_dot_maintenance__pb2.Maintenance.FromString,
-            options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def ListMaintenanceDefaults(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/steward.MaintenanceDefaultsService/ListMaintenanceDefaults',
-            steward_dot_maintenance__pb2.ListMaintenanceDefaultsRequest.SerializeToString,
             steward_dot_maintenance__pb2.Maintenance.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)

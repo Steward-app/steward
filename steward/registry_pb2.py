@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x16steward/registry.proto\x12\x07steward\x1a\x12steward/user.proto\x1a\x19steward/maintenance.proto2\xae\x02\n\x0bUserService\x12\x33\n\x07GetUser\x12\x17.steward.GetUserRequest\x1a\r.steward.User\"\x00\x12\x39\n\nCreateUser\x12\x1a.steward.CreateUserRequest\x1a\r.steward.User\"\x00\x12\x39\n\nDeleteUser\x12\x1a.steward.DeleteUserRequest\x1a\r.steward.User\"\x00\x12\x39\n\nUpdateUser\x12\x1a.steward.UpdateUserRequest\x1a\r.steward.User\"\x00\x12\x39\n\tListUsers\x12\x19.steward.ListUsersRequest\x1a\r.steward.User\"\x00\x30\x01\x32\x9e\x03\n\x12MaintenanceService\x12H\n\x0eGetMaintenance\x12\x1e.steward.GetMaintenanceRequest\x1a\x14.steward.Maintenance\"\x00\x12N\n\x11\x43reateMaintenance\x12!.steward.CreateMaintenanceRequest\x1a\x14.steward.Maintenance\"\x00\x12N\n\x11\x44\x65leteMaintenance\x12!.steward.DeleteMaintenanceRequest\x1a\x14.steward.Maintenance\"\x00\x12N\n\x11UpdateMaintenance\x12!.steward.UpdateMaintenanceRequest\x1a\x14.steward.Maintenance\"\x00\x12N\n\x10ListMaintenances\x12 .steward.ListMaintenancesRequest\x1a\x14.steward.Maintenance\"\x00\x30\x01\x32\xf4\x03\n\x1aMaintenanceDefaultsService\x12X\n\x16GetMaintenanceDefaults\x12&.steward.GetMaintenanceDefaultsRequest\x1a\x14.steward.Maintenance\"\x00\x12^\n\x19\x43reateMaintenanceDefaults\x12).steward.CreateMaintenanceDefaultsRequest\x1a\x14.steward.Maintenance\"\x00\x12^\n\x19\x44\x65leteMaintenanceDefaults\x12).steward.DeleteMaintenanceDefaultsRequest\x1a\x14.steward.Maintenance\"\x00\x12^\n\x19UpdateMaintenanceDefaults\x12).steward.UpdateMaintenanceDefaultsRequest\x1a\x14.steward.Maintenance\"\x00\x12\\\n\x17ListMaintenanceDefaults\x12\'.steward.ListMaintenanceDefaultsRequest\x1a\x14.steward.Maintenance\"\x00\x30\x01\x62\x06proto3'
+  serialized_pb=b'\n\x16steward/registry.proto\x12\x07steward\x1a\x12steward/user.proto\x1a\x19steward/maintenance.proto2\xae\x02\n\x0bUserService\x12\x33\n\x07GetUser\x12\x17.steward.GetUserRequest\x1a\r.steward.User\"\x00\x12\x39\n\nCreateUser\x12\x1a.steward.CreateUserRequest\x1a\r.steward.User\"\x00\x12\x39\n\nDeleteUser\x12\x1a.steward.DeleteUserRequest\x1a\r.steward.User\"\x00\x12\x39\n\nUpdateUser\x12\x1a.steward.UpdateUserRequest\x1a\r.steward.User\"\x00\x12\x39\n\tListUsers\x12\x19.steward.ListUsersRequest\x1a\r.steward.User\"\x00\x30\x01\x32\x91\x03\n\x12MaintenanceService\x12H\n\x0eGetMaintenance\x12\x1e.steward.GetMaintenanceRequest\x1a\x14.steward.Maintenance\"\x00\x12\x41\n\x11\x43reateMaintenance\x12\x14.steward.Maintenance\x1a\x14.steward.Maintenance\"\x00\x12N\n\x11\x44\x65leteMaintenance\x12!.steward.DeleteMaintenanceRequest\x1a\x14.steward.Maintenance\"\x00\x12N\n\x11UpdateMaintenance\x12!.steward.UpdateMaintenanceRequest\x1a\x14.steward.Maintenance\"\x00\x12N\n\x10ListMaintenances\x12 .steward.ListMaintenancesRequest\x1a\x14.steward.Maintenance\"\x00\x30\x01\x62\x06proto3'
   ,
   dependencies=[steward_dot_user__pb2.DESCRIPTOR,steward_dot_maintenance__pb2.DESCRIPTOR,])
 
@@ -105,7 +105,7 @@ _MAINTENANCESERVICE = _descriptor.ServiceDescriptor(
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
   serialized_start=388,
-  serialized_end=802,
+  serialized_end=789,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetMaintenance',
@@ -122,7 +122,7 @@ _MAINTENANCESERVICE = _descriptor.ServiceDescriptor(
     full_name='steward.MaintenanceService.CreateMaintenance',
     index=1,
     containing_service=None,
-    input_type=steward_dot_maintenance__pb2._CREATEMAINTENANCEREQUEST,
+    input_type=steward_dot_maintenance__pb2._MAINTENANCE,
     output_type=steward_dot_maintenance__pb2._MAINTENANCE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
@@ -161,71 +161,5 @@ _MAINTENANCESERVICE = _descriptor.ServiceDescriptor(
 _sym_db.RegisterServiceDescriptor(_MAINTENANCESERVICE)
 
 DESCRIPTOR.services_by_name['MaintenanceService'] = _MAINTENANCESERVICE
-
-
-_MAINTENANCEDEFAULTSSERVICE = _descriptor.ServiceDescriptor(
-  name='MaintenanceDefaultsService',
-  full_name='steward.MaintenanceDefaultsService',
-  file=DESCRIPTOR,
-  index=2,
-  serialized_options=None,
-  create_key=_descriptor._internal_create_key,
-  serialized_start=805,
-  serialized_end=1305,
-  methods=[
-  _descriptor.MethodDescriptor(
-    name='GetMaintenanceDefaults',
-    full_name='steward.MaintenanceDefaultsService.GetMaintenanceDefaults',
-    index=0,
-    containing_service=None,
-    input_type=steward_dot_maintenance__pb2._GETMAINTENANCEDEFAULTSREQUEST,
-    output_type=steward_dot_maintenance__pb2._MAINTENANCE,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='CreateMaintenanceDefaults',
-    full_name='steward.MaintenanceDefaultsService.CreateMaintenanceDefaults',
-    index=1,
-    containing_service=None,
-    input_type=steward_dot_maintenance__pb2._CREATEMAINTENANCEDEFAULTSREQUEST,
-    output_type=steward_dot_maintenance__pb2._MAINTENANCE,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='DeleteMaintenanceDefaults',
-    full_name='steward.MaintenanceDefaultsService.DeleteMaintenanceDefaults',
-    index=2,
-    containing_service=None,
-    input_type=steward_dot_maintenance__pb2._DELETEMAINTENANCEDEFAULTSREQUEST,
-    output_type=steward_dot_maintenance__pb2._MAINTENANCE,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='UpdateMaintenanceDefaults',
-    full_name='steward.MaintenanceDefaultsService.UpdateMaintenanceDefaults',
-    index=3,
-    containing_service=None,
-    input_type=steward_dot_maintenance__pb2._UPDATEMAINTENANCEDEFAULTSREQUEST,
-    output_type=steward_dot_maintenance__pb2._MAINTENANCE,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='ListMaintenanceDefaults',
-    full_name='steward.MaintenanceDefaultsService.ListMaintenanceDefaults',
-    index=4,
-    containing_service=None,
-    input_type=steward_dot_maintenance__pb2._LISTMAINTENANCEDEFAULTSREQUEST,
-    output_type=steward_dot_maintenance__pb2._MAINTENANCE,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-])
-_sym_db.RegisterServiceDescriptor(_MAINTENANCEDEFAULTSSERVICE)
-
-DESCRIPTOR.services_by_name['MaintenanceDefaultsService'] = _MAINTENANCEDEFAULTSSERVICE
 
 # @@protoc_insertion_point(module_scope)

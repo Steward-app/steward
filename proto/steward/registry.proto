@@ -14,16 +14,8 @@ service UserService {
 
 service MaintenanceService {
   rpc GetMaintenance(GetMaintenanceRequest) returns (Maintenance) {} ;
-  rpc CreateMaintenance(CreateMaintenanceRequest) returns (Maintenance) {} ;
+  rpc CreateMaintenance(Maintenance) returns (Maintenance) {} ;
   rpc DeleteMaintenance(DeleteMaintenanceRequest) returns (Maintenance) {} ;
   rpc UpdateMaintenance(UpdateMaintenanceRequest) returns (Maintenance) {} ;
   rpc ListMaintenances(ListMaintenancesRequest) returns (stream Maintenance) {} ;
-}
-
-service MaintenanceDefaultsService {
-  rpc GetMaintenanceDefaults(GetMaintenanceDefaultsRequest) returns (Maintenance) {} ;
-  rpc CreateMaintenanceDefaults(CreateMaintenanceDefaultsRequest) returns (Maintenance) {} ;
-  rpc DeleteMaintenanceDefaults(DeleteMaintenanceDefaultsRequest) returns (Maintenance) {} ;
-  rpc UpdateMaintenanceDefaults(UpdateMaintenanceDefaultsRequest) returns (Maintenance) {} ;
-  rpc ListMaintenanceDefaults(ListMaintenanceDefaultsRequest) returns (stream Maintenance) {} ;
 }

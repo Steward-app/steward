@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x19steward/maintenance.proto\x12\x07steward\x1a\x1egoogle/protobuf/duration.proto\x1a\x13steward/asset.proto\"\xac\x02\n\x0bMaintenance\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x1d\n\x05\x61sset\x18\x04 \x01(\x0b\x32\x0e.steward.Asset\x12\x0f\n\x07\x65nabled\x18\x05 \x01(\x08\x1aq\n\x08Schedule\x12\x13\n\x0b\x64\x65scription\x18\x01 \x01(\t\x12#\n\x04type\x18\x02 \x01(\x0e\x32\x15.steward.ScheduleType\x12+\n\x08interval\x18\x03 \x01(\x0b\x32\x19.google.protobuf.Duration\x1aJ\n\x06Snooze\x12\x13\n\x0b\x64\x65scription\x18\x01 \x01(\t\x12+\n\x08\x64uration\x18\x02 \x01(\x0b\x32\x19.google.protobuf.Duration\"$\n\x15GetMaintenanceRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"\'\n\x18\x44\x65leteMaintenanceRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"R\n\x18UpdateMaintenanceRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12)\n\x0bmaintenance\x18\x02 \x01(\x0b\x32\x14.steward.Maintenance\"8\n\x17ListMaintenancesRequest\x12\x1d\n\x05\x61sset\x18\x02 \x01(\x0b\x32\x0e.steward.Asset\"E\n\x18\x43reateMaintenanceRequest\x12)\n\x0bmaintenance\x18\x01 \x01(\x0b\x32\x14.steward.Maintenance\",\n\x1dGetMaintenanceDefaultsRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"/\n DeleteMaintenanceDefaultsRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"Z\n UpdateMaintenanceDefaultsRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12)\n\x0bmaintenance\x18\x02 \x01(\x0b\x32\x14.steward.Maintenance\"?\n\x1eListMaintenanceDefaultsRequest\x12\x1d\n\x05\x61sset\x18\x02 \x01(\x0b\x32\x0e.steward.Asset\"M\n CreateMaintenanceDefaultsRequest\x12)\n\x0bmaintenance\x18\x01 \x01(\x0b\x32\x14.steward.Maintenance**\n\x0cScheduleType\x12\x0c\n\x08\x44URATION\x10\x00\x12\x0c\n\x08\x45XTERNAL\x10\x01\x62\x06proto3'
+  serialized_pb=b'\n\x19steward/maintenance.proto\x12\x07steward\x1a\x1egoogle/protobuf/duration.proto\x1a\x13steward/asset.proto\"\xac\x02\n\x0bMaintenance\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x1d\n\x05\x61sset\x18\x04 \x01(\x0b\x32\x0e.steward.Asset\x12\x0f\n\x07\x65nabled\x18\x05 \x01(\x08\x1aq\n\x08Schedule\x12\x13\n\x0b\x64\x65scription\x18\x01 \x01(\t\x12#\n\x04type\x18\x02 \x01(\x0e\x32\x15.steward.ScheduleType\x12+\n\x08interval\x18\x03 \x01(\x0b\x32\x19.google.protobuf.Duration\x1aJ\n\x06Snooze\x12\x13\n\x0b\x64\x65scription\x18\x01 \x01(\t\x12+\n\x08\x64uration\x18\x02 \x01(\x0b\x32\x19.google.protobuf.Duration\"$\n\x15GetMaintenanceRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"\'\n\x18\x44\x65leteMaintenanceRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"R\n\x18UpdateMaintenanceRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12)\n\x0bmaintenance\x18\x02 \x01(\x0b\x32\x14.steward.Maintenance\"8\n\x17ListMaintenancesRequest\x12\x1d\n\x05\x61sset\x18\x02 \x01(\x0b\x32\x0e.steward.Asset\",\n\x1dGetMaintenanceDefaultsRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"/\n DeleteMaintenanceDefaultsRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"Z\n UpdateMaintenanceDefaultsRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12)\n\x0bmaintenance\x18\x02 \x01(\x0b\x32\x14.steward.Maintenance\"?\n\x1eListMaintenanceDefaultsRequest\x12\x1d\n\x05\x61sset\x18\x02 \x01(\x0b\x32\x0e.steward.Asset\"M\n CreateMaintenanceDefaultsRequest\x12)\n\x0bmaintenance\x18\x01 \x01(\x0b\x32\x14.steward.Maintenance**\n\x0cScheduleType\x12\x0c\n\x08\x44URATION\x10\x00\x12\x0c\n\x08\x45XTERNAL\x10\x01\x62\x06proto3'
   ,
   dependencies=[google_dot_protobuf_dot_duration__pb2.DESCRIPTOR,steward_dot_asset__pb2.DESCRIPTOR,])
 
@@ -46,8 +46,8 @@ _SCHEDULETYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1017,
-  serialized_end=1059,
+  serialized_start=946,
+  serialized_end=988,
 )
 _sym_db.RegisterEnumDescriptor(_SCHEDULETYPE)
 
@@ -335,38 +335,6 @@ _LISTMAINTENANCESREQUEST = _descriptor.Descriptor(
 )
 
 
-_CREATEMAINTENANCEREQUEST = _descriptor.Descriptor(
-  name='CreateMaintenanceRequest',
-  full_name='steward.CreateMaintenanceRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='maintenance', full_name='steward.CreateMaintenanceRequest.maintenance', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=615,
-  serialized_end=684,
-)
-
-
 _GETMAINTENANCEDEFAULTSREQUEST = _descriptor.Descriptor(
   name='GetMaintenanceDefaultsRequest',
   full_name='steward.GetMaintenanceDefaultsRequest',
@@ -394,8 +362,8 @@ _GETMAINTENANCEDEFAULTSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=686,
-  serialized_end=730,
+  serialized_start=615,
+  serialized_end=659,
 )
 
 
@@ -426,8 +394,8 @@ _DELETEMAINTENANCEDEFAULTSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=732,
-  serialized_end=779,
+  serialized_start=661,
+  serialized_end=708,
 )
 
 
@@ -465,8 +433,8 @@ _UPDATEMAINTENANCEDEFAULTSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=781,
-  serialized_end=871,
+  serialized_start=710,
+  serialized_end=800,
 )
 
 
@@ -497,8 +465,8 @@ _LISTMAINTENANCEDEFAULTSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=873,
-  serialized_end=936,
+  serialized_start=802,
+  serialized_end=865,
 )
 
 
@@ -529,8 +497,8 @@ _CREATEMAINTENANCEDEFAULTSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=938,
-  serialized_end=1015,
+  serialized_start=867,
+  serialized_end=944,
 )
 
 _MAINTENANCE_SCHEDULE.fields_by_name['type'].enum_type = _SCHEDULETYPE
@@ -541,7 +509,6 @@ _MAINTENANCE_SNOOZE.containing_type = _MAINTENANCE
 _MAINTENANCE.fields_by_name['asset'].message_type = steward_dot_asset__pb2._ASSET
 _UPDATEMAINTENANCEREQUEST.fields_by_name['maintenance'].message_type = _MAINTENANCE
 _LISTMAINTENANCESREQUEST.fields_by_name['asset'].message_type = steward_dot_asset__pb2._ASSET
-_CREATEMAINTENANCEREQUEST.fields_by_name['maintenance'].message_type = _MAINTENANCE
 _UPDATEMAINTENANCEDEFAULTSREQUEST.fields_by_name['maintenance'].message_type = _MAINTENANCE
 _LISTMAINTENANCEDEFAULTSREQUEST.fields_by_name['asset'].message_type = steward_dot_asset__pb2._ASSET
 _CREATEMAINTENANCEDEFAULTSREQUEST.fields_by_name['maintenance'].message_type = _MAINTENANCE
@@ -550,7 +517,6 @@ DESCRIPTOR.message_types_by_name['GetMaintenanceRequest'] = _GETMAINTENANCEREQUE
 DESCRIPTOR.message_types_by_name['DeleteMaintenanceRequest'] = _DELETEMAINTENANCEREQUEST
 DESCRIPTOR.message_types_by_name['UpdateMaintenanceRequest'] = _UPDATEMAINTENANCEREQUEST
 DESCRIPTOR.message_types_by_name['ListMaintenancesRequest'] = _LISTMAINTENANCESREQUEST
-DESCRIPTOR.message_types_by_name['CreateMaintenanceRequest'] = _CREATEMAINTENANCEREQUEST
 DESCRIPTOR.message_types_by_name['GetMaintenanceDefaultsRequest'] = _GETMAINTENANCEDEFAULTSREQUEST
 DESCRIPTOR.message_types_by_name['DeleteMaintenanceDefaultsRequest'] = _DELETEMAINTENANCEDEFAULTSREQUEST
 DESCRIPTOR.message_types_by_name['UpdateMaintenanceDefaultsRequest'] = _UPDATEMAINTENANCEDEFAULTSREQUEST
@@ -609,13 +575,6 @@ ListMaintenancesRequest = _reflection.GeneratedProtocolMessageType('ListMaintena
   # @@protoc_insertion_point(class_scope:steward.ListMaintenancesRequest)
   })
 _sym_db.RegisterMessage(ListMaintenancesRequest)
-
-CreateMaintenanceRequest = _reflection.GeneratedProtocolMessageType('CreateMaintenanceRequest', (_message.Message,), {
-  'DESCRIPTOR' : _CREATEMAINTENANCEREQUEST,
-  '__module__' : 'steward.maintenance_pb2'
-  # @@protoc_insertion_point(class_scope:steward.CreateMaintenanceRequest)
-  })
-_sym_db.RegisterMessage(CreateMaintenanceRequest)
 
 GetMaintenanceDefaultsRequest = _reflection.GeneratedProtocolMessageType('GetMaintenanceDefaultsRequest', (_message.Message,), {
   'DESCRIPTOR' : _GETMAINTENANCEDEFAULTSREQUEST,
