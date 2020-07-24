@@ -15,7 +15,7 @@ from steward import registry_pb2 as r
 from steward import registry_pb2_grpc
 
 from app.assets import assets
-from app.forms import LoginForm, CreateUserForm, CreateMaintenanceForm
+from app.forms import LoginForm, CreateUserForm, MaintenanceForm
 from app.extensions import lm, mail, bcrypt
 
 app = Flask(__name__)
@@ -30,6 +30,8 @@ bcrypt.init_app(app)
 channel = grpc.insecure_channel('localhost:50051')
 users = registry_pb2_grpc.UserServiceStub(channel)
 maintenances = registry_pb2_grpc.MaintenanceServiceStub(channel)
+
+logging.set_verbosity(logging.INFO)
 
 def is_safe_url(target):
     ref_url = urlparse(request.host_url)
@@ -61,7 +63,7 @@ def user(user_id=None):
 @app.route('/maintenance/create', methods=['GET', 'POST'])
 @login_required
 def maintenance_create():
-    form = CreateMaintenanceForm()
+    form = MaintenanceForm()
     if form.validate_on_submit():
         maintenance = m.Maintenance()
         maintenance.name = form.name.data
@@ -69,12 +71,31 @@ def maintenance_create():
         new_maintenance = maintenances.CreateMaintenance(maintenance)
         flash('Maintenace \'{}\' Created!'.format(form.name.data))
         return redirect('/maintenance/{}'.format(new_maintenance._id))
-    return render_template('maintenance_create.html', form=form)
+    return render_template('maintenance_edit.html', form=form, view="Create Maintenance")
 
 @app.route('/maintenance/<maintenance_id>')
 @login_required
 def maintenance(maintenance_id=None):
     return render_template('maintenance.html', maintenance=maintenances.GetMaintenance(m.GetMaintenanceRequest(_id=maintenance_id)))
+
+@app.route('/maintenance/edit/<maintenance_id>', methods=['GET', 'POST'])
+@login_required
+def maintenance_edit(maintenance_id=None):
+    old_maintenance = maintenances.GetMaintenance(m.GetMaintenanceRequest(_id=maintenance_id))
+    form = MaintenanceForm(obj=old_maintenance)
+
+    if form.validate_on_submit():
+        maintenance = m.Maintenance()
+        maintenance.name = form.name.data
+        maintenance.description = form.description.data
+        maintenance.enabled = form.enabled.data
+        maintenance.asset = form.asset.data
+        maintenance.schedule = form.schedule.data
+
+        new_maintenance = maintenances.UpdateMaintenance(m.UpdateMaintenanceRequest(_id=maintenance_id, maintenance=maintenance))
+        flash('Maintenace \'{}\' Updated!'.format(form.name.data))
+        return redirect('/maintenance/{}'.format(new_maintenance._id))
+    return render_template('maintenance_edit.html', form=form, view='Edit Maintenance')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -83,7 +104,6 @@ def login():
     if form.validate_on_submit():
         target_user = users.GetUser(u.GetUserRequest(email=form.email.data))
         if bcrypt.check_password_hash(target_user.password, form.password.data):
-            logging.warning('login, got from db: {}'.format(form.email.data))
             user = WrappedUser()
             user.load(target_user)
             login_user(user)
@@ -92,6 +112,7 @@ def login():
             next = get_redirect_target()
             return redirect(next)
         else:
+            logging.info('email login fail: {}'.format(target_user.email))
             flash('Incorrect password')
     return render_template('login.html', form=form)
 
@@ -121,16 +142,26 @@ def logout():
 
 @lm.user_loader
 def load_user(user_id):
-    user = WrappedUser(user_id)
-    return user
+    if user_id:
+        user = WrappedUser(user_id)
+        return user
+    else:
+        logging.error('load_user called without valid id!')
 
 class WrappedUser(UserMixin):
     def __init__(self, user_id=None):
-        if user_id is not None:
-            logging.warning('user created by id, got from db: {}'.format(user_id))
+        if user_id:
+            logging.debug('user created by id: {user_id}'.format(user_id=user_id))
             self.user = users.GetUser(u.User(_id=user_id))
+        else:
+            logging.debug('LazyLoading user')
+            self.user = 'noneuser'
     def get_id(self):
         return self.user._id
 
     def load(self, proto):
-        self.user = proto
+        if proto:
+            logging.debug('Loading user: {}'.format(proto))
+            self.user = proto
+        else:
+            logging.error('Tried to load user with empty proto!')
