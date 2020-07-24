@@ -1,0 +1,23 @@
+syntax = "proto3";
+package steward;
+
+import "google/protobuf/duration.proto";
+
+enum ScheduleType {
+  DURATION = 0;
+  EXTERNAL = 1;
+}
+
+message Schedule {
+  string _id = 1;
+  string description = 2;
+  ScheduleType type = 3;
+  google.protobuf.Duration interval = 4;
+  Snooze snooze = 5;
+  repeated Snooze available_snoozes = 6;
+}
+
+message Snooze {
+  string description = 1;
+  google.protobuf.Duration duration = 2;
+}

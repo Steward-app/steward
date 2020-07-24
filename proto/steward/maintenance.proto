@@ -1,13 +1,8 @@
 syntax = "proto3";
 package steward;
 
-import "google/protobuf/duration.proto";
 import "steward/asset.proto";
-
-enum ScheduleType {
-  DURATION = 0;
-  EXTERNAL = 1;
-}
+import "steward/schedule.proto";
 
 message Maintenance {
   string _id = 1;
@@ -16,17 +11,6 @@ message Maintenance {
   Asset asset = 4;
   bool enabled = 5;
   Schedule schedule = 6;
-  Snooze snooze = 7;
-}
-
-message Schedule {
-  string description = 1;
-  ScheduleType type = 2;
-  google.protobuf.Duration interval = 3;
-}
-message Snooze {
-  string description = 1;
-  google.protobuf.Duration duration = 2;
 }
 
 message GetMaintenanceRequest {
@@ -44,25 +28,4 @@ message UpdateMaintenanceRequest {
 
 message ListMaintenancesRequest {
   Asset asset = 2;
-}
-
-message GetMaintenanceDefaultsRequest {
-  string _id = 1;
-}
-
-message DeleteMaintenanceDefaultsRequest {
-  string _id = 1;
-}
-
-message UpdateMaintenanceDefaultsRequest {
-  string _id = 1;
-  Maintenance maintenance = 2;
-}
-
-message ListMaintenanceDefaultsRequest {
-  Asset asset = 2;
-}
-
-message CreateMaintenanceDefaultsRequest {
-  Maintenance maintenance = 1;
 }
