@@ -9,12 +9,15 @@ def must_have(kwarg, proto, nested=None):
     def must_have_decorator(func):
         @wraps(func)
         def func_wrapper(self, request, context):
-            logging.info('Checking param {arg} for {service}'.format(arg=kwarg, service=func.__name__))
-            logging.info('Typeof request: {request}'.format(request=type(request)))
+            logging.debug('Checking must_have param {arg} for {service}'.format(arg=kwarg, service=func.__name__))
+            logging.debug('Typeof request: {request}'.format(request=type(request)))
             if nested:
                 nested_obj = getattr(request, nested)
-                return getattr(nested_obj, kwarg) != None
-            elif getattr(request, kwarg) != None:
+                if getattr(nested_obj, kwarg):
+                    return True
+                else:
+                    return False
+            elif getattr(request, kwarg):
                 return func(self, request, context)
             else:
                 return fail_with_empty(
@@ -29,9 +32,12 @@ def must_have_any(kwargs, proto):
     def must_have_any_decorator(func):
         @wraps(func)
         def func_wrapper(self, request, context):
+            logging.debug('Checking must_have_any params {arg} for {service}'.format(arg=kwargs, service=func.__name__))
+            logging.debug('Typeof request: {request}'.format(request=type(request)))
             found = False
             for kwarg in kwargs:
-                if getattr(request, kwarg) != None:
+                if getattr(request, kwarg):
+                    logging.info('Found one: {kwarg}:{value}({typeof})'.format(kwarg=kwarg, value=getattr(request, kwarg), typeof=type(getattr(request, kwarg))))
                     found = True
                     break
             if found:
