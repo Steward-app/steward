@@ -29,12 +29,9 @@ class UserServiceServicer(registry_pb2_grpc.UserServiceServicer):
         elif email:
             return self.storage.users.get_by_attr(email=email)
 
-        if user == u.User():
-            context.set_code(grpc.StatusCode.NOT_FOUND)
-            context.set_details('User "{}" not found.'.format(request))
-            return u.User()
-
-        return user
+        context.set_code(grpc.StatusCode.NOT_FOUND)
+        context.set_details('User "{}" not found.'.format(request))
+        return u.User()
 
     @must_have('email', u.User)
     @must_have('name', u.User)

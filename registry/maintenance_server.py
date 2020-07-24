@@ -42,6 +42,7 @@ class MaintenanceServiceServicer(registry_pb2_grpc.MaintenanceServiceServicer):
     @must_have('_id', m.Maintenance)
     def UpdateMaintenance(self, request, context):
         maintenance_id = request._id
+        logging.info('UpdateMaintenance {}'.format(maintenance_id))
         # only update if maintenance exists
         existing_maintenance = self.storage.maintenances[maintenance_id]
         if maintenance is not m.Maintenance(): # if not empty

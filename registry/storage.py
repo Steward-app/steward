@@ -75,15 +75,15 @@ class Collection():
             yield self.__getitem__(key)
 
     def _encode(self, value):
-        logging.info('Proto->Dict before encode({typeof}): \'{value}\''.format(value=value, typeof=type(value)))
+        logging.debug('Proto->Dict before encode({typeof}): \'{value}\''.format(value=value, typeof=type(value)))
         bson = self._proto2dict(value)
-        logging.info('Proto->Dict after encode: {}'.format(bson))
+        logging.debug('Proto->Dict after encode: {}'.format(bson))
         return bson
 
     def _decode(self, bson, message):
-        logging.info('Dict->Proto before decode: {}'.format(bson))
+        logging.debug('Dict->Proto before decode: {}'.format(bson))
         proto = self._dict2proto(bson, message)
-        logging.info('Dict->Proto after decode: {}'.format(proto))
+        logging.debug('Dict->Proto after decode: {}'.format(proto))
         return proto
 
     def _proto2dict(self, proto):
