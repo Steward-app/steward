@@ -37,7 +37,7 @@ def must_have_any(kwargs, proto):
             found = False
             for kwarg in kwargs:
                 if getattr(request, kwarg):
-                    logging.info('Found one: {kwarg}:{value}({typeof})'.format(kwarg=kwarg, value=getattr(request, kwarg), typeof=type(getattr(request, kwarg))))
+                    logging.debug('Found one: {kwarg}:{value}({typeof})'.format(kwarg=kwarg, value=getattr(request, kwarg), typeof=type(getattr(request, kwarg))))
                     found = True
                     break
             if found:
