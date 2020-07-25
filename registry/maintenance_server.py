@@ -44,7 +44,7 @@ class MaintenanceServiceServicer(registry_pb2_grpc.MaintenanceServiceServicer):
         maintenance_id = request._id
         logging.info('UpdateMaintenance {}'.format(maintenance_id))
         # only update if maintenance exists
-        existing_maintenance = self.storage.maintenances[maintenance_id]
+        maintenance = self.storage.maintenances[maintenance_id]
         if maintenance is not m.Maintenance(): # if not empty
             logging.info('UpdateMaintenance, before update in dict: {}'.format(maintenance))
             maintenance.MergeFrom(request.maintenance)
