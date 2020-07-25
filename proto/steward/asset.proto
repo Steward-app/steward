@@ -9,3 +9,20 @@ message Asset {
   string description = 3;
   Organization organization = 4;
 }
+
+message GetAssetRequest {
+  string _id = 1;
+}
+
+message DeleteAssetRequest {
+  string _id = 1;
+}
+
+message UpdateAssetRequest {
+  string _id = 1;
+  Asset asset = 2;
+}
+
+message ListAssetsRequest {
+  string organization_id = 1;
+}

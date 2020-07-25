@@ -2,6 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
+from steward import asset_pb2 as steward_dot_asset__pb2
 from steward import maintenance_pb2 as steward_dot_maintenance__pb2
 from steward import user_pb2 as steward_dot_user__pb2
 
@@ -378,5 +379,193 @@ class MaintenanceService(object):
         return grpc.experimental.unary_stream(request, target, '/steward.MaintenanceService/ListMaintenances',
             steward_dot_maintenance__pb2.ListMaintenancesRequest.SerializeToString,
             steward_dot_maintenance__pb2.Maintenance.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+
+class AssetServiceStub(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.GetAsset = channel.unary_unary(
+                '/steward.AssetService/GetAsset',
+                request_serializer=steward_dot_asset__pb2.GetAssetRequest.SerializeToString,
+                response_deserializer=steward_dot_asset__pb2.Asset.FromString,
+                )
+        self.CreateAsset = channel.unary_unary(
+                '/steward.AssetService/CreateAsset',
+                request_serializer=steward_dot_asset__pb2.Asset.SerializeToString,
+                response_deserializer=steward_dot_asset__pb2.Asset.FromString,
+                )
+        self.DeleteAsset = channel.unary_unary(
+                '/steward.AssetService/DeleteAsset',
+                request_serializer=steward_dot_asset__pb2.DeleteAssetRequest.SerializeToString,
+                response_deserializer=steward_dot_asset__pb2.Asset.FromString,
+                )
+        self.UpdateAsset = channel.unary_unary(
+                '/steward.AssetService/UpdateAsset',
+                request_serializer=steward_dot_asset__pb2.UpdateAssetRequest.SerializeToString,
+                response_deserializer=steward_dot_asset__pb2.Asset.FromString,
+                )
+        self.ListAssets = channel.unary_stream(
+                '/steward.AssetService/ListAssets',
+                request_serializer=steward_dot_asset__pb2.ListAssetsRequest.SerializeToString,
+                response_deserializer=steward_dot_asset__pb2.Asset.FromString,
+                )
+
+
+class AssetServiceServicer(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def GetAsset(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CreateAsset(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteAsset(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UpdateAsset(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListAssets(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_AssetServiceServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'GetAsset': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetAsset,
+                    request_deserializer=steward_dot_asset__pb2.GetAssetRequest.FromString,
+                    response_serializer=steward_dot_asset__pb2.Asset.SerializeToString,
+            ),
+            'CreateAsset': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateAsset,
+                    request_deserializer=steward_dot_asset__pb2.Asset.FromString,
+                    response_serializer=steward_dot_asset__pb2.Asset.SerializeToString,
+            ),
+            'DeleteAsset': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteAsset,
+                    request_deserializer=steward_dot_asset__pb2.DeleteAssetRequest.FromString,
+                    response_serializer=steward_dot_asset__pb2.Asset.SerializeToString,
+            ),
+            'UpdateAsset': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateAsset,
+                    request_deserializer=steward_dot_asset__pb2.UpdateAssetRequest.FromString,
+                    response_serializer=steward_dot_asset__pb2.Asset.SerializeToString,
+            ),
+            'ListAssets': grpc.unary_stream_rpc_method_handler(
+                    servicer.ListAssets,
+                    request_deserializer=steward_dot_asset__pb2.ListAssetsRequest.FromString,
+                    response_serializer=steward_dot_asset__pb2.Asset.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'steward.AssetService', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class AssetService(object):
+    """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def GetAsset(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/steward.AssetService/GetAsset',
+            steward_dot_asset__pb2.GetAssetRequest.SerializeToString,
+            steward_dot_asset__pb2.Asset.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CreateAsset(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/steward.AssetService/CreateAsset',
+            steward_dot_asset__pb2.Asset.SerializeToString,
+            steward_dot_asset__pb2.Asset.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def DeleteAsset(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/steward.AssetService/DeleteAsset',
+            steward_dot_asset__pb2.DeleteAssetRequest.SerializeToString,
+            steward_dot_asset__pb2.Asset.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def UpdateAsset(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/steward.AssetService/UpdateAsset',
+            steward_dot_asset__pb2.UpdateAssetRequest.SerializeToString,
+            steward_dot_asset__pb2.Asset.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ListAssets(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/steward.AssetService/ListAssets',
+            steward_dot_asset__pb2.ListAssetsRequest.SerializeToString,
+            steward_dot_asset__pb2.Asset.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)

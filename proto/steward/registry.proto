@@ -3,6 +3,7 @@ package steward;
 
 import "steward/user.proto";
 import "steward/maintenance.proto";
+import "steward/asset.proto";
 
 service UserService {
   rpc GetUser(GetUserRequest) returns (User) {} ;
@@ -18,4 +19,12 @@ service MaintenanceService {
   rpc DeleteMaintenance(DeleteMaintenanceRequest) returns (Maintenance) {} ;
   rpc UpdateMaintenance(UpdateMaintenanceRequest) returns (Maintenance) {} ;
   rpc ListMaintenances(ListMaintenancesRequest) returns (stream Maintenance) {} ;
+}
+
+service AssetService {
+  rpc GetAsset(GetAssetRequest) returns (Asset) {} ;
+  rpc CreateAsset(Asset) returns (Asset) {} ;
+  rpc DeleteAsset(DeleteAssetRequest) returns (Asset) {} ;
+  rpc UpdateAsset(UpdateAssetRequest) returns (Asset) {} ;
+  rpc ListAssets(ListAssetsRequest) returns (stream Asset) {} ;
 }
