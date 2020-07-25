@@ -8,6 +8,7 @@ from copy import deepcopy
 
 from steward import user_pb2 as u
 from steward import maintenance_pb2 as m
+from steward import asset_pb2 as a
 
 FLAGS=flags.FLAGS
 
@@ -111,6 +112,9 @@ class StorageManager():
         self.mongo_client = pymongo.MongoClient(FLAGS.db)
         database_name = 'steward-' + FLAGS.env
         self.db = self.mongo_client[database_name]
+
         self.users = Collection(self.db.user, u.User)
         self.maintenances = Collection(self.db.maintenance, m.Maintenance)
+        self.assets = Collection(self.db.asset, a.Asset)
+
         logging.info('StorageManager using {}/{}'.format(FLAGS.db, database_name))
