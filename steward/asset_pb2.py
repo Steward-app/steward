@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x13steward/asset.proto\x12\x07steward\x1a\x1asteward/organization.proto\"c\n\x05\x41sset\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12+\n\x0corganization\x18\x04 \x01(\x0b\x32\x15.steward.Organization\"\x1e\n\x0fGetAssetRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"!\n\x12\x44\x65leteAssetRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"@\n\x12UpdateAssetRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x1d\n\x05\x61sset\x18\x02 \x01(\x0b\x32\x0e.steward.Asset\",\n\x11ListAssetsRequest\x12\x17\n\x0forganization_id\x18\x01 \x01(\tb\x06proto3'
+  serialized_pb=b'\n\x13steward/asset.proto\x12\x07steward\x1a\x1asteward/organization.proto\"v\n\x05\x41sset\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12+\n\x0corganization\x18\x04 \x01(\x0b\x32\x15.steward.Organization\x12\x10\n\x08\x61\x63quired\x18\x05 \x01(\x03\"\x1e\n\x0fGetAssetRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"!\n\x12\x44\x65leteAssetRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"@\n\x12UpdateAssetRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x1d\n\x05\x61sset\x18\x02 \x01(\x0b\x32\x0e.steward.Asset\",\n\x11ListAssetsRequest\x12\x17\n\x0forganization_id\x18\x01 \x01(\tb\x06proto3'
   ,
   dependencies=[steward_dot_organization__pb2.DESCRIPTOR,])
 
@@ -36,9 +36,9 @@ _ASSET = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='id', full_name='steward.Asset.id', index=0,
-      number=1, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
+      name='_id', full_name='steward.Asset._id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -63,6 +63,13 @@ _ASSET = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='acquired', full_name='steward.Asset.acquired', index=4,
+      number=5, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -76,7 +83,7 @@ _ASSET = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=60,
-  serialized_end=159,
+  serialized_end=178,
 )
 
 
@@ -107,8 +114,8 @@ _GETASSETREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=161,
-  serialized_end=191,
+  serialized_start=180,
+  serialized_end=210,
 )
 
 
@@ -139,8 +146,8 @@ _DELETEASSETREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=193,
-  serialized_end=226,
+  serialized_start=212,
+  serialized_end=245,
 )
 
 
@@ -178,8 +185,8 @@ _UPDATEASSETREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=228,
-  serialized_end=292,
+  serialized_start=247,
+  serialized_end=311,
 )
 
 
@@ -210,8 +217,8 @@ _LISTASSETSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=294,
-  serialized_end=338,
+  serialized_start=313,
+  serialized_end=357,
 )
 
 _ASSET.fields_by_name['organization'].message_type = steward_dot_organization__pb2._ORGANIZATION

@@ -4,10 +4,11 @@ package steward;
 import "steward/organization.proto";
 
 message Asset {
-  int64 id = 1;
+  string _id = 1;
   string name = 2;
   string description = 3;
   Organization organization = 4;
+  int64 acquired = 5; // unix timestamp
 }
 
 message GetAssetRequest {
