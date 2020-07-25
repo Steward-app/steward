@@ -11,7 +11,6 @@ from urllib.parse import urlparse, urljoin
 
 from steward import user_pb2 as u
 from steward import maintenance_pb2 as m
-from steward import registry_pb2 as r
 from steward import registry_pb2_grpc
 
 from app.assets import assets
@@ -25,8 +24,9 @@ lm.init_app(app)
 mail.init_app(app)
 bcrypt.init_app(app)
 
-from app import user
+from app import user, maintenance
 app.register_blueprint(user.bp)
+app.register_blueprint(maintenance.bp)
 
 # TODO(artanicus): this hardcodes to the monolithic backend which is bad
 channel = grpc.insecure_channel('localhost:50051')
@@ -52,54 +52,6 @@ def get_redirect_target():
 def root():
     return render_template('index.html', users=users.ListUsers(u.ListUsersRequest()))
 
-
-
-@app.route('/maintenances')
-@login_required
-def list_maintenances():
-    return render_template('maintenances.html', maintenances=maintenances.ListMaintenances(m.ListMaintenancesRequest()))
-
-@app.route('/maintenance/create', methods=['GET', 'POST'])
-@login_required
-def maintenance_create():
-    form = MaintenanceForm()
-    if form.validate_on_submit():
-        maintenance = m.Maintenance()
-        maintenance.name = form.name.data
-        maintenance.description = form.description.data
-        new_maintenance = maintenances.CreateMaintenance(maintenance)
-        flash('Maintenace \'{}\' Created!'.format(form.name.data))
-        return redirect('/maintenance/{}'.format(new_maintenance._id))
-    return render_template('maintenance_edit.html', form=form, view="Create Maintenance")
-
-@app.route('/maintenance/<maintenance_id>')
-@login_required
-def maintenance(maintenance_id=None):
-    return render_template('maintenance.html', maintenance=maintenances.GetMaintenance(m.GetMaintenanceRequest(_id=maintenance_id)))
-
-@app.route('/maintenance/edit/<maintenance_id>', methods=['GET', 'POST'])
-@login_required
-def maintenance_edit(maintenance_id=None):
-    form = MaintenanceForm()
-
-    if form.validate_on_submit():
-        logging.error('edit form checks out, pushing updates')
-        maintenance = m.Maintenance()
-        maintenance.name = form.name.data
-        maintenance.description = form.description.data
-        maintenance.enabled = form.enabled.data
-        maintenance.asset.name = form.asset.data
-        maintenance.schedule.description = form.schedule.data
-
-        new_maintenance = maintenances.UpdateMaintenance(m.UpdateMaintenanceRequest(_id=maintenance_id, maintenance=maintenance))
-        flash('Maintenace \'{}\' Updated!'.format(form.name.data))
-        return redirect('/maintenance/{}'.format(new_maintenance._id))
-    else:
-        logging.info('loading current values because: {}'.format(form.errors))
-        old_maintenance = maintenances.GetMaintenance(m.GetMaintenanceRequest(_id=maintenance_id))
-        form = MaintenanceForm(obj=old_maintenance)
-
-    return render_template('maintenance_edit.html', form=form, view='Edit Maintenance')
 
 
 @app.route('/login', methods=['GET', 'POST'])
