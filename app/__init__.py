@@ -25,6 +25,8 @@ lm.init_app(app)
 mail.init_app(app)
 bcrypt.init_app(app)
 
+from app import user
+app.register_blueprint(user.bp)
 
 # TODO(artanicus): this hardcodes to the monolithic backend which is bad
 channel = grpc.insecure_channel('localhost:50051')
@@ -50,15 +52,12 @@ def get_redirect_target():
 def root():
     return render_template('index.html', users=users.ListUsers(u.ListUsersRequest()))
 
+
+
 @app.route('/maintenances')
 @login_required
 def list_maintenances():
     return render_template('maintenances.html', maintenances=maintenances.ListMaintenances(m.ListMaintenancesRequest()))
-
-@app.route('/user/<user_id>')
-@login_required
-def user(user_id=None):
-    return render_template('user.html', user=users.GetUser(u.GetUserRequest(_id=user_id)))
 
 @app.route('/maintenance/create', methods=['GET', 'POST'])
 @login_required
@@ -133,11 +132,6 @@ def register():
         flash('User Created for {}'.format(form.email.data))
         return redirect('/')
     return render_template('register.html', form=form)
-
-@app.route('/profile')
-@login_required
-def profile():
-    return render_template('profile.html')
 
 @app.route('/logout')
 @login_required
