@@ -81,20 +81,25 @@ def maintenance(maintenance_id=None):
 @app.route('/maintenance/edit/<maintenance_id>', methods=['GET', 'POST'])
 @login_required
 def maintenance_edit(maintenance_id=None):
-    old_maintenance = maintenances.GetMaintenance(m.GetMaintenanceRequest(_id=maintenance_id))
-    form = MaintenanceForm(obj=old_maintenance)
+    form = MaintenanceForm()
 
     if form.validate_on_submit():
+        logging.error('edit form checks out, pushing updates')
         maintenance = m.Maintenance()
         maintenance.name = form.name.data
         maintenance.description = form.description.data
         maintenance.enabled = form.enabled.data
-        maintenance.asset = form.asset.data
-        maintenance.schedule = form.schedule.data
+        maintenance.asset.name = form.asset.data
+        maintenance.schedule.description = form.schedule.data
 
         new_maintenance = maintenances.UpdateMaintenance(m.UpdateMaintenanceRequest(_id=maintenance_id, maintenance=maintenance))
         flash('Maintenace \'{}\' Updated!'.format(form.name.data))
         return redirect('/maintenance/{}'.format(new_maintenance._id))
+    else:
+        logging.info('loading current values because: {}'.format(form.errors))
+        old_maintenance = maintenances.GetMaintenance(m.GetMaintenanceRequest(_id=maintenance_id))
+        form = MaintenanceForm(obj=old_maintenance)
+
     return render_template('maintenance_edit.html', form=form, view='Edit Maintenance')
 
 

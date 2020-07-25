@@ -23,10 +23,20 @@ class CreateUserForm(FlaskForm):
     submit = SubmitField('Create User')
 
 class MaintenanceForm(FlaskForm):
-    choices = [(42, 'Foo'), (69,'Bar')]
+    choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')]
+    assets=[
+            ('------', '------'),
+            ('Bed', 'Bed'),
+            ('Fridge', 'Fridge')
+            ]
+    schedules=[
+            ('------', '------'),
+            ('Weekly', 'Weekly'),
+            ('Monthly', 'Monthly')
+            ]
     name = StringField('Name', validators=[validators.DataRequired()])
     description = StringField('Description')
-    asset = SelectField('Asset', choices=choices, validators=[validators.DataRequired()])
-    schedule = SelectField('Schedule', choices=choices, validators=[validators.DataRequired()])
+    asset = SelectField('Asset', choices=assets, validators=[validators.DataRequired()])
+    schedule = SelectField('Schedule', choices=schedules, validators=[validators.DataRequired()])
     enabled = BooleanField('Enabled')
-    submit = SubmitField('Create Maintenance')
+    submit = SubmitField()
