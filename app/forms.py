@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import SubmitField
-from wtformsparsleyjs import StringField, PasswordField, BooleanField, SelectField
+from wtformsparsleyjs import StringField, PasswordField, BooleanField, SelectField, DateField
 from wtforms import validators
 
 class LoginForm(FlaskForm):
@@ -39,4 +39,11 @@ class MaintenanceForm(FlaskForm):
     asset = SelectField('Asset', choices=assets, validators=[validators.DataRequired()])
     schedule = SelectField('Schedule', choices=schedules, validators=[validators.DataRequired()])
     enabled = BooleanField('Enabled')
+    submit = SubmitField()
+
+class AssetForm(FlaskForm):
+    name = StringField('Name', validators=[validators.DataRequired()])
+    description = StringField('Description')
+    organization = StringField('Organization')
+    acquired = DateField('Acquired')
     submit = SubmitField()
