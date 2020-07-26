@@ -40,6 +40,7 @@ class MaintenanceServiceServicer(registry_pb2_grpc.MaintenanceServiceServicer):
         return self.storage.maintenances.new(request)
 
     @must_have('_id', m.Maintenance)
+    @must_have('maintenance', m.Maintenance)
     def UpdateMaintenance(self, request, context):
         maintenance_id = request._id
         logging.info('UpdateMaintenance {}'.format(maintenance_id))
