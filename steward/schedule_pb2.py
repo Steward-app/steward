@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x16steward/schedule.proto\x12\x07steward\"\xc3\x01\n\x08Schedule\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12#\n\x04type\x18\x03 \x01(\x0e\x32\x15.steward.ScheduleType\x12#\n\x08interval\x18\x04 \x01(\x0b\x32\x11.steward.Duration\x12\x1f\n\x06snooze\x18\x05 \x01(\x0b\x32\x0f.steward.Snooze\x12*\n\x11\x61vailable_snoozes\x18\x06 \x03(\x0b\x32\x0f.steward.Snooze\"B\n\x06Snooze\x12\x13\n\x0b\x64\x65scription\x18\x01 \x01(\t\x12#\n\x08\x64uration\x18\x02 \x01(\x0b\x32\x11.steward.Duration\"\x1b\n\x08\x44uration\x12\x0f\n\x07seconds\x18\x01 \x01(\r**\n\x0cScheduleType\x12\x0c\n\x08\x44URATION\x10\x00\x12\x0c\n\x08\x45XTERNAL\x10\x01\x62\x06proto3'
+  serialized_pb=b'\n\x16steward/schedule.proto\x12\x07steward\"\xc3\x01\n\x08Schedule\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12#\n\x04type\x18\x03 \x01(\x0e\x32\x15.steward.ScheduleType\x12#\n\x08interval\x18\x04 \x01(\x0b\x32\x11.steward.Duration\x12\x1f\n\x06snooze\x18\x05 \x01(\x0b\x32\x0f.steward.Snooze\x12*\n\x11\x61vailable_snoozes\x18\x06 \x03(\x0b\x32\x0f.steward.Snooze\"B\n\x06Snooze\x12\x13\n\x0b\x64\x65scription\x18\x01 \x01(\t\x12#\n\x08\x64uration\x18\x02 \x01(\x0b\x32\x11.steward.Duration\"\x1b\n\x08\x44uration\x12\x0f\n\x07seconds\x18\x01 \x01(\r\"!\n\x12GetScheduleRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"$\n\x15\x44\x65leteScheduleRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"I\n\x15UpdateScheduleRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12#\n\x08schedule\x18\x02 \x01(\x0b\x32\x11.steward.Schedule\"\x16\n\x14ListSchedulesRequest**\n\x0cScheduleType\x12\x0c\n\x08\x44URATION\x10\x00\x12\x0c\n\x08\x45XTERNAL\x10\x01\x62\x06proto3'
 )
 
 _SCHEDULETYPE = _descriptor.EnumDescriptor(
@@ -43,8 +43,8 @@ _SCHEDULETYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=330,
-  serialized_end=372,
+  serialized_start=502,
+  serialized_end=544,
 )
 _sym_db.RegisterEnumDescriptor(_SCHEDULETYPE)
 
@@ -191,14 +191,147 @@ _DURATION = _descriptor.Descriptor(
   serialized_end=328,
 )
 
+
+_GETSCHEDULEREQUEST = _descriptor.Descriptor(
+  name='GetScheduleRequest',
+  full_name='steward.GetScheduleRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='_id', full_name='steward.GetScheduleRequest._id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=330,
+  serialized_end=363,
+)
+
+
+_DELETESCHEDULEREQUEST = _descriptor.Descriptor(
+  name='DeleteScheduleRequest',
+  full_name='steward.DeleteScheduleRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='_id', full_name='steward.DeleteScheduleRequest._id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=365,
+  serialized_end=401,
+)
+
+
+_UPDATESCHEDULEREQUEST = _descriptor.Descriptor(
+  name='UpdateScheduleRequest',
+  full_name='steward.UpdateScheduleRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='_id', full_name='steward.UpdateScheduleRequest._id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='schedule', full_name='steward.UpdateScheduleRequest.schedule', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=403,
+  serialized_end=476,
+)
+
+
+_LISTSCHEDULESREQUEST = _descriptor.Descriptor(
+  name='ListSchedulesRequest',
+  full_name='steward.ListSchedulesRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=478,
+  serialized_end=500,
+)
+
 _SCHEDULE.fields_by_name['type'].enum_type = _SCHEDULETYPE
 _SCHEDULE.fields_by_name['interval'].message_type = _DURATION
 _SCHEDULE.fields_by_name['snooze'].message_type = _SNOOZE
 _SCHEDULE.fields_by_name['available_snoozes'].message_type = _SNOOZE
 _SNOOZE.fields_by_name['duration'].message_type = _DURATION
+_UPDATESCHEDULEREQUEST.fields_by_name['schedule'].message_type = _SCHEDULE
 DESCRIPTOR.message_types_by_name['Schedule'] = _SCHEDULE
 DESCRIPTOR.message_types_by_name['Snooze'] = _SNOOZE
 DESCRIPTOR.message_types_by_name['Duration'] = _DURATION
+DESCRIPTOR.message_types_by_name['GetScheduleRequest'] = _GETSCHEDULEREQUEST
+DESCRIPTOR.message_types_by_name['DeleteScheduleRequest'] = _DELETESCHEDULEREQUEST
+DESCRIPTOR.message_types_by_name['UpdateScheduleRequest'] = _UPDATESCHEDULEREQUEST
+DESCRIPTOR.message_types_by_name['ListSchedulesRequest'] = _LISTSCHEDULESREQUEST
 DESCRIPTOR.enum_types_by_name['ScheduleType'] = _SCHEDULETYPE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -222,6 +355,34 @@ Duration = _reflection.GeneratedProtocolMessageType('Duration', (_message.Messag
   # @@protoc_insertion_point(class_scope:steward.Duration)
   })
 _sym_db.RegisterMessage(Duration)
+
+GetScheduleRequest = _reflection.GeneratedProtocolMessageType('GetScheduleRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GETSCHEDULEREQUEST,
+  '__module__' : 'steward.schedule_pb2'
+  # @@protoc_insertion_point(class_scope:steward.GetScheduleRequest)
+  })
+_sym_db.RegisterMessage(GetScheduleRequest)
+
+DeleteScheduleRequest = _reflection.GeneratedProtocolMessageType('DeleteScheduleRequest', (_message.Message,), {
+  'DESCRIPTOR' : _DELETESCHEDULEREQUEST,
+  '__module__' : 'steward.schedule_pb2'
+  # @@protoc_insertion_point(class_scope:steward.DeleteScheduleRequest)
+  })
+_sym_db.RegisterMessage(DeleteScheduleRequest)
+
+UpdateScheduleRequest = _reflection.GeneratedProtocolMessageType('UpdateScheduleRequest', (_message.Message,), {
+  'DESCRIPTOR' : _UPDATESCHEDULEREQUEST,
+  '__module__' : 'steward.schedule_pb2'
+  # @@protoc_insertion_point(class_scope:steward.UpdateScheduleRequest)
+  })
+_sym_db.RegisterMessage(UpdateScheduleRequest)
+
+ListSchedulesRequest = _reflection.GeneratedProtocolMessageType('ListSchedulesRequest', (_message.Message,), {
+  'DESCRIPTOR' : _LISTSCHEDULESREQUEST,
+  '__module__' : 'steward.schedule_pb2'
+  # @@protoc_insertion_point(class_scope:steward.ListSchedulesRequest)
+  })
+_sym_db.RegisterMessage(ListSchedulesRequest)
 
 
 # @@protoc_insertion_point(module_scope)

@@ -23,3 +23,19 @@ message Snooze {
 message Duration {
   uint32 seconds = 1;
 }
+
+message GetScheduleRequest {
+  string _id = 1;
+}
+
+message DeleteScheduleRequest {
+  string _id = 1;
+}
+
+message UpdateScheduleRequest {
+  string _id = 1;
+  Schedule schedule = 2;
+}
+
+message ListSchedulesRequest {
+}

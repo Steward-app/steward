@@ -4,6 +4,7 @@ import grpc
 
 from steward import asset_pb2 as steward_dot_asset__pb2
 from steward import maintenance_pb2 as steward_dot_maintenance__pb2
+from steward import schedule_pb2 as steward_dot_schedule__pb2
 from steward import user_pb2 as steward_dot_user__pb2
 
 
@@ -567,5 +568,65 @@ class AssetService(object):
         return grpc.experimental.unary_stream(request, target, '/steward.AssetService/ListAssets',
             steward_dot_asset__pb2.ListAssetsRequest.SerializeToString,
             steward_dot_asset__pb2.Asset.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+
+class ScheduleServiceStub(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.ListSchedules = channel.unary_stream(
+                '/steward.ScheduleService/ListSchedules',
+                request_serializer=steward_dot_schedule__pb2.ListSchedulesRequest.SerializeToString,
+                response_deserializer=steward_dot_schedule__pb2.Schedule.FromString,
+                )
+
+
+class ScheduleServiceServicer(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def ListSchedules(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_ScheduleServiceServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'ListSchedules': grpc.unary_stream_rpc_method_handler(
+                    servicer.ListSchedules,
+                    request_deserializer=steward_dot_schedule__pb2.ListSchedulesRequest.FromString,
+                    response_serializer=steward_dot_schedule__pb2.Schedule.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'steward.ScheduleService', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class ScheduleService(object):
+    """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def ListSchedules(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/steward.ScheduleService/ListSchedules',
+            steward_dot_schedule__pb2.ListSchedulesRequest.SerializeToString,
+            steward_dot_schedule__pb2.Schedule.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)

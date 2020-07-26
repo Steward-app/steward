@@ -4,6 +4,7 @@ package steward;
 import "steward/user.proto";
 import "steward/maintenance.proto";
 import "steward/asset.proto";
+import "steward/schedule.proto";
 
 service UserService {
   rpc GetUser(GetUserRequest) returns (User) {} ;
@@ -27,4 +28,8 @@ service AssetService {
   rpc DeleteAsset(DeleteAssetRequest) returns (Asset) {} ;
   rpc UpdateAsset(UpdateAssetRequest) returns (Asset) {} ;
   rpc ListAssets(ListAssetsRequest) returns (stream Asset) {} ;
+}
+
+service ScheduleService {
+  rpc ListSchedules(ListSchedulesRequest) returns (stream Schedule) {} ;
 }
