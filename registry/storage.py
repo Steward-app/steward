@@ -9,6 +9,7 @@ from copy import deepcopy
 from steward import user_pb2 as u
 from steward import maintenance_pb2 as m
 from steward import asset_pb2 as a
+from steward import schedule_pb2 as s
 
 FLAGS=flags.FLAGS
 
@@ -116,5 +117,6 @@ class StorageManager():
         self.users = Collection(self.db.user, u.User)
         self.maintenances = Collection(self.db.maintenance, m.Maintenance)
         self.assets = Collection(self.db.asset, a.Asset)
+        self.schedules = Collection(self.db.schedule, s.Schedule)
 
         logging.info('StorageManager using {}/{}'.format(FLAGS.db, database_name))
