@@ -9,6 +9,7 @@ message User {
   string password = 3;
   string email = 4;
   float available_effort = 5;
+  string organization_id = 6;
 }
 
 enum UserLevel {
@@ -46,4 +47,5 @@ message CreateUserRequest {
   string password = 2;
   string email = 3;
   float available_effort = 4;
+  string organization_id = 5;
 }

@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x12steward/user.proto\x12\x07steward\x1a\x1asteward/organization.proto\"\\\n\x04User\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08password\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x18\n\x10\x61vailable_effort\x18\x05 \x01(\x02\"\x7f\n\x03\x41\x43L\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x1b\n\x04user\x18\x02 \x01(\x0b\x32\r.steward.User\x12+\n\x0corganization\x18\x03 \x01(\x0b\x32\x15.steward.Organization\x12!\n\x05level\x18\x04 \x01(\x0e\x32\x12.steward.UserLevel\",\n\x0eGetUserRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\" \n\x11\x44\x65leteUserRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"=\n\x11UpdateUserRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x1b\n\x04user\x18\x02 \x01(\x0b\x32\r.steward.User\"\x12\n\x10ListUsersRequest\"\\\n\x11\x43reateUserRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t\x12\x18\n\x10\x61vailable_effort\x18\x04 \x01(\x02*/\n\tUserLevel\x12\r\n\tANONYMOUS\x10\x00\x12\x08\n\x04USER\x10\x01\x12\t\n\x05OWNER\x10\x02\x62\x06proto3'
+  serialized_pb=b'\n\x12steward/user.proto\x12\x07steward\x1a\x1asteward/organization.proto\"u\n\x04User\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08password\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x18\n\x10\x61vailable_effort\x18\x05 \x01(\x02\x12\x17\n\x0forganization_id\x18\x06 \x01(\t\"\x7f\n\x03\x41\x43L\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x1b\n\x04user\x18\x02 \x01(\x0b\x32\r.steward.User\x12+\n\x0corganization\x18\x03 \x01(\x0b\x32\x15.steward.Organization\x12!\n\x05level\x18\x04 \x01(\x0e\x32\x12.steward.UserLevel\",\n\x0eGetUserRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\" \n\x11\x44\x65leteUserRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\"=\n\x11UpdateUserRequest\x12\x0b\n\x03_id\x18\x01 \x01(\t\x12\x1b\n\x04user\x18\x02 \x01(\x0b\x32\r.steward.User\"\x12\n\x10ListUsersRequest\"u\n\x11\x43reateUserRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t\x12\x18\n\x10\x61vailable_effort\x18\x04 \x01(\x02\x12\x17\n\x0forganization_id\x18\x05 \x01(\t*/\n\tUserLevel\x12\r\n\tANONYMOUS\x10\x00\x12\x08\n\x04USER\x10\x01\x12\t\n\x05OWNER\x10\x02\x62\x06proto3'
   ,
   dependencies=[steward_dot_organization__pb2.DESCRIPTOR,])
 
@@ -50,8 +50,8 @@ _USERLEVEL = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=539,
-  serialized_end=586,
+  serialized_start=589,
+  serialized_end=636,
 )
 _sym_db.RegisterEnumDescriptor(_USERLEVEL)
 
@@ -105,6 +105,13 @@ _USER = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='organization_id', full_name='steward.User.organization_id', index=5,
+      number=6, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -118,7 +125,7 @@ _USER = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=59,
-  serialized_end=151,
+  serialized_end=176,
 )
 
 
@@ -170,8 +177,8 @@ _ACL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=153,
-  serialized_end=280,
+  serialized_start=178,
+  serialized_end=305,
 )
 
 
@@ -209,8 +216,8 @@ _GETUSERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=282,
-  serialized_end=326,
+  serialized_start=307,
+  serialized_end=351,
 )
 
 
@@ -241,8 +248,8 @@ _DELETEUSERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=328,
-  serialized_end=360,
+  serialized_start=353,
+  serialized_end=385,
 )
 
 
@@ -280,8 +287,8 @@ _UPDATEUSERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=362,
-  serialized_end=423,
+  serialized_start=387,
+  serialized_end=448,
 )
 
 
@@ -305,8 +312,8 @@ _LISTUSERSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=425,
-  serialized_end=443,
+  serialized_start=450,
+  serialized_end=468,
 )
 
 
@@ -346,6 +353,13 @@ _CREATEUSERREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='organization_id', full_name='steward.CreateUserRequest.organization_id', index=4,
+      number=5, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -358,8 +372,8 @@ _CREATEUSERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=445,
-  serialized_end=537,
+  serialized_start=470,
+  serialized_end=587,
 )
 
 _ACL.fields_by_name['user'].message_type = _USER
