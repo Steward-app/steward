@@ -15,11 +15,11 @@ FLAGS = flags.FLAGS
 #flags.DEFINE_string('listen_addr', '[::]:50051', 'Address to listen.')
 
 def serve(argv):
-    s = storage.StorageManager()
+    sm = storage.StorageManager()
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    registry_pb2_grpc.add_UserServiceServicer_to_server(user_server.UserServiceServicer(storage_manager=s), server)
-    registry_pb2_grpc.add_MaintenanceServiceServicer_to_server(maintenance_server.MaintenanceServiceServicer(storage_manager=s), server)
-    registry_pb2_grpc.add_AssetServiceServicer_to_server(asset_server.AssetServiceServicer(storage_manager=a), server)
+    registry_pb2_grpc.add_UserServiceServicer_to_server(user_server.UserServiceServicer(storage_manager=sm), server)
+    registry_pb2_grpc.add_MaintenanceServiceServicer_to_server(maintenance_server.MaintenanceServiceServicer(storage_manager=sm), server)
+    registry_pb2_grpc.add_AssetServiceServicer_to_server(asset_server.AssetServiceServicer(storage_manager=sm), server)
     SERVICE_NAMES = (
             registry_pb2.DESCRIPTOR.services_by_name['UserService'].full_name,
             registry_pb2.DESCRIPTOR.services_by_name['MaintenanceService'].full_name,
