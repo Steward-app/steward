@@ -29,7 +29,7 @@ def asset_create():
         asset.name = form.name.data
         asset.description = form.description.data
         new_asset = assets.CreateAsset(asset)
-        flash('Maintenace \'{}\' Created!'.format(form.name.data))
+        flash('Asset \'{}\' Created!'.format(form.name.data))
         return redirect('/asset/{}'.format(new_asset._id))
     return render_template('asset_edit.html', form=form, view="Create Asset")
 
@@ -53,7 +53,7 @@ def asset_edit(asset_id=None):
         asset.schedule.description = form.schedule.data
 
         new_asset = assets.UpdateAsset(a.UpdateAssetRequest(_id=asset_id, asset=asset))
-        flash('Maintenace \'{}\' Updated!'.format(form.name.data))
+        flash('Asset \'{}\' Updated!'.format(form.name.data))
         return redirect('/asset/{}'.format(new_asset._id))
     else:
         logging.info('loading current values because: {}'.format(form.errors))
