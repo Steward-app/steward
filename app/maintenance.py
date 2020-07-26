@@ -6,6 +6,7 @@ import grpc
 from steward import registry_pb2_grpc
 from steward import maintenance_pb2 as m
 from steward import asset_pb2 as a
+from steward import schedule_pb2 as s
 
 from app.forms import MaintenanceForm
 
@@ -16,6 +17,7 @@ logging.set_verbosity(logging.INFO)
 channel = grpc.insecure_channel('localhost:50051')
 maintenances = registry_pb2_grpc.MaintenanceServiceStub(channel)
 assets = registry_pb2_grpc.AssetServiceStub(channel)
+schedules = registry_pb2_grpc.ScheduleServiceStub(channel)
 
 @bp.route('/maintenances')
 @login_required
@@ -27,7 +29,7 @@ def list_maintenances():
 def maintenance_create():
     form = MaintenanceForm()
     form.asset.choices = [(a._id, a.name) for a in get_available_assets(current_user.user.organization_id)]
-    form.schedule.choices = [(a._id, a.name) for a in get_available_assets(current_user.user.organization_id)]
+    form.schedule.choices = [(s._id, s.description) for s in get_available_schedules()]
     if form.validate_on_submit():
         return maintenance_submit(form)
     return render_template('maintenance_edit.html', form=form, view="Create Maintenance")
@@ -49,7 +51,7 @@ def maintenance_edit(maintenance_id=None):
         old_maintenance = maintenances.GetMaintenance(m.GetMaintenanceRequest(_id=maintenance_id))
         form = MaintenanceForm(obj=old_maintenance)
         form.asset.choices = [(a._id, a.name) for a in get_available_assets(current_user.user.organization_id)]
-        form.schedule.choices = [(a._id, a.name) for a in get_available_assets(current_user.user.organization_id)]
+        form.schedule.choices = [(s._id, s.description) for s in get_available_schedules()]
 
     return render_template('maintenance_edit.html', form=form, view='Edit Maintenance')
 
@@ -71,3 +73,6 @@ def maintenance_submit(form, maintenance_id=None):
 
 def get_available_assets(organization_id):
     return assets.ListAssets(a.ListAssetsRequest(organization_id=organization_id))
+
+def get_available_schedules():
+    return schedules.ListSchedules(s.ListSchedulesRequest())
