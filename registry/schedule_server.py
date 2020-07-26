@@ -33,12 +33,13 @@ class ScheduleServiceServicer(registry_pb2_grpc.ScheduleServiceServicer):
 
         return schedule
 
-    @must_have('name', s.Schedule)
+    @must_have('description', s.Schedule)
     def CreateSchedule(self, request, context):
         logging.info('Creating schedule from: {request}'.format(request=request))
         return self.storage.schedules.new(request)
 
     @must_have('_id', s.Schedule)
+    @must_have('schedule', s.Schedule)
     def UpdateSchedule(self, request, context):
         schedule_id = request._id
         logging.info('UpdateSchedule {}'.format(schedule_id))

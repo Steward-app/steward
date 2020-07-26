@@ -581,6 +581,26 @@ class ScheduleServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
+        self.GetSchedule = channel.unary_unary(
+                '/steward.ScheduleService/GetSchedule',
+                request_serializer=steward_dot_schedule__pb2.GetScheduleRequest.SerializeToString,
+                response_deserializer=steward_dot_schedule__pb2.Schedule.FromString,
+                )
+        self.CreateSchedule = channel.unary_unary(
+                '/steward.ScheduleService/CreateSchedule',
+                request_serializer=steward_dot_schedule__pb2.Schedule.SerializeToString,
+                response_deserializer=steward_dot_schedule__pb2.Schedule.FromString,
+                )
+        self.DeleteSchedule = channel.unary_unary(
+                '/steward.ScheduleService/DeleteSchedule',
+                request_serializer=steward_dot_schedule__pb2.DeleteScheduleRequest.SerializeToString,
+                response_deserializer=steward_dot_schedule__pb2.Schedule.FromString,
+                )
+        self.UpdateSchedule = channel.unary_unary(
+                '/steward.ScheduleService/UpdateSchedule',
+                request_serializer=steward_dot_schedule__pb2.UpdateScheduleRequest.SerializeToString,
+                response_deserializer=steward_dot_schedule__pb2.Schedule.FromString,
+                )
         self.ListSchedules = channel.unary_stream(
                 '/steward.ScheduleService/ListSchedules',
                 request_serializer=steward_dot_schedule__pb2.ListSchedulesRequest.SerializeToString,
@@ -591,6 +611,30 @@ class ScheduleServiceStub(object):
 class ScheduleServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
+    def GetSchedule(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CreateSchedule(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteSchedule(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UpdateSchedule(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def ListSchedules(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -600,6 +644,26 @@ class ScheduleServiceServicer(object):
 
 def add_ScheduleServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
+            'GetSchedule': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetSchedule,
+                    request_deserializer=steward_dot_schedule__pb2.GetScheduleRequest.FromString,
+                    response_serializer=steward_dot_schedule__pb2.Schedule.SerializeToString,
+            ),
+            'CreateSchedule': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateSchedule,
+                    request_deserializer=steward_dot_schedule__pb2.Schedule.FromString,
+                    response_serializer=steward_dot_schedule__pb2.Schedule.SerializeToString,
+            ),
+            'DeleteSchedule': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteSchedule,
+                    request_deserializer=steward_dot_schedule__pb2.DeleteScheduleRequest.FromString,
+                    response_serializer=steward_dot_schedule__pb2.Schedule.SerializeToString,
+            ),
+            'UpdateSchedule': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateSchedule,
+                    request_deserializer=steward_dot_schedule__pb2.UpdateScheduleRequest.FromString,
+                    response_serializer=steward_dot_schedule__pb2.Schedule.SerializeToString,
+            ),
             'ListSchedules': grpc.unary_stream_rpc_method_handler(
                     servicer.ListSchedules,
                     request_deserializer=steward_dot_schedule__pb2.ListSchedulesRequest.FromString,
@@ -614,6 +678,70 @@ def add_ScheduleServiceServicer_to_server(servicer, server):
  # This class is part of an EXPERIMENTAL API.
 class ScheduleService(object):
     """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def GetSchedule(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/steward.ScheduleService/GetSchedule',
+            steward_dot_schedule__pb2.GetScheduleRequest.SerializeToString,
+            steward_dot_schedule__pb2.Schedule.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CreateSchedule(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/steward.ScheduleService/CreateSchedule',
+            steward_dot_schedule__pb2.Schedule.SerializeToString,
+            steward_dot_schedule__pb2.Schedule.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def DeleteSchedule(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/steward.ScheduleService/DeleteSchedule',
+            steward_dot_schedule__pb2.DeleteScheduleRequest.SerializeToString,
+            steward_dot_schedule__pb2.Schedule.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def UpdateSchedule(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/steward.ScheduleService/UpdateSchedule',
+            steward_dot_schedule__pb2.UpdateScheduleRequest.SerializeToString,
+            steward_dot_schedule__pb2.Schedule.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def ListSchedules(request,
