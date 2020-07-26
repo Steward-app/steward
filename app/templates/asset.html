@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}{{asset.name}} {% endblock %}
-{% set view = asset.name %}
+{% set view = 'Asset > ' + asset.name %}
 
 {% block content %}
   {% if asset %}
