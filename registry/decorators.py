@@ -13,11 +13,11 @@ def must_have(kwarg, proto, nested=None):
             logging.debug('Typeof request: {request}'.format(request=type(request)))
             if nested:
                 nested_obj = getattr(request, nested)
-                if getattr(nested_obj, kwarg):
+                if hasattr(nested_obj, kwarg) and getattr(nested_obj, kwarg):
                     return True
                 else:
                     return False
-            elif getattr(request, kwarg):
+            elif hasattr(request, kwarg) and getattr(request, kwarg):
                 return func(self, request, context)
             else:
                 return fail_with_empty(
@@ -36,7 +36,7 @@ def must_have_any(kwargs, proto):
             logging.debug('Typeof request: {request}'.format(request=type(request)))
             found = False
             for kwarg in kwargs:
-                if getattr(request, kwarg):
+                if hasattr(request, kwarg) and getattr(request, kwarg):
                     logging.debug('Found one: {kwarg}:{value}({typeof})'.format(kwarg=kwarg, value=getattr(request, kwarg), typeof=type(getattr(request, kwarg))))
                     found = True
                     break
