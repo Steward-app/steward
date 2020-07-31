@@ -3,6 +3,7 @@ googleapis-common-protos
 absl-py
 protobuf
 grpcio
+sentry-sdk[flask]
 
 # registry
 grpcio-tools

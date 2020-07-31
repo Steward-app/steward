@@ -8,8 +8,19 @@ from flask import Flask, render_template, flash, redirect, request
 from app.app_assets import assets
 from app.extensions import lm, mail, bcrypt
 
+import sentry_sdk
+from sentry_sdk.integrations.flask import FlaskIntegration
+
+
 app = Flask(__name__)
 app.config.from_object('websiteconfig')
+
+if 'SENTRY_ENDPOINT' in app.config:
+    sentry_sdk.init(
+        dsn=app.config['SENTRY_ENDPOINT'],
+        integrations=[FlaskIntegration()]
+    )
+
 assets.init_app(app)
 lm.init_app(app)
 mail.init_app(app)

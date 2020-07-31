@@ -1,5 +1,6 @@
 from concurrent import futures
 from absl import logging, flags, app
+import sentry_sdk
 
 import grpc
 from grpc_reflection.v1alpha import reflection
@@ -77,6 +78,8 @@ class MaintenanceServiceServicer(registry_pb2_grpc.MaintenanceServiceServicer):
             yield maintenance
 
 def serve(argv):
+    if FLAGS.sentry:
+        sentry_sdk.init(FLAGS.sentry)
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     registry_pb2_grpc.add_MaintenanceServiceServicer_to_server(MaintenanceServiceServicer(), server)
     SERVICE_NAMES = (
