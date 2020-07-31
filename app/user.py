@@ -26,12 +26,26 @@ users = registry_pb2_grpc.UserServiceStub(channel)
 def user_profile():
     return render_template('profile.html')
 
-@bp.route('/user/delete/<user_id>')
+@bp.route('/user/delete/<user_id>', methods=['GET', 'POST'])
 @login_required
 def user_delete(user_id=None):
-    return render_template('user.html', user=users.GetUser(u.GetUserRequest(_id=user_id)))
+    form = DeleteForm()
+    user = users.GetUser(m.GetUserRequest(_id=user_id))
 
-@bp.route('/user/edit/<user_id>')
+    if form.validate_on_submit():
+        deleted = users.DeleteUser(m.DeleteUserRequest(_id=user_id))
+        if deleted and deleted.name and not deleted._id:
+            flash('User deleted: {}'.format(deleted.name))
+            return redirect('/users')
+        else:
+            flash('Failed to delete user: {}'.format(deleted))
+            logging.error('Failed to delete user: {}'.format(deleted))
+            user = 'error'
+            return render_template('delete.html', form=form, view='delete', obj_type='User', user=None)
+    return render_template('delete.html', form=form, view='delete', obj_type='User', user=user)
+
+
+@bp.route('/user/edit/<user_id>', methods=['GET', 'POST'])
 @login_required
 def user_edit(user_id=None):
     return render_template('user.html', user=users.GetUser(u.GetUserRequest(_id=user_id)))
