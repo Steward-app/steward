@@ -7,3 +7,4 @@ app/static/node_modules
 app/static/gen
 .coverage
 *.egg-info
+.env

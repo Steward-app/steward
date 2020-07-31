@@ -9,7 +9,7 @@ from flask import Blueprint, render_template, flash, redirect, request
 from flask_login import UserMixin, login_user, login_required, logout_user, current_user
 from app.forms import UserForm, LoginForm, DeleteForm
 from app.extensions import lm, mail, bcrypt
-from app import util
+from app import util, channels
 
 import grpc
 from steward import registry_pb2_grpc
@@ -18,8 +18,7 @@ from steward import user_pb2 as u
 
 bp = Blueprint("user", __name__)
 logging.set_verbosity(logging.INFO)
-
-channel = grpc.insecure_channel('localhost:50051')
+channel = grpc.insecure_channel(channels.USER_ENDPOINT)
 users = registry_pb2_grpc.UserServiceStub(channel)
 
 @bp.route('/users')

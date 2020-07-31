@@ -9,15 +9,18 @@ from steward import asset_pb2 as a
 from steward import schedule_pb2 as s
 
 from app.forms import MaintenanceForm, DeleteForm
+from app import channels
 
 bp = Blueprint("maintenance", __name__)
 
 logging.set_verbosity(logging.INFO)
 
-channel = grpc.insecure_channel('localhost:50051')
-maintenances = registry_pb2_grpc.MaintenanceServiceStub(channel)
-assets = registry_pb2_grpc.AssetServiceStub(channel)
-schedules = registry_pb2_grpc.ScheduleServiceStub(channel)
+maintenance_channel = grpc.insecure_channel(channels.MAINTENANCE_ENDPOINT)
+asset_channel = grpc.insecure_channel(channels.ASSET_ENDPOINT)
+schedule_channel = grpc.insecure_channel(channels.SCHEDULE_ENDPOINT)
+maintenances = registry_pb2_grpc.MaintenanceServiceStub(maintenance_channel)
+assets = registry_pb2_grpc.AssetServiceStub(asset_channel)
+schedules = registry_pb2_grpc.ScheduleServiceStub(schedule_channel)
 
 @bp.route('/maintenances')
 @login_required

@@ -13,12 +13,13 @@ from steward import registry_pb2_grpc
 from steward import asset_pb2 as a
 
 from app.forms import AssetForm, DeleteForm
+from app import channels
 
 bp = Blueprint("asset", __name__)
 
 logging.set_verbosity(logging.INFO)
 
-channel = grpc.insecure_channel('localhost:50051')
+channel = grpc.insecure_channel(channels.ASSET_ENDPOINT)
 assets = registry_pb2_grpc.AssetServiceStub(channel)
 
 @bp.route('/assets')
