@@ -11,7 +11,7 @@
       {% for maintenance in maintenances %}
       <li id="{{maintenance._id}}">
         <a href='/maintenance/{{maintenance._id}}'>
-          {{maintenance.name}}
+          {{maintenance.name}} ({{maintenance.asset.name}})
         </a>
       </li>
       {% endfor %}
