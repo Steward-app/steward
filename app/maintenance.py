@@ -25,9 +25,13 @@ def maintenance_list():
     return render_template('maintenances.html', maintenances=maintenances.ListMaintenances(m.ListMaintenancesRequest()))
 
 @bp.route('/maintenance/create', methods=['GET', 'POST'])
+@bp.route('/maintenance/create/<asset_id>', methods=['GET', 'POST'])
 @login_required
-def maintenance_create():
-    form = MaintenanceForm()
+def maintenance_create(asset_id=None):
+    if asset_id:
+        form = MaintenanceForm(asset=asset_id)
+    else:
+        form = MaintenanceForm()
     form.asset.choices = [(a._id, a.name) for a in get_available_assets(current_user.user.organization_id)]
     form.schedule.choices = [(s._id, s.description) for s in get_available_schedules()]
     if form.validate_on_submit():
