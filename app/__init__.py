@@ -13,7 +13,6 @@ from steward import maintenance_pb2 as m
 from steward import registry_pb2_grpc
 
 from app.app_assets import assets
-from app.forms import LoginForm, CreateUserForm, MaintenanceForm
 from app.extensions import lm, mail, bcrypt
 
 app = Flask(__name__)
@@ -23,8 +22,7 @@ lm.init_app(app)
 mail.init_app(app)
 bcrypt.init_app(app)
 
-from app import auth, user, maintenance, asset
-app.register_blueprint(auth.bp)
+from app import user, maintenance, asset
 app.register_blueprint(user.bp)
 app.register_blueprint(maintenance.bp)
 app.register_blueprint(asset.bp)
