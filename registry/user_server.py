@@ -71,6 +71,7 @@ class UserServiceServicer(registry_pb2_grpc.UserServiceServicer):
         user = self.storage.users[user_id]
         if user != u.User():
             del self.storage.users[user_id]
+            user._id = ''
             return user
         else:
             context.set_code(grpc.StatusCode.NOT_FOUND)
