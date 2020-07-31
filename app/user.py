@@ -5,7 +5,7 @@ from flask import Blueprint, render_template, flash, redirect, request
 from flask_login import UserMixin, login_user, login_required, logout_user, current_user
 from urllib.parse import urlparse, urljoin
 
-from app.forms import UserForm, LoginForm
+from app.forms import UserForm, LoginForm, DeleteForm
 from app.extensions import lm, mail, bcrypt
 from app import util
 
@@ -30,10 +30,10 @@ def user_profile():
 @login_required
 def user_delete(user_id=None):
     form = DeleteForm()
-    user = users.GetUser(m.GetUserRequest(_id=user_id))
+    user = users.GetUser(u.GetUserRequest(_id=user_id))
 
     if form.validate_on_submit():
-        deleted = users.DeleteUser(m.DeleteUserRequest(_id=user_id))
+        deleted = users.DeleteUser(u.DeleteUserRequest(_id=user_id))
         if deleted and deleted.name and not deleted._id:
             flash('User deleted: {}'.format(deleted.name))
             return redirect('/users')
@@ -41,8 +41,8 @@ def user_delete(user_id=None):
             flash('Failed to delete user: {}'.format(deleted))
             logging.error('Failed to delete user: {}'.format(deleted))
             user = 'error'
-            return render_template('delete.html', form=form, view='delete', obj_type='User', user=None)
-    return render_template('delete.html', form=form, view='delete', obj_type='User', user=user)
+            return render_template('delete.html', form=form, view='delete', obj_type='User', obj=None, name='deleted?')
+    return render_template('delete.html', form=form, view='delete', obj_type='User', obj=user, name=user.name)
 
 
 @bp.route('/user/edit/<user_id>', methods=['GET', 'POST'])
