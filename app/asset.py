@@ -12,7 +12,7 @@ import grpc
 from steward import registry_pb2_grpc
 from steward import asset_pb2 as a
 
-from app.forms import AssetForm
+from app.forms import AssetForm, DeleteForm
 
 bp = Blueprint("asset", __name__)
 
@@ -61,6 +61,25 @@ def asset_edit(asset_id=None):
         form = AssetForm(obj=asset_obj)
 
     return render_template('asset_edit.html', form=form, view='Edit Asset')
+
+@bp.route('/asset/delete/<asset_id>', methods=['GET', 'POST'])
+@login_required
+def asset_delete(asset_id=None):
+    form = DeleteForm()
+    asset = assets.GetAsset(a.GetAssetRequest(_id=asset_id))
+
+    if form.validate_on_submit():
+        deleted = assets.DeleteAsset(a.DeleteAssetRequest(_id=asset_id))
+        if deleted and deleted.name and not deleted._id:
+            flash('Asset deleted: {}'.format(deleted.name))
+            return redirect('/assets')
+        else:
+            flash('Failed to delete asset: {}'.format(deleted))
+            logging.error('Failed to delete asset: {}'.format(deleted))
+            asset = 'error'
+            return render_template('delete.html', form=form, view='delete', obj_type='Asset', obj=None, name='deleted?')
+    return render_template('delete.html', form=form, view='delete', obj_type='Asset', obj=asset, name=asset.name)
+
 
 def asset_submit(form, asset_id=None):
         asset = a.Asset()

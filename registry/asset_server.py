@@ -63,6 +63,7 @@ class AssetServiceServicer(registry_pb2_grpc.AssetServiceServicer):
         asset = self.storage.assets[asset_id]
         if asset != a.Asset():
             del self.storage.assets[asset_id]
+            asset._id = ''
             return asset
         else:
             context.set_code(grpc.StatusCode.NOT_FOUND)
