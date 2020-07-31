@@ -23,7 +23,7 @@ assets = registry_pb2_grpc.AssetServiceStub(channel)
 
 @bp.route('/assets')
 @login_required
-def list_assets():
+def asset_list():
     return render_template('assets.html', assets=assets.ListAssets(a.ListAssetsRequest()))
 
 @bp.route('/asset/create', methods=['GET', 'POST'])

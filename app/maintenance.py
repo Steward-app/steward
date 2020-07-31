@@ -21,7 +21,7 @@ schedules = registry_pb2_grpc.ScheduleServiceStub(channel)
 
 @bp.route('/maintenances')
 @login_required
-def list_maintenances():
+def maintenance_list():
     return render_template('maintenances.html', maintenances=maintenances.ListMaintenances(m.ListMaintenancesRequest()))
 
 @bp.route('/maintenance/create', methods=['GET', 'POST'])

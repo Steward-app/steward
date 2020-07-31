@@ -20,6 +20,10 @@ logging.set_verbosity(logging.INFO)
 channel = grpc.insecure_channel('localhost:50051')
 users = registry_pb2_grpc.UserServiceStub(channel)
 
+@bp.route('/users')
+@login_required
+def user_list():
+    return render_template('users.html', users=users.ListUsers(u.ListUsersRequest()))
 
 @bp.route('/user/profile')
 @login_required
