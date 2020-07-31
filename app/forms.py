@@ -15,7 +15,7 @@ class UserForm(FlaskForm):
         validators.DataRequired(),
         validators.Email(message="Not a valid email address")
         ])
-    old_password = PasswordField('Password', hidden=True, validators=[validators.DataRequired()])
+    old_password = PasswordField('Password', validators=[validators.DataRequired()])
     password = PasswordField('Password', validators=[
         validators.DataRequired(),
         validators.Regexp('^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z!@#$%^&*]{12,72}$', message='Password must contain at least one letter, at least one number, and be longer than 12 charaters.')

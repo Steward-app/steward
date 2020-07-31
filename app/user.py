@@ -62,6 +62,7 @@ def user(user_id=None):
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
     form = UserForm()
+    del form.old_password
     if form.validate_on_submit():
         user = u.CreateUserRequest()
         user.name = form.name.data
@@ -69,8 +70,12 @@ def register():
         user.password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         users.CreateUser(user)
         flash('User Created for {}'.format(form.email.data))
-        return redirect('/')
-    return render_template('register.html', form=form)
+        return redirect('/login')
+    if form.errors:
+        logging.info('register failed: {}'.format(form.errors))
+        flash('register failed: {}'.format(form.errors))
+
+    return render_template('user_edit.html', form=form, view='Register')
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
