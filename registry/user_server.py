@@ -52,11 +52,11 @@ class UserServiceServicer(registry_pb2_grpc.UserServiceServicer):
         user_id = request._id
         # only update if user exists
         existing_user = self.storage.users[user_id]
-        if user is not u.User(): # if not empty
-            logging.info('UpdateUser, before update in dict: {}'.format(user))
-            user.MergeFrom(request.user)
-            logging.info('UpdateUser, merged Proto: {}'.format(user))
-            result = self.storage.users[user_id] = user
+        if existing_user != u.User(): # if not empty
+            logging.info('UpdateUser, before update in dict: {}'.format(existing_user))
+            existing_user.MergeFrom(request.user)
+            logging.info('UpdateUser, merged Proto: {}'.format(existing_user))
+            result = self.storage.users[user_id] = existing_user
             return self.GetUser(u.GetUserRequest(_id=user_id), context)
         else:
             context.set_code(grpc.StatusCode.NOT_FOUND)

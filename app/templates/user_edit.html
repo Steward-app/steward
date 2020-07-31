@@ -12,6 +12,12 @@
             {{ form.email.label }}<br>
             {{ form.email(class_="form-control") }}
         </p>
+        {% if 'old_password' in form %}
+        <p>
+            {{ form.old_password.label }}<br>
+            {{ form.old_password(class_="form-control") }}
+        </p>
+        {% endif %}
         <p>
             {{ form.password.label }}<br>
             {{ form.password(class_="form-control") }}
