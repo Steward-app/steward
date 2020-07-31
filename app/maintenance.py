@@ -77,8 +77,8 @@ def maintenance_delete(maintenance_id=None):
             flash('Failed to delete maintenance: {}'.format(deleted))
             logging.error('Failed to delete maintenance: {}'.format(deleted))
             maintenance = 'error'
-            return render_template('delete.html', form=form, view='delete', obj_type='Maintenance', maintenance=None)
-    return render_template('delete.html', form=form, view='delete', obj_type='Maintenance', maintenance=maintenance)
+            return render_template('delete.html', form=form, view='delete', obj_type='Maintenance', obj=None, name='deleted?')
+    return render_template('delete.html', form=form, view='delete', obj_type='Maintenance', obj=maintenance, name=maintenance.name)
 
 
 def maintenance_submit(form, maintenance_id=None):
