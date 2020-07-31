@@ -65,6 +65,7 @@ class MaintenanceServiceServicer(registry_pb2_grpc.MaintenanceServiceServicer):
         maintenance = self.storage.maintenances[maintenance_id]
         if maintenance != m.Maintenance():
             del self.storage.maintenances[maintenance_id]
+            maintenance._id = ''
             return maintenance
         else:
             context.set_code(grpc.StatusCode.NOT_FOUND)

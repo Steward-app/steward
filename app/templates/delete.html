@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}{{maintenance.name}} {% endblock %}
+{% set view = obj_type + ' > ' + view + ' > ' + maintenance.name %}
+
+{% block content %}
+  {% if maintenance %}
+    <p>Are you absolutely sure?</p>
+    <form action="" method="post" data-parsley-validate>
+        {{ form.hidden_tag() }}
+        <p>{{ form.submit() }}</p>
+    </form>
+  {% else %}
+    <h2>Maintenance not found.</h2>
+  {% endif %}
+{% endblock %}

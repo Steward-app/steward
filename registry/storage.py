@@ -66,11 +66,7 @@ class Collection():
 
     def __delitem__(self, key):
         key = self._id(key)
-        user = self.__getitem__(key)
         self.collection.delete_one({'_id': key})
-        item = self._id(item)
-        user = self.collection.find_one({'_id': item})
-        return user is not None
 
     def __iter__(self):
         for key in self.keys():

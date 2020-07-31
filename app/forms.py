@@ -9,9 +9,13 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
-class CreateUserForm(FlaskForm):
+class UserForm(FlaskForm):
     name = StringField('Name', validators=[validators.DataRequired()])
-    email = StringField('Email', validators=[validators.DataRequired(), validators.Email(message="Not a valid email address")])
+    email = StringField('Email', validators=[
+        validators.DataRequired(),
+        validators.Email(message="Not a valid email address")
+        ])
+    old_password = PasswordField('Password', hidden=True, validators=[validators.DataRequired()])
     password = PasswordField('Password', validators=[
         validators.DataRequired(),
         validators.Regexp('^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z!@#$%^&*]{12,72}$', message='Password must contain at least one letter, at least one number, and be longer than 12 charaters.')
@@ -25,8 +29,8 @@ class CreateUserForm(FlaskForm):
 class MaintenanceForm(FlaskForm):
     name = StringField('Name', validators=[validators.DataRequired()])
     description = StringField('Description')
-    asset = SelectField('Asset', validators=[validators.DataRequired()])
-    schedule = SelectField('Schedule', validators=[validators.DataRequired()])
+    asset = SelectField('Asset')
+    schedule = SelectField('Schedule')
     enabled = BooleanField('Enabled')
     submit = SubmitField()
 
@@ -36,3 +40,6 @@ class AssetForm(FlaskForm):
     organization = StringField('Organization')
     acquired = DateField('Acquired')
     submit = SubmitField()
+
+class DeleteForm(FlaskForm):
+    submit = SubmitField(label='Delete')
