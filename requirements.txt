@@ -9,6 +9,7 @@ sentry-sdk[flask]
 grpcio-tools
 grpcio-reflection
 pymongo
+python-grpc-prometheus
 
 # web
 WTForms

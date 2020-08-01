@@ -76,9 +76,10 @@ class AssetServiceServicer(registry_pb2_grpc.AssetServiceServicer):
             yield asset
 
 def serve(argv):
+    from registry.monitoring import psi
     if FLAGS.sentry:
         sentry_sdk.init(FLAGS.sentry)
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), interceptors=(psi,))
     registry_pb2_grpc.add_AssetServiceServicer_to_server(AssetServiceServicer(), server)
     SERVICE_NAMES = (
             registry_pb2.DESCRIPTOR.services_by_name['AssetService'].full_name,

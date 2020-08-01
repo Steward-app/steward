@@ -11,6 +11,7 @@ from steward import asset_pb2 as a
 from steward import schedule_pb2 as s
 from steward import registry_pb2_grpc, registry_pb2
 from registry import server_flags, storage, user_server, maintenance_server, asset_server, schedule_server
+from registry.monitoring import psi
 
 FLAGS = flags.FLAGS
 
@@ -22,7 +23,7 @@ def serve(argv):
         sentry_sdk.init(FLAGS.sentry)
 
     sm = storage.StorageManager()
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), interceptors=(psi,))
     registry_pb2_grpc.add_UserServiceServicer_to_server(user_server.UserServiceServicer(storage_manager=sm), server)
     registry_pb2_grpc.add_MaintenanceServiceServicer_to_server(maintenance_server.MaintenanceServiceServicer(storage_manager=sm), server)
     registry_pb2_grpc.add_AssetServiceServicer_to_server(asset_server.AssetServiceServicer(storage_manager=sm), server)

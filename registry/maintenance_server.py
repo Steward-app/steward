@@ -78,9 +78,10 @@ class MaintenanceServiceServicer(registry_pb2_grpc.MaintenanceServiceServicer):
             yield maintenance
 
 def serve(argv):
+    from registry.monitoring import psi
     if FLAGS.sentry:
         sentry_sdk.init(FLAGS.sentry)
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), interceptors=(psi,))
     registry_pb2_grpc.add_MaintenanceServiceServicer_to_server(MaintenanceServiceServicer(), server)
     SERVICE_NAMES = (
             registry_pb2.DESCRIPTOR.services_by_name['MaintenanceService'].full_name,

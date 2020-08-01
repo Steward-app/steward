@@ -8,3 +8,4 @@ app/static/gen
 .coverage
 *.egg-info
 .env
+*.flags

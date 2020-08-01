@@ -4,7 +4,7 @@ PROTO_OUT = steward
 PROTO_IN = proto/steward
 PROTO_INCLUDE = proto
 BACKENDS = registry.user_server registry.maintenance_server registry.asset_server registry.schedule_server
-BE_ARGS = --env dev --logtostderr --db=mongodb://127.0.0.1:27017
+BE_ARGS = --flagfile dev.flags
 FE_PORT = 5000
 
 dependencies:
