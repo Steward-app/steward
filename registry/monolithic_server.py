@@ -3,14 +3,12 @@ from absl import logging, flags, app
 
 import grpc
 from grpc_reflection.v1alpha import reflection
-import sentry_sdk
-
 from steward import user_pb2 as u
 from steward import maintenance_pb2 as m
 from steward import asset_pb2 as a
 from steward import schedule_pb2 as s
 from steward import registry_pb2_grpc, registry_pb2
-from registry import server_flags, storage, user_server, maintenance_server, asset_server, schedule_server
+from registry import server_flags, storage, user_server, maintenance_server, asset_server, schedule_server, sentry
 from registry.monitoring import psi
 
 FLAGS = flags.FLAGS
@@ -19,8 +17,7 @@ FLAGS = flags.FLAGS
 #flags.DEFINE_string('listen_addr', '[::]:50051', 'Address to listen.')
 
 def serve(argv):
-    if FLAGS.sentry:
-        sentry_sdk.init(FLAGS.sentry)
+    sentry.init(FLAGS.sentry)
 
     sm = storage.StorageManager()
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), interceptors=(psi,))

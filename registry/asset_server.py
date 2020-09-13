@@ -1,11 +1,10 @@
 from concurrent import futures
 from absl import logging, flags, app
-import sentry_sdk
 
 import grpc
 from grpc_reflection.v1alpha import reflection
 
-from registry import storage, server_flags
+from registry import storage, server_flags, sentry
 from registry.decorators import must_have, must_have_any
 
 from steward import asset_pb2 as a
@@ -77,8 +76,7 @@ class AssetServiceServicer(registry_pb2_grpc.AssetServiceServicer):
 
 def serve(argv):
     from registry.monitoring import psi
-    if FLAGS.sentry:
-        sentry_sdk.init(FLAGS.sentry)
+    sentry.init(FLAGS.sentry)
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), interceptors=(psi,))
     registry_pb2_grpc.add_AssetServiceServicer_to_server(AssetServiceServicer(), server)
     SERVICE_NAMES = (
