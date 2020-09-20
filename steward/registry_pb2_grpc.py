@@ -2,10 +2,10 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from steward import asset_pb2 as steward_dot_asset__pb2
-from steward import maintenance_pb2 as steward_dot_maintenance__pb2
-from steward import schedule_pb2 as steward_dot_schedule__pb2
-from steward import user_pb2 as steward_dot_user__pb2
+from proto.steward import asset_pb2 as proto_dot_steward_dot_asset__pb2
+from proto.steward import maintenance_pb2 as proto_dot_steward_dot_maintenance__pb2
+from proto.steward import schedule_pb2 as proto_dot_steward_dot_schedule__pb2
+from proto.steward import user_pb2 as proto_dot_steward_dot_user__pb2
 
 
 class UserServiceStub(object):
@@ -19,28 +19,28 @@ class UserServiceStub(object):
         """
         self.GetUser = channel.unary_unary(
                 '/steward.UserService/GetUser',
-                request_serializer=steward_dot_user__pb2.GetUserRequest.SerializeToString,
-                response_deserializer=steward_dot_user__pb2.User.FromString,
+                request_serializer=proto_dot_steward_dot_user__pb2.GetUserRequest.SerializeToString,
+                response_deserializer=proto_dot_steward_dot_user__pb2.User.FromString,
                 )
         self.CreateUser = channel.unary_unary(
                 '/steward.UserService/CreateUser',
-                request_serializer=steward_dot_user__pb2.CreateUserRequest.SerializeToString,
-                response_deserializer=steward_dot_user__pb2.User.FromString,
+                request_serializer=proto_dot_steward_dot_user__pb2.CreateUserRequest.SerializeToString,
+                response_deserializer=proto_dot_steward_dot_user__pb2.User.FromString,
                 )
         self.DeleteUser = channel.unary_unary(
                 '/steward.UserService/DeleteUser',
-                request_serializer=steward_dot_user__pb2.DeleteUserRequest.SerializeToString,
-                response_deserializer=steward_dot_user__pb2.User.FromString,
+                request_serializer=proto_dot_steward_dot_user__pb2.DeleteUserRequest.SerializeToString,
+                response_deserializer=proto_dot_steward_dot_user__pb2.User.FromString,
                 )
         self.UpdateUser = channel.unary_unary(
                 '/steward.UserService/UpdateUser',
-                request_serializer=steward_dot_user__pb2.UpdateUserRequest.SerializeToString,
-                response_deserializer=steward_dot_user__pb2.User.FromString,
+                request_serializer=proto_dot_steward_dot_user__pb2.UpdateUserRequest.SerializeToString,
+                response_deserializer=proto_dot_steward_dot_user__pb2.User.FromString,
                 )
         self.ListUsers = channel.unary_stream(
                 '/steward.UserService/ListUsers',
-                request_serializer=steward_dot_user__pb2.ListUsersRequest.SerializeToString,
-                response_deserializer=steward_dot_user__pb2.User.FromString,
+                request_serializer=proto_dot_steward_dot_user__pb2.ListUsersRequest.SerializeToString,
+                response_deserializer=proto_dot_steward_dot_user__pb2.User.FromString,
                 )
 
 
@@ -82,28 +82,28 @@ def add_UserServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'GetUser': grpc.unary_unary_rpc_method_handler(
                     servicer.GetUser,
-                    request_deserializer=steward_dot_user__pb2.GetUserRequest.FromString,
-                    response_serializer=steward_dot_user__pb2.User.SerializeToString,
+                    request_deserializer=proto_dot_steward_dot_user__pb2.GetUserRequest.FromString,
+                    response_serializer=proto_dot_steward_dot_user__pb2.User.SerializeToString,
             ),
             'CreateUser': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateUser,
-                    request_deserializer=steward_dot_user__pb2.CreateUserRequest.FromString,
-                    response_serializer=steward_dot_user__pb2.User.SerializeToString,
+                    request_deserializer=proto_dot_steward_dot_user__pb2.CreateUserRequest.FromString,
+                    response_serializer=proto_dot_steward_dot_user__pb2.User.SerializeToString,
             ),
             'DeleteUser': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteUser,
-                    request_deserializer=steward_dot_user__pb2.DeleteUserRequest.FromString,
-                    response_serializer=steward_dot_user__pb2.User.SerializeToString,
+                    request_deserializer=proto_dot_steward_dot_user__pb2.DeleteUserRequest.FromString,
+                    response_serializer=proto_dot_steward_dot_user__pb2.User.SerializeToString,
             ),
             'UpdateUser': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateUser,
-                    request_deserializer=steward_dot_user__pb2.UpdateUserRequest.FromString,
-                    response_serializer=steward_dot_user__pb2.User.SerializeToString,
+                    request_deserializer=proto_dot_steward_dot_user__pb2.UpdateUserRequest.FromString,
+                    response_serializer=proto_dot_steward_dot_user__pb2.User.SerializeToString,
             ),
             'ListUsers': grpc.unary_stream_rpc_method_handler(
                     servicer.ListUsers,
-                    request_deserializer=steward_dot_user__pb2.ListUsersRequest.FromString,
-                    response_serializer=steward_dot_user__pb2.User.SerializeToString,
+                    request_deserializer=proto_dot_steward_dot_user__pb2.ListUsersRequest.FromString,
+                    response_serializer=proto_dot_steward_dot_user__pb2.User.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -127,8 +127,8 @@ class UserService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/steward.UserService/GetUser',
-            steward_dot_user__pb2.GetUserRequest.SerializeToString,
-            steward_dot_user__pb2.User.FromString,
+            proto_dot_steward_dot_user__pb2.GetUserRequest.SerializeToString,
+            proto_dot_steward_dot_user__pb2.User.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -144,8 +144,8 @@ class UserService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/steward.UserService/CreateUser',
-            steward_dot_user__pb2.CreateUserRequest.SerializeToString,
-            steward_dot_user__pb2.User.FromString,
+            proto_dot_steward_dot_user__pb2.CreateUserRequest.SerializeToString,
+            proto_dot_steward_dot_user__pb2.User.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -161,8 +161,8 @@ class UserService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/steward.UserService/DeleteUser',
-            steward_dot_user__pb2.DeleteUserRequest.SerializeToString,
-            steward_dot_user__pb2.User.FromString,
+            proto_dot_steward_dot_user__pb2.DeleteUserRequest.SerializeToString,
+            proto_dot_steward_dot_user__pb2.User.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -178,8 +178,8 @@ class UserService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/steward.UserService/UpdateUser',
-            steward_dot_user__pb2.UpdateUserRequest.SerializeToString,
-            steward_dot_user__pb2.User.FromString,
+            proto_dot_steward_dot_user__pb2.UpdateUserRequest.SerializeToString,
+            proto_dot_steward_dot_user__pb2.User.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -195,8 +195,8 @@ class UserService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/steward.UserService/ListUsers',
-            steward_dot_user__pb2.ListUsersRequest.SerializeToString,
-            steward_dot_user__pb2.User.FromString,
+            proto_dot_steward_dot_user__pb2.ListUsersRequest.SerializeToString,
+            proto_dot_steward_dot_user__pb2.User.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -212,28 +212,28 @@ class MaintenanceServiceStub(object):
         """
         self.GetMaintenance = channel.unary_unary(
                 '/steward.MaintenanceService/GetMaintenance',
-                request_serializer=steward_dot_maintenance__pb2.GetMaintenanceRequest.SerializeToString,
-                response_deserializer=steward_dot_maintenance__pb2.Maintenance.FromString,
+                request_serializer=proto_dot_steward_dot_maintenance__pb2.GetMaintenanceRequest.SerializeToString,
+                response_deserializer=proto_dot_steward_dot_maintenance__pb2.Maintenance.FromString,
                 )
         self.CreateMaintenance = channel.unary_unary(
                 '/steward.MaintenanceService/CreateMaintenance',
-                request_serializer=steward_dot_maintenance__pb2.Maintenance.SerializeToString,
-                response_deserializer=steward_dot_maintenance__pb2.Maintenance.FromString,
+                request_serializer=proto_dot_steward_dot_maintenance__pb2.Maintenance.SerializeToString,
+                response_deserializer=proto_dot_steward_dot_maintenance__pb2.Maintenance.FromString,
                 )
         self.DeleteMaintenance = channel.unary_unary(
                 '/steward.MaintenanceService/DeleteMaintenance',
-                request_serializer=steward_dot_maintenance__pb2.DeleteMaintenanceRequest.SerializeToString,
-                response_deserializer=steward_dot_maintenance__pb2.Maintenance.FromString,
+                request_serializer=proto_dot_steward_dot_maintenance__pb2.DeleteMaintenanceRequest.SerializeToString,
+                response_deserializer=proto_dot_steward_dot_maintenance__pb2.Maintenance.FromString,
                 )
         self.UpdateMaintenance = channel.unary_unary(
                 '/steward.MaintenanceService/UpdateMaintenance',
-                request_serializer=steward_dot_maintenance__pb2.UpdateMaintenanceRequest.SerializeToString,
-                response_deserializer=steward_dot_maintenance__pb2.Maintenance.FromString,
+                request_serializer=proto_dot_steward_dot_maintenance__pb2.UpdateMaintenanceRequest.SerializeToString,
+                response_deserializer=proto_dot_steward_dot_maintenance__pb2.Maintenance.FromString,
                 )
         self.ListMaintenances = channel.unary_stream(
                 '/steward.MaintenanceService/ListMaintenances',
-                request_serializer=steward_dot_maintenance__pb2.ListMaintenancesRequest.SerializeToString,
-                response_deserializer=steward_dot_maintenance__pb2.Maintenance.FromString,
+                request_serializer=proto_dot_steward_dot_maintenance__pb2.ListMaintenancesRequest.SerializeToString,
+                response_deserializer=proto_dot_steward_dot_maintenance__pb2.Maintenance.FromString,
                 )
 
 
@@ -275,28 +275,28 @@ def add_MaintenanceServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'GetMaintenance': grpc.unary_unary_rpc_method_handler(
                     servicer.GetMaintenance,
-                    request_deserializer=steward_dot_maintenance__pb2.GetMaintenanceRequest.FromString,
-                    response_serializer=steward_dot_maintenance__pb2.Maintenance.SerializeToString,
+                    request_deserializer=proto_dot_steward_dot_maintenance__pb2.GetMaintenanceRequest.FromString,
+                    response_serializer=proto_dot_steward_dot_maintenance__pb2.Maintenance.SerializeToString,
             ),
             'CreateMaintenance': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateMaintenance,
-                    request_deserializer=steward_dot_maintenance__pb2.Maintenance.FromString,
-                    response_serializer=steward_dot_maintenance__pb2.Maintenance.SerializeToString,
+                    request_deserializer=proto_dot_steward_dot_maintenance__pb2.Maintenance.FromString,
+                    response_serializer=proto_dot_steward_dot_maintenance__pb2.Maintenance.SerializeToString,
             ),
             'DeleteMaintenance': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteMaintenance,
-                    request_deserializer=steward_dot_maintenance__pb2.DeleteMaintenanceRequest.FromString,
-                    response_serializer=steward_dot_maintenance__pb2.Maintenance.SerializeToString,
+                    request_deserializer=proto_dot_steward_dot_maintenance__pb2.DeleteMaintenanceRequest.FromString,
+                    response_serializer=proto_dot_steward_dot_maintenance__pb2.Maintenance.SerializeToString,
             ),
             'UpdateMaintenance': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateMaintenance,
-                    request_deserializer=steward_dot_maintenance__pb2.UpdateMaintenanceRequest.FromString,
-                    response_serializer=steward_dot_maintenance__pb2.Maintenance.SerializeToString,
+                    request_deserializer=proto_dot_steward_dot_maintenance__pb2.UpdateMaintenanceRequest.FromString,
+                    response_serializer=proto_dot_steward_dot_maintenance__pb2.Maintenance.SerializeToString,
             ),
             'ListMaintenances': grpc.unary_stream_rpc_method_handler(
                     servicer.ListMaintenances,
-                    request_deserializer=steward_dot_maintenance__pb2.ListMaintenancesRequest.FromString,
-                    response_serializer=steward_dot_maintenance__pb2.Maintenance.SerializeToString,
+                    request_deserializer=proto_dot_steward_dot_maintenance__pb2.ListMaintenancesRequest.FromString,
+                    response_serializer=proto_dot_steward_dot_maintenance__pb2.Maintenance.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -320,8 +320,8 @@ class MaintenanceService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/steward.MaintenanceService/GetMaintenance',
-            steward_dot_maintenance__pb2.GetMaintenanceRequest.SerializeToString,
-            steward_dot_maintenance__pb2.Maintenance.FromString,
+            proto_dot_steward_dot_maintenance__pb2.GetMaintenanceRequest.SerializeToString,
+            proto_dot_steward_dot_maintenance__pb2.Maintenance.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -337,8 +337,8 @@ class MaintenanceService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/steward.MaintenanceService/CreateMaintenance',
-            steward_dot_maintenance__pb2.Maintenance.SerializeToString,
-            steward_dot_maintenance__pb2.Maintenance.FromString,
+            proto_dot_steward_dot_maintenance__pb2.Maintenance.SerializeToString,
+            proto_dot_steward_dot_maintenance__pb2.Maintenance.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -354,8 +354,8 @@ class MaintenanceService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/steward.MaintenanceService/DeleteMaintenance',
-            steward_dot_maintenance__pb2.DeleteMaintenanceRequest.SerializeToString,
-            steward_dot_maintenance__pb2.Maintenance.FromString,
+            proto_dot_steward_dot_maintenance__pb2.DeleteMaintenanceRequest.SerializeToString,
+            proto_dot_steward_dot_maintenance__pb2.Maintenance.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -371,8 +371,8 @@ class MaintenanceService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/steward.MaintenanceService/UpdateMaintenance',
-            steward_dot_maintenance__pb2.UpdateMaintenanceRequest.SerializeToString,
-            steward_dot_maintenance__pb2.Maintenance.FromString,
+            proto_dot_steward_dot_maintenance__pb2.UpdateMaintenanceRequest.SerializeToString,
+            proto_dot_steward_dot_maintenance__pb2.Maintenance.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -388,8 +388,8 @@ class MaintenanceService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/steward.MaintenanceService/ListMaintenances',
-            steward_dot_maintenance__pb2.ListMaintenancesRequest.SerializeToString,
-            steward_dot_maintenance__pb2.Maintenance.FromString,
+            proto_dot_steward_dot_maintenance__pb2.ListMaintenancesRequest.SerializeToString,
+            proto_dot_steward_dot_maintenance__pb2.Maintenance.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -405,28 +405,28 @@ class AssetServiceStub(object):
         """
         self.GetAsset = channel.unary_unary(
                 '/steward.AssetService/GetAsset',
-                request_serializer=steward_dot_asset__pb2.GetAssetRequest.SerializeToString,
-                response_deserializer=steward_dot_asset__pb2.Asset.FromString,
+                request_serializer=proto_dot_steward_dot_asset__pb2.GetAssetRequest.SerializeToString,
+                response_deserializer=proto_dot_steward_dot_asset__pb2.Asset.FromString,
                 )
         self.CreateAsset = channel.unary_unary(
                 '/steward.AssetService/CreateAsset',
-                request_serializer=steward_dot_asset__pb2.Asset.SerializeToString,
-                response_deserializer=steward_dot_asset__pb2.Asset.FromString,
+                request_serializer=proto_dot_steward_dot_asset__pb2.Asset.SerializeToString,
+                response_deserializer=proto_dot_steward_dot_asset__pb2.Asset.FromString,
                 )
         self.DeleteAsset = channel.unary_unary(
                 '/steward.AssetService/DeleteAsset',
-                request_serializer=steward_dot_asset__pb2.DeleteAssetRequest.SerializeToString,
-                response_deserializer=steward_dot_asset__pb2.Asset.FromString,
+                request_serializer=proto_dot_steward_dot_asset__pb2.DeleteAssetRequest.SerializeToString,
+                response_deserializer=proto_dot_steward_dot_asset__pb2.Asset.FromString,
                 )
         self.UpdateAsset = channel.unary_unary(
                 '/steward.AssetService/UpdateAsset',
-                request_serializer=steward_dot_asset__pb2.UpdateAssetRequest.SerializeToString,
-                response_deserializer=steward_dot_asset__pb2.Asset.FromString,
+                request_serializer=proto_dot_steward_dot_asset__pb2.UpdateAssetRequest.SerializeToString,
+                response_deserializer=proto_dot_steward_dot_asset__pb2.Asset.FromString,
                 )
         self.ListAssets = channel.unary_stream(
                 '/steward.AssetService/ListAssets',
-                request_serializer=steward_dot_asset__pb2.ListAssetsRequest.SerializeToString,
-                response_deserializer=steward_dot_asset__pb2.Asset.FromString,
+                request_serializer=proto_dot_steward_dot_asset__pb2.ListAssetsRequest.SerializeToString,
+                response_deserializer=proto_dot_steward_dot_asset__pb2.Asset.FromString,
                 )
 
 
@@ -468,28 +468,28 @@ def add_AssetServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'GetAsset': grpc.unary_unary_rpc_method_handler(
                     servicer.GetAsset,
-                    request_deserializer=steward_dot_asset__pb2.GetAssetRequest.FromString,
-                    response_serializer=steward_dot_asset__pb2.Asset.SerializeToString,
+                    request_deserializer=proto_dot_steward_dot_asset__pb2.GetAssetRequest.FromString,
+                    response_serializer=proto_dot_steward_dot_asset__pb2.Asset.SerializeToString,
             ),
             'CreateAsset': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateAsset,
-                    request_deserializer=steward_dot_asset__pb2.Asset.FromString,
-                    response_serializer=steward_dot_asset__pb2.Asset.SerializeToString,
+                    request_deserializer=proto_dot_steward_dot_asset__pb2.Asset.FromString,
+                    response_serializer=proto_dot_steward_dot_asset__pb2.Asset.SerializeToString,
             ),
             'DeleteAsset': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteAsset,
-                    request_deserializer=steward_dot_asset__pb2.DeleteAssetRequest.FromString,
-                    response_serializer=steward_dot_asset__pb2.Asset.SerializeToString,
+                    request_deserializer=proto_dot_steward_dot_asset__pb2.DeleteAssetRequest.FromString,
+                    response_serializer=proto_dot_steward_dot_asset__pb2.Asset.SerializeToString,
             ),
             'UpdateAsset': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateAsset,
-                    request_deserializer=steward_dot_asset__pb2.UpdateAssetRequest.FromString,
-                    response_serializer=steward_dot_asset__pb2.Asset.SerializeToString,
+                    request_deserializer=proto_dot_steward_dot_asset__pb2.UpdateAssetRequest.FromString,
+                    response_serializer=proto_dot_steward_dot_asset__pb2.Asset.SerializeToString,
             ),
             'ListAssets': grpc.unary_stream_rpc_method_handler(
                     servicer.ListAssets,
-                    request_deserializer=steward_dot_asset__pb2.ListAssetsRequest.FromString,
-                    response_serializer=steward_dot_asset__pb2.Asset.SerializeToString,
+                    request_deserializer=proto_dot_steward_dot_asset__pb2.ListAssetsRequest.FromString,
+                    response_serializer=proto_dot_steward_dot_asset__pb2.Asset.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -513,8 +513,8 @@ class AssetService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/steward.AssetService/GetAsset',
-            steward_dot_asset__pb2.GetAssetRequest.SerializeToString,
-            steward_dot_asset__pb2.Asset.FromString,
+            proto_dot_steward_dot_asset__pb2.GetAssetRequest.SerializeToString,
+            proto_dot_steward_dot_asset__pb2.Asset.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -530,8 +530,8 @@ class AssetService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/steward.AssetService/CreateAsset',
-            steward_dot_asset__pb2.Asset.SerializeToString,
-            steward_dot_asset__pb2.Asset.FromString,
+            proto_dot_steward_dot_asset__pb2.Asset.SerializeToString,
+            proto_dot_steward_dot_asset__pb2.Asset.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -547,8 +547,8 @@ class AssetService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/steward.AssetService/DeleteAsset',
-            steward_dot_asset__pb2.DeleteAssetRequest.SerializeToString,
-            steward_dot_asset__pb2.Asset.FromString,
+            proto_dot_steward_dot_asset__pb2.DeleteAssetRequest.SerializeToString,
+            proto_dot_steward_dot_asset__pb2.Asset.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -564,8 +564,8 @@ class AssetService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/steward.AssetService/UpdateAsset',
-            steward_dot_asset__pb2.UpdateAssetRequest.SerializeToString,
-            steward_dot_asset__pb2.Asset.FromString,
+            proto_dot_steward_dot_asset__pb2.UpdateAssetRequest.SerializeToString,
+            proto_dot_steward_dot_asset__pb2.Asset.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -581,8 +581,8 @@ class AssetService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/steward.AssetService/ListAssets',
-            steward_dot_asset__pb2.ListAssetsRequest.SerializeToString,
-            steward_dot_asset__pb2.Asset.FromString,
+            proto_dot_steward_dot_asset__pb2.ListAssetsRequest.SerializeToString,
+            proto_dot_steward_dot_asset__pb2.Asset.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -598,28 +598,28 @@ class ScheduleServiceStub(object):
         """
         self.GetSchedule = channel.unary_unary(
                 '/steward.ScheduleService/GetSchedule',
-                request_serializer=steward_dot_schedule__pb2.GetScheduleRequest.SerializeToString,
-                response_deserializer=steward_dot_schedule__pb2.Schedule.FromString,
+                request_serializer=proto_dot_steward_dot_schedule__pb2.GetScheduleRequest.SerializeToString,
+                response_deserializer=proto_dot_steward_dot_schedule__pb2.Schedule.FromString,
                 )
         self.CreateSchedule = channel.unary_unary(
                 '/steward.ScheduleService/CreateSchedule',
-                request_serializer=steward_dot_schedule__pb2.Schedule.SerializeToString,
-                response_deserializer=steward_dot_schedule__pb2.Schedule.FromString,
+                request_serializer=proto_dot_steward_dot_schedule__pb2.Schedule.SerializeToString,
+                response_deserializer=proto_dot_steward_dot_schedule__pb2.Schedule.FromString,
                 )
         self.DeleteSchedule = channel.unary_unary(
                 '/steward.ScheduleService/DeleteSchedule',
-                request_serializer=steward_dot_schedule__pb2.DeleteScheduleRequest.SerializeToString,
-                response_deserializer=steward_dot_schedule__pb2.Schedule.FromString,
+                request_serializer=proto_dot_steward_dot_schedule__pb2.DeleteScheduleRequest.SerializeToString,
+                response_deserializer=proto_dot_steward_dot_schedule__pb2.Schedule.FromString,
                 )
         self.UpdateSchedule = channel.unary_unary(
                 '/steward.ScheduleService/UpdateSchedule',
-                request_serializer=steward_dot_schedule__pb2.UpdateScheduleRequest.SerializeToString,
-                response_deserializer=steward_dot_schedule__pb2.Schedule.FromString,
+                request_serializer=proto_dot_steward_dot_schedule__pb2.UpdateScheduleRequest.SerializeToString,
+                response_deserializer=proto_dot_steward_dot_schedule__pb2.Schedule.FromString,
                 )
         self.ListSchedules = channel.unary_stream(
                 '/steward.ScheduleService/ListSchedules',
-                request_serializer=steward_dot_schedule__pb2.ListSchedulesRequest.SerializeToString,
-                response_deserializer=steward_dot_schedule__pb2.Schedule.FromString,
+                request_serializer=proto_dot_steward_dot_schedule__pb2.ListSchedulesRequest.SerializeToString,
+                response_deserializer=proto_dot_steward_dot_schedule__pb2.Schedule.FromString,
                 )
 
 
@@ -661,28 +661,28 @@ def add_ScheduleServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'GetSchedule': grpc.unary_unary_rpc_method_handler(
                     servicer.GetSchedule,
-                    request_deserializer=steward_dot_schedule__pb2.GetScheduleRequest.FromString,
-                    response_serializer=steward_dot_schedule__pb2.Schedule.SerializeToString,
+                    request_deserializer=proto_dot_steward_dot_schedule__pb2.GetScheduleRequest.FromString,
+                    response_serializer=proto_dot_steward_dot_schedule__pb2.Schedule.SerializeToString,
             ),
             'CreateSchedule': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateSchedule,
-                    request_deserializer=steward_dot_schedule__pb2.Schedule.FromString,
-                    response_serializer=steward_dot_schedule__pb2.Schedule.SerializeToString,
+                    request_deserializer=proto_dot_steward_dot_schedule__pb2.Schedule.FromString,
+                    response_serializer=proto_dot_steward_dot_schedule__pb2.Schedule.SerializeToString,
             ),
             'DeleteSchedule': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteSchedule,
-                    request_deserializer=steward_dot_schedule__pb2.DeleteScheduleRequest.FromString,
-                    response_serializer=steward_dot_schedule__pb2.Schedule.SerializeToString,
+                    request_deserializer=proto_dot_steward_dot_schedule__pb2.DeleteScheduleRequest.FromString,
+                    response_serializer=proto_dot_steward_dot_schedule__pb2.Schedule.SerializeToString,
             ),
             'UpdateSchedule': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateSchedule,
-                    request_deserializer=steward_dot_schedule__pb2.UpdateScheduleRequest.FromString,
-                    response_serializer=steward_dot_schedule__pb2.Schedule.SerializeToString,
+                    request_deserializer=proto_dot_steward_dot_schedule__pb2.UpdateScheduleRequest.FromString,
+                    response_serializer=proto_dot_steward_dot_schedule__pb2.Schedule.SerializeToString,
             ),
             'ListSchedules': grpc.unary_stream_rpc_method_handler(
                     servicer.ListSchedules,
-                    request_deserializer=steward_dot_schedule__pb2.ListSchedulesRequest.FromString,
-                    response_serializer=steward_dot_schedule__pb2.Schedule.SerializeToString,
+                    request_deserializer=proto_dot_steward_dot_schedule__pb2.ListSchedulesRequest.FromString,
+                    response_serializer=proto_dot_steward_dot_schedule__pb2.Schedule.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -706,8 +706,8 @@ class ScheduleService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/steward.ScheduleService/GetSchedule',
-            steward_dot_schedule__pb2.GetScheduleRequest.SerializeToString,
-            steward_dot_schedule__pb2.Schedule.FromString,
+            proto_dot_steward_dot_schedule__pb2.GetScheduleRequest.SerializeToString,
+            proto_dot_steward_dot_schedule__pb2.Schedule.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -723,8 +723,8 @@ class ScheduleService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/steward.ScheduleService/CreateSchedule',
-            steward_dot_schedule__pb2.Schedule.SerializeToString,
-            steward_dot_schedule__pb2.Schedule.FromString,
+            proto_dot_steward_dot_schedule__pb2.Schedule.SerializeToString,
+            proto_dot_steward_dot_schedule__pb2.Schedule.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -740,8 +740,8 @@ class ScheduleService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/steward.ScheduleService/DeleteSchedule',
-            steward_dot_schedule__pb2.DeleteScheduleRequest.SerializeToString,
-            steward_dot_schedule__pb2.Schedule.FromString,
+            proto_dot_steward_dot_schedule__pb2.DeleteScheduleRequest.SerializeToString,
+            proto_dot_steward_dot_schedule__pb2.Schedule.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -757,8 +757,8 @@ class ScheduleService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/steward.ScheduleService/UpdateSchedule',
-            steward_dot_schedule__pb2.UpdateScheduleRequest.SerializeToString,
-            steward_dot_schedule__pb2.Schedule.FromString,
+            proto_dot_steward_dot_schedule__pb2.UpdateScheduleRequest.SerializeToString,
+            proto_dot_steward_dot_schedule__pb2.Schedule.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -774,7 +774,7 @@ class ScheduleService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/steward.ScheduleService/ListSchedules',
-            steward_dot_schedule__pb2.ListSchedulesRequest.SerializeToString,
-            steward_dot_schedule__pb2.Schedule.FromString,
+            proto_dot_steward_dot_schedule__pb2.ListSchedulesRequest.SerializeToString,
+            proto_dot_steward_dot_schedule__pb2.Schedule.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

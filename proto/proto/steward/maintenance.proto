@@ -1,8 +1,8 @@
 syntax = "proto3";
 package steward;
 
-import "steward/asset.proto";
-import "steward/schedule.proto";
+import "proto/steward/asset.proto";
+import "proto/steward/schedule.proto";
 
 message Maintenance {
   string _id = 1;

@@ -1,10 +1,10 @@
 syntax = "proto3";
 package steward;
 
-import "steward/user.proto";
-import "steward/maintenance.proto";
-import "steward/asset.proto";
-import "steward/schedule.proto";
+import "proto/steward/user.proto";
+import "proto/steward/maintenance.proto";
+import "proto/steward/asset.proto";
+import "proto/steward/schedule.proto";
 
 service UserService {
   rpc GetUser(GetUserRequest) returns (User) {} ;
