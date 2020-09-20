@@ -1,27 +1,4 @@
-# both
 googleapis-common-protos
-absl-py
 protobuf
 grpcio
-sentry-sdk[flask]
-
-# registry
 grpcio-tools
-grpcio-reflection
-pymongo
-python-grpc-prometheus
-
-# web
-WTForms
-WTForms-ParsleyJS
-Flask-WTF
-Flask-Assets
-Flask-Login
-Flask-Bcrypt
-Flask-Mail
-Flask-Travis
-jsmin
-gunicorn
-cssmin
-email_validator
-python-dotenv

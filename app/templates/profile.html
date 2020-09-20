@@ -1,9 +1,0 @@
-{% extends "base.html" %}
-{% block title %}{{current_user.user.name}} {% endblock %}
-{% set view = "Profile > " + current_user.user.name %}
-
-{% block content %}
-  <pre>
-    {{current_user.user|pprint}}
-  </pre>
-{% endblock %}
