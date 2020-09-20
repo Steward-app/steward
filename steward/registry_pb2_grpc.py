@@ -121,6 +121,7 @@ class UserService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -129,7 +130,7 @@ class UserService(object):
             steward_dot_user__pb2.GetUserRequest.SerializeToString,
             steward_dot_user__pb2.User.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def CreateUser(request,
@@ -137,6 +138,7 @@ class UserService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -145,7 +147,7 @@ class UserService(object):
             steward_dot_user__pb2.CreateUserRequest.SerializeToString,
             steward_dot_user__pb2.User.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def DeleteUser(request,
@@ -153,6 +155,7 @@ class UserService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -161,7 +164,7 @@ class UserService(object):
             steward_dot_user__pb2.DeleteUserRequest.SerializeToString,
             steward_dot_user__pb2.User.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def UpdateUser(request,
@@ -169,6 +172,7 @@ class UserService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -177,7 +181,7 @@ class UserService(object):
             steward_dot_user__pb2.UpdateUserRequest.SerializeToString,
             steward_dot_user__pb2.User.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def ListUsers(request,
@@ -185,6 +189,7 @@ class UserService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -193,7 +198,7 @@ class UserService(object):
             steward_dot_user__pb2.ListUsersRequest.SerializeToString,
             steward_dot_user__pb2.User.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
 class MaintenanceServiceStub(object):
@@ -309,6 +314,7 @@ class MaintenanceService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -317,7 +323,7 @@ class MaintenanceService(object):
             steward_dot_maintenance__pb2.GetMaintenanceRequest.SerializeToString,
             steward_dot_maintenance__pb2.Maintenance.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def CreateMaintenance(request,
@@ -325,6 +331,7 @@ class MaintenanceService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -333,7 +340,7 @@ class MaintenanceService(object):
             steward_dot_maintenance__pb2.Maintenance.SerializeToString,
             steward_dot_maintenance__pb2.Maintenance.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def DeleteMaintenance(request,
@@ -341,6 +348,7 @@ class MaintenanceService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -349,7 +357,7 @@ class MaintenanceService(object):
             steward_dot_maintenance__pb2.DeleteMaintenanceRequest.SerializeToString,
             steward_dot_maintenance__pb2.Maintenance.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def UpdateMaintenance(request,
@@ -357,6 +365,7 @@ class MaintenanceService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -365,7 +374,7 @@ class MaintenanceService(object):
             steward_dot_maintenance__pb2.UpdateMaintenanceRequest.SerializeToString,
             steward_dot_maintenance__pb2.Maintenance.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def ListMaintenances(request,
@@ -373,6 +382,7 @@ class MaintenanceService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -381,7 +391,7 @@ class MaintenanceService(object):
             steward_dot_maintenance__pb2.ListMaintenancesRequest.SerializeToString,
             steward_dot_maintenance__pb2.Maintenance.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
 class AssetServiceStub(object):
@@ -497,6 +507,7 @@ class AssetService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -505,7 +516,7 @@ class AssetService(object):
             steward_dot_asset__pb2.GetAssetRequest.SerializeToString,
             steward_dot_asset__pb2.Asset.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def CreateAsset(request,
@@ -513,6 +524,7 @@ class AssetService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -521,7 +533,7 @@ class AssetService(object):
             steward_dot_asset__pb2.Asset.SerializeToString,
             steward_dot_asset__pb2.Asset.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def DeleteAsset(request,
@@ -529,6 +541,7 @@ class AssetService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -537,7 +550,7 @@ class AssetService(object):
             steward_dot_asset__pb2.DeleteAssetRequest.SerializeToString,
             steward_dot_asset__pb2.Asset.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def UpdateAsset(request,
@@ -545,6 +558,7 @@ class AssetService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -553,7 +567,7 @@ class AssetService(object):
             steward_dot_asset__pb2.UpdateAssetRequest.SerializeToString,
             steward_dot_asset__pb2.Asset.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def ListAssets(request,
@@ -561,6 +575,7 @@ class AssetService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -569,7 +584,7 @@ class AssetService(object):
             steward_dot_asset__pb2.ListAssetsRequest.SerializeToString,
             steward_dot_asset__pb2.Asset.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
 class ScheduleServiceStub(object):
@@ -685,6 +700,7 @@ class ScheduleService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -693,7 +709,7 @@ class ScheduleService(object):
             steward_dot_schedule__pb2.GetScheduleRequest.SerializeToString,
             steward_dot_schedule__pb2.Schedule.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def CreateSchedule(request,
@@ -701,6 +717,7 @@ class ScheduleService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -709,7 +726,7 @@ class ScheduleService(object):
             steward_dot_schedule__pb2.Schedule.SerializeToString,
             steward_dot_schedule__pb2.Schedule.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def DeleteSchedule(request,
@@ -717,6 +734,7 @@ class ScheduleService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -725,7 +743,7 @@ class ScheduleService(object):
             steward_dot_schedule__pb2.DeleteScheduleRequest.SerializeToString,
             steward_dot_schedule__pb2.Schedule.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def UpdateSchedule(request,
@@ -733,6 +751,7 @@ class ScheduleService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -741,7 +760,7 @@ class ScheduleService(object):
             steward_dot_schedule__pb2.UpdateScheduleRequest.SerializeToString,
             steward_dot_schedule__pb2.Schedule.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def ListSchedules(request,
@@ -749,6 +768,7 @@ class ScheduleService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -757,4 +777,4 @@ class ScheduleService(object):
             steward_dot_schedule__pb2.ListSchedulesRequest.SerializeToString,
             steward_dot_schedule__pb2.Schedule.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
