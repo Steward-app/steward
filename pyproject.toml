@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "steward"
+version = "0.1.0"
+description = "Proto definitions and Python client stubs for Steward-app"
+authors = ["Artanicus <artanicus@nocturnal.fi>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+grpcio = "^1.36.1"
+protobuf = "^3.15.7"
+
+[tool.poetry.dev-dependencies]
+googleapis-common-protos = "^1.53.0"
+grpcio-tools = "^1.36.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
